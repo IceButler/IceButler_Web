@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import './Sidebar.css'
 import FoodManageActiveIcon from 'assets/images/sidebarIcon/foodActive.png'
 import ReportManageActiveIcon from 'assets/images/sidebarIcon/reportActive.png'
@@ -45,26 +45,26 @@ function Sidebar() {
                     <h2 className="sidbarTitle">냉집사</h2>
                     <ul className="sidebarList">
                         <li className={"sidebarListItem" + (isFoodOpen ? " active" : "")} onClick={()=>toggleFoodMenu()}>
-                            <Link to="/login"> <img src={isFoodOpen ? FoodManageActiveIcon : FoodManageInactiveIcon} className="menuIcon" alt="menuIcon"></img>
-                            식품 관리</Link>
+                            <img src={isFoodOpen ? FoodManageActiveIcon : FoodManageInactiveIcon} className="menuIcon" alt="menuIcon"></img>
+                            식품 관리
                         </li>
                         <li className={"sidebarListItem" + (isReportOpen ? " active" : "")} onClick={()=>toggleReportMenu()}>
-                            <Link to="/login"><img src={isReportOpen ? ReportManageActiveIcon : ReportManageInactiveIcon} className="menuIcon" alt="menuIcon"></img>
+                            <img src={isReportOpen ? ReportManageActiveIcon : ReportManageInactiveIcon} className="menuIcon" alt="menuIcon"></img>
                             신고 관리
-                            <img src={isReportOpen ? ToggleActiveIcon : ToggleInactiveIcon} className="toggleIcon" alt="toggleIcon"></img></Link>
+                            <img src={isReportOpen ? ToggleActiveIcon : ToggleInactiveIcon} className="toggleIcon" alt="toggleIcon"></img>
                         </li>
                         <ul className={isReportOpen ? "show-menu" : "hide-menu"}>
-                            <li className={"sidebarListItem" + (isReportOpen ? " active" : "")}><Link to="/login">신고 내역</Link></li>
-                            <li className={"sidebarListItem" + (isReportOpen ? " active" : "")}><Link to="/login">처리 내역</Link></li>
+                            <li className={"sidebarListItem" + (isReportOpen ? " active" : "")}>신고 내역</li>
+                            <li className={"sidebarListItem" + (isReportOpen ? " active" : "")}>처리 내역</li>
                         </ul>
                         <li className={"sidebarListItem" + (isUserOpen ? " active" : "")} onClick={()=>toggleUserMenu()}>
-                            <Link to="/"><img src={isUserOpen ? UserManageActiveIcon : UserManageInactiveIcon} className="menuIcon" alt="menuIcon"></img>
+                            <img src={isUserOpen ? UserManageActiveIcon : UserManageInactiveIcon} className="menuIcon" alt="menuIcon"></img>
                             회원 관리
-                            <img src={isUserOpen ? ToggleActiveIcon : ToggleInactiveIcon} className="toggleIcon" alt="toggleIcon"></img></Link>
+                            <img src={isUserOpen ? ToggleActiveIcon : ToggleInactiveIcon} className="toggleIcon" alt="toggleIcon"></img>
                         </li>
                         <ul className={isUserOpen ? "show-menu" : "hide-menu"}>
-                            <li className={"sidebarListItem" + (isUserOpen ? " active" : "")}><Link to="/login">일반 회원</Link></li>
-                            <li className={"sidebarListItem" + (isUserOpen ? " active" : "")}><Link to="/login">탈퇴 회원</Link></li>
+                            <li className={"sidebarListItem" + (isUserOpen ? " active" : "")}>일반 회원</li>
+                            <li className={"sidebarListItem" + (isUserOpen ? " active" : "")}>탈퇴 회원</li>
                         </ul>
                     </ul>
                 </div>
