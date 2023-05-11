@@ -1,6 +1,7 @@
 .sidebar{
     flex: 1;
-    position: sticky;
+    min-width: 250px;
+    position: relative;
     background-color: antiquewhite;
 }
 
@@ -27,7 +28,7 @@
     padding: 8.5px;
 }
 
-.sidebarListItem a{
+.sidebarListItem{
     padding: 15px;
     cursor: pointer;
     display: flex;
@@ -44,8 +45,8 @@
     margin-left: 10px;
 }
 
-.sidebarListItem a.active,
-.sidebarListItem a:hover{
+.sidebarListItem.active,
+.sidebarListItem:hover{
     color: #A3C7F7;
 }
 
@@ -64,6 +65,7 @@
 .logoutMenu{
     color: #A65959;
     padding: 15px;
+    margin-top: 8.5px;
     margin-left: 6px;
     cursor: pointer;
     display: flex;
