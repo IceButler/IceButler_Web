@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #a9cbf8;
+}
+.loginPage{
+    width: 700px; 
+    height: 420px; 
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    background-color: white;
+    border-radius: 10px;
+}
+.loginPage h2{
+    font-size: 50px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+}
+#login-form {
+    background-color: white;
+}
+#login-form > input{
+    width: 520px;
+    height: 60px;
+    border: 1px solid #e8e9ea;
+    padding: 0 10px;
+    margin-bottom: 16px;
+    background-color: white;
+    border-radius: 10px;
+}
+#login-form > input::placeholder{
+    color: #D2D2D2;
+}
+#login-form > input[type="submit"]{
+    color: #fff;
+    font-size: 16px;
+    color: black;
+    background-color: #a9cbf8;
+    margin-top: 20px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
