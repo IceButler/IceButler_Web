@@ -4,6 +4,7 @@ import hideIcon from 'assets/images/login/hide.png'
 import viewIcon from 'assets/images/login/view.png'
 import doneIcon from 'assets/images/login/done.png'
 import notDoneIcon from 'assets/images/login/notDone.png'
+import logo512 from 'assets/images/whiteLogo512.png'
 
 function Login() {
     // For email
@@ -14,6 +15,8 @@ function Login() {
 
     const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
     const emailCheck = (email) => {
+        // 이메일 공백 제거
+        email = email.replace(/\s/g, ""); 
         if(!emailRegEx.test(email)) {
             setIsEmail(false)
             return false;
@@ -34,6 +37,7 @@ function Login() {
 
     return (
         <div className="loginPage">
+            <img src = {logo512} alt='logo icon error'/>
             <h2>냉집사 관리자 페이지</h2>
             <div className='loginForm'>
             <form method="post" action="url" id="login-form">
