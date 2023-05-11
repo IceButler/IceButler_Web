@@ -1,16 +1,55 @@
-import React from 'react';
+import React, {useState } from 'react';
 import './Login.css'
+import hideIcon from 'assets/images/login/hide.png'
+import viewIcon from 'assets/images/login/view.png'
+import doneIcon from 'assets/images/login/done.png'
+import notDoneIcon from 'assets/images/login/notDone.png'
 
 function Login() {
+    // For email
+    const [isEmail, setIsEmail] = useState(false);
+
+    // For pw
+    const [showPswd, setShowPswd] = React.useState(false);
+
+    const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
+    const emailCheck = (email) => {
+        if(!emailRegEx.test(email)) {
+            setIsEmail(false)
+            return false;
+        }else {
+            setIsEmail(true)
+            return true;
+        }
+    }
+
+    const showPw = e => {
+        if(showPswd) {
+            setShowPswd(false)
+        }else{
+            setShowPswd(true)
+        }
+    }
+
+
     return (
         <div className="loginPage">
             <h2>냉집사 관리자 페이지</h2>
             <div className='loginForm'>
-            {/* todo: url 생성시 연결 진행 */}
             <form method="post" action="url" id="login-form">
-            <input type="text" id = "inputId" placeholder={"이메일"} autoFocus/>
-            <input type="text" id = "inputPw" placeholder={"비밀번호"}/>
+            <div className="inputInfo">
+            <input type="email" placeholder={"이메일"} onChange={(e) => {
+                emailCheck(e.target.value)
+            }}/>
+            <img src={isEmail ? doneIcon : notDoneIcon} alt='img icon error'/>
+            </div>
+            <div className="inputInfo">
+            <input type={showPswd ? "text":"password"} id = "inputPw" placeholder={"비밀번호"}/>
+            <img onClick={showPw} src={showPswd ? viewIcon : hideIcon} alt='pw icon error' id='pwClick'/>
+            </div>
+            <div className="inputInfo">
             <input type='submit'/>
+            </div>
             </form>
             </div>
         </div>

@@ -24,8 +24,12 @@
 #login-form {
     background-color: white;
 }
-#login-form > input{
-    width: 520px;
+.inputInfo{
+    background-color: white;
+}
+.inputInfo > input{
+    margin-left: 0;
+    width: 400px;
     height: 60px;
     border: 1px solid #e8e9ea;
     padding: 0 10px;
@@ -33,11 +37,18 @@
     background-color: white;
     border-radius: 10px;
 }
-#login-form > input::placeholder{
+.inputInfo > img{
+    position: absolute;
+    margin: 15px -40px;
+    background-color: transparent;
+    width: 25px;
+    height: 25px;
+}
+.inputInfo > input::placeholder{
     color: #D2D2D2;
 }
-#login-form > input[type="submit"]{
-    color: #fff;
+.inputInfo > input[type="submit"]{
+    color: white;
     font-size: 16px;
     color: black;
     background-color: #a9cbf8;
