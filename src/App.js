@@ -12,7 +12,7 @@ function App() {
       <Sidebar />
       {/* <Login /> */}
       <Routes>
-        <Route path="/" Component={FoodManage}/>
+        <Route path="/" Component={UserManage}/>
         <Route path="/foodManage" Component={FoodManage}/>
         <Route path="/reportManage" Component={ReportManage}/>
         <Route path="/userManage" Component={UserManage} />

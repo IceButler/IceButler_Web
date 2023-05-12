@@ -7,4 +7,5 @@
 .page{
   flex: 5;
   background-color: cadetblue;
+  display: flex;
 }
