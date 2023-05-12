@@ -7,8 +7,8 @@ function UserManage() {
         <div className='page'>
             <div className='container'>
                 <p className="title">탈퇴 회원</p>
-                <div className="content">
                 <div className="contentbar" />
+                <div className="content">
                 </div>
             </div>
         </div>
