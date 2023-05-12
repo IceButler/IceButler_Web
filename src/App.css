@@ -1,3 +1,10 @@
 .App {
   text-align: center;
+  display: flex;
+  height: 100vh;
+  min-height: 700px;
+}
+.page{
+  flex: 5;
+  background-color: cadetblue;
 }

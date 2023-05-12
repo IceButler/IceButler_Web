@@ -1,0 +1,17 @@
+@font-face {
+    font-family: "NanumSquare";
+    font-display: fallback;
+    font-style: normal;
+    font-weight: 400;
+    src: local("NanumSquare"),
+        url(./NanumSquareR.woff) format("woff");
+}
+
+@font-face {
+    font-family: "NanumSquare";
+    font-display: fallback;
+    font-style: bold;
+    font-weight: 700;
+    src: local("NanumSquare"),
+        url(./NanumSquareB.woff) format("woff");
+}
