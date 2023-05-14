@@ -1,6 +1,5 @@
 import React from 'react';
 import './UserManage.css'
-import Sidebar from 'components/Sidebar/Sidebar';
 
 function UserManage() {
     return (

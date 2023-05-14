@@ -57,7 +57,7 @@ function Sidebar() {
                         className="logo"
                         alt="logo"
                     />
-                    <h2 className="sidbarTitle">냉집사</h2>
+                    <h2 className="sidebarTitle">냉집사</h2>
                     <ul key={100} className="sidebarList">
                         {menus.map((menu) => {
                             const toggleIconImg =
