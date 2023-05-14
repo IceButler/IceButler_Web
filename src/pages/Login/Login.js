@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState } from 'react';
 import './Login.css'
 import hideIcon from 'assets/images/login/hide.png'
 import viewIcon from 'assets/images/login/view.png'
@@ -36,6 +36,7 @@ function Login() {
 
 
     return (
+        <div className="loginPage">
             <img src = {logo512} alt='logo icon error'/>
             <h2>냉집사 관리자 페이지</h2>
             <div className='loginForm'>
