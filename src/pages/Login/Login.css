@@ -1,7 +1,6 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+.container {
+    width: 100vw;
+    height: 100vw;
     background-color: #a9cbf8;
 }
 .loginPage{
@@ -9,7 +8,7 @@
     height: 700px; 
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5%;
+    margin-top: 3.5%;
     background-color: white;
     border-radius: 10px;
 }
@@ -26,9 +25,11 @@
 }
 #login-form {
     background-color: white;
+    border-radius: 10px;
 }
 .inputInfo{
     background-color: white;
+    border-radius: 10px;
 }
 .inputInfo > input{
     margin-left: 0;
