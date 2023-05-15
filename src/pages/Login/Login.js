@@ -64,7 +64,7 @@ function Login() {
                             alt="pw icon error"
                             id="pwClick"
                         />
-                        <input className="submitBtn" type="submit" />
+                        <input className="submitBtn" type="submit" value="로그인"/>
                     </form>
                 </div>
             </div>
