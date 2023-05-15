@@ -1,4 +1,4 @@
-* {
+body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -26,9 +26,11 @@
 }
 #login-form {
     background-color: white;
+    border-radius: 10px;
 }
 .inputInfo{
     background-color: white;
+    border-radius: 10px;
 }
 .inputInfo > input{
     margin-left: 0;
