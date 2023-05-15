@@ -1,6 +1,8 @@
 .loginContainer {
     width: 100vw;
     height: 100vh;
+    margin: 0;
+    padding: 0;
     background-color: rgba(220, 235, 255, 0.6);
 }
 .loginPage{
@@ -28,6 +30,7 @@
     border-radius: 10px;
 }
 .inputInfo{
+    position: relative;
     background-color: white;
     border-radius: 10px;
 }
