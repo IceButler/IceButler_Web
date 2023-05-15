@@ -4,7 +4,6 @@
 }
 .loginPage{
     width: 600px;
-    /* height: 80%;  */
     margin: auto;
     background-color: white;
     border-radius: 10px;
@@ -23,7 +22,7 @@
     margin: 0 auto;
     min-width: 400px;
 }
-.input{
+input{
     margin-left: 0;
     width: 400px;
     height: 60px;
@@ -34,7 +33,7 @@
     border-radius: 10px;
 }
 .submitBtn{
-    width: 100%;
+    width: 400px;
     height: 60px;
     margin-bottom: 30px;
     border-radius: 10px;
@@ -45,7 +44,7 @@
     background-color: #AACCF9;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
-.loginForm > img{
+.loginForm img{
     position: absolute;
     margin: 15px -40px;
     background-color: transparent;
