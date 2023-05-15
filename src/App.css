@@ -3,9 +3,10 @@
   display: flex;
   height: 100vh;
   min-height: 700px;
+  width: 100vw;
 }
 .page{
-  width: calc(100% - 250px);
-  background-color: rgba(220, 235, 255, 0.6);
+  background-color: rgba(220,235,255,0.6);
   display: flex;
+  flex-grow: 1;
 }
