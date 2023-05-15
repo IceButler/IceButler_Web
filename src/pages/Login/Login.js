@@ -36,7 +36,7 @@ function Login() {
 
 
     return (
-        <div className="container">
+        <div className="loginContainer">
             <div className="loginPage">
             <img src = {logo512} alt='logo icon error'/>
             <h2>냉집사 관리자 페이지</h2>
