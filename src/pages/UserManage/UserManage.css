@@ -20,7 +20,6 @@
     width: 100%;
     background-color: #fffcfc;
     min-width: 800px;
-    flex-grow: 1;
 }
 .contentbar {
   border-radius: 0.75rem 0.75rem 0 0;
