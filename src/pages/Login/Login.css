@@ -1,7 +1,6 @@
-body {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+.container {
+    width: 100vw;
+    height: 100vw;
     background-color: #a9cbf8;
 }
 .loginPage{
@@ -9,7 +8,7 @@ body {
     height: 700px; 
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5%;
+    margin-top: 3.5%;
     background-color: white;
     border-radius: 10px;
 }
