@@ -9,15 +9,15 @@ import UserManage from 'pages/UserManage/UserManage'
 function App() {
   return (
     <div className="App">
-      <Sidebar />
-      {/* <Login /> */}
-      <Routes>
+      {/* <Sidebar /> */}
+      <Login />
+      {/* <Routes>
         <Route path="/" Component={UserManage}/>
         <Route path="/foodManage" Component={FoodManage}/>
         <Route path="/reportManage" Component={ReportManage}/>
         <Route path="/userManage" Component={UserManage} />
         <Route path="/login" Component={Login} />
-      </Routes>
+      </Routes> */}
     </div>
   );
 }

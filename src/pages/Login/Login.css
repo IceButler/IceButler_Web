@@ -1,61 +1,57 @@
 .loginContainer {
     width: 100vw;
-    height: 100vh;
     background-color: rgba(220, 235, 255, 0.6);
 }
 .loginPage{
-    width: 600px; 
-    height: 700px; 
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3.5%;
+    width: 600px;
+    /* height: 80%;  */
+    margin: auto;
     background-color: white;
     border-radius: 10px;
 }
 .loginPage img{
-    width: 40%;
-    height: 40%;
+    width: 250px;
+    height: 250px;
 }
 .loginPage h2{
     font-size: 50px;
     font-weight: 500;
-    padding: 30px;
-    background-color: white;
-    border-radius: 10px;
+    padding: 20px;
 }
-#login-form {
-    background-color: white;
-    border-radius: 10px;
+.loginForm{
+    width: 80%;
+    margin: 0 auto;
+    min-width: 400px;
 }
-.inputInfo{
-    background-color: white;
-    border-radius: 10px;
-}
-.inputInfo > input{
+.input{
     margin-left: 0;
     width: 400px;
     height: 60px;
     border: 1px solid #e8e9ea;
     padding: 0 10px;
     margin-bottom: 16px;
-    background-color: white;
+    background-color: #F7F8F9;
     border-radius: 10px;
 }
-.inputInfo > img{
+.submitBtn{
+    width: 100%;
+    height: 60px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: black;
+    background-color: #AACCF9;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.loginForm > img{
     position: absolute;
     margin: 15px -40px;
     background-color: transparent;
     width: 25px;
     height: 25px;
 }
-.inputInfo > input::placeholder{
+.input::placeholder{
     color: #D2D2D2;
-}
-.inputInfo > input[type="submit"]{
-    color: white;
-    font-size: 16px;
-    color: black;
-    background-color: #a9cbf8;
-    margin-top: 20px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
