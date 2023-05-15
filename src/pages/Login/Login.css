@@ -1,7 +1,7 @@
-.container {
+.loginContainer {
     width: 100vw;
     height: 100vw;
-    background-color: #a9cbf8;
+    background-color: rgba(220, 235, 255, 0.6);
 }
 .loginPage{
     width: 600px; 
