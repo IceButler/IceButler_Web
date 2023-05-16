@@ -12,9 +12,9 @@ function App() {
       <Sidebar />
       {/* <Login /> */}
       <Routes>
-        <Route path="/" Component={UserManage}/>
-        <Route path="/foodManage" Component={FoodManage}/>
-        <Route path="/reportManage" Component={ReportManage}/>
+        <Route path="/" Component={UserManage} />
+        <Route path="/foodManage" Component={FoodManage} />
+        <Route path="/reportManage" Component={ReportManage} />
         <Route path="/userManage" Component={UserManage} />
         <Route path="/login" Component={Login} />
       </Routes>
