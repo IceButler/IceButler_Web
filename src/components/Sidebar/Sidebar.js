@@ -46,7 +46,7 @@ function Sidebar() {
         if (isActive) return ob[0].activeIcon;
         else return ob[0].inactiveIcon;
     }
-    
+
 
     return (
         <div className="sidebar">
@@ -73,15 +73,17 @@ function Sidebar() {
                                     currentactive={currentActive}
                                     onClick={() => toggleMenu(menu.path)}
                                 >
-                                    <img
-                                        src={getMenuIcon(menu.path, currentActive.toLowerCase().includes(menu.type))}
-                                        className="menuIcon"
-                                        alt="menuIcon"
-                                    />
-                                    {menu.name}
-                                    {menu.submenu !== null ? toggleIconImg : null}
+                                    <Link to={menu.path}>
+                                        <img
+                                            src={getMenuIcon(menu.path, currentActive.toLowerCase().includes(menu.type))}
+                                            className="menuIcon"
+                                            alt="menuIcon"
+                                        />
+                                        {menu.name}
+                                        {menu.submenu !== null ? toggleIconImg : null}
+                                    </Link>
                                 </li>;
-                            
+
                             if (menu.submenu !== null) {
                                 const subMenuLi = menu.submenu.map((sub) => {
                                     return (
@@ -89,14 +91,14 @@ function Sidebar() {
                                             key={sub.name}
                                             className={"sidebarListItem" + (currentActive.includes(sub.path) ? " active" : "")}
                                             onClick={() => toggleMenu(sub.path)}>
-                                            {sub.name}
+                                            <Link to={sub.path}>{sub.name}</Link>
                                         </li>
                                     )
                                 })
                                 const subMenuUl =
-                                    <div key={menu.type+"sub"}>
+                                    <div key={menu.type + "sub"}>
                                         {mainLi}
-                                        <ul key={menu.name+"sub"}
+                                        <ul key={menu.name + "sub"}
                                             className={currentActive.toLowerCase().includes(menu.type) ? "show-menu" : "hide-menu"}>
                                             {subMenuLi}
                                         </ul>
@@ -105,7 +107,7 @@ function Sidebar() {
                                     subMenuUl
                                 )
                             }
-                            else return(mainLi)
+                            else return (mainLi)
                         })}
                     </ul>
                 </div>
