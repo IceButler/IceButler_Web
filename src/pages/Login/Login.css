@@ -1,11 +1,14 @@
 .loginContainer {
     width: 100vw;
     background-color: rgba(220, 235, 255, 0.6);
+    position: relative;
 }
 .loginPage{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 500px;
-    margin: auto;
-    margin-top: 5%;
     background-color: white;
     border-radius: 10px;
 }
@@ -27,16 +30,18 @@
 input{
     margin-left: 0;
     width: 350px;
-    height: 60px;
+    height: 50px;
     border: 1px solid #e8e9ea;
     padding: 0 10px;
     margin-bottom: 16px;
     background-color: #F7F8F9;
     border-radius: 10px;
+    box-sizing: border-box;
 }
 .submitBtn{
+    box-sizing: border-box;
     width: 350px;
-    height: 60px;
+    height: 50px;
     margin-top: 10px;
     margin-bottom: 30px;
     border-radius: 10px;
