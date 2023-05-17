@@ -5,7 +5,7 @@ function UserManage() {
     return (
         <div className='page'>
             <div className='withdrawUserManageContainer'>
-                <p className="title">일반 회원</p>
+                <p className="title">탈퇴 회원</p>
                 <div className="contentbar" />
                 <div className="content">
                 </div>

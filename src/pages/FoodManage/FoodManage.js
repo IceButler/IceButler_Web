@@ -1,6 +1,5 @@
 import React from 'react';
 import './FoodManage.css'
-import Sidebar from 'components/Sidebar/Sidebar';
 
 function FoodManage() {
     return (
