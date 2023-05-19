@@ -5,14 +5,15 @@ import viewIcon from "assets/images/login/view.png";
 import doneIcon from "assets/images/login/done.png";
 import notDoneIcon from "assets/images/login/notDone.png";
 import logo512 from "assets/images/whiteLogo512.png";
-
+import axios from "axios";
+// axios.defaults.baseURL = "https://www.abc.com"; -> csrf 에러 해결되면 이걸로 변경 
 function Login() {
     // For email
     const [isEmail, setIsEmail] = useState(false);
-
     // For pw
-    const [showPswd, setShowPswd] = React.useState(false);
+    const [showPswd, setShowPswd] = useState(false);
 
+    //email
     const emailRegEx =
         /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
     const emailCheck = (email) => {
@@ -27,6 +28,7 @@ function Login() {
         }
     };
 
+    //password
     const showPw = (e) => {
         if (showPswd) {
             setShowPswd(false);
@@ -35,35 +37,38 @@ function Login() {
         }
     };
 
+    // submit
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+        const inputEmail = e.target.email.value;
+        const inputPw = e.target.password.value;
+
+        axios.post('/admin/login',{
+            email: inputEmail,
+            password: inputPw
+        }).then((res) => {
+            const accessToken =  res.data.data.accessToken
+            // setCookie('exp', res.payload.accessTokenExpiresIn) cookie 까지 필요할까요,?
+            axios.defaults.headers.common['Authorization'] = accessToken;
+            console.log(accessToken);
+            // document.location.href = '/' // 이동할 페이지
+        }).catch((error) => {
+            alert("로그인에 실패했습니다. 정보를 다시 한 번 더 입력해주새요.")
+        });
+
+    }
     return (
         <div className="loginContainer">
             <div className="loginPage">
                 <img src={logo512} alt="logo icon error" />
                 <h2>냉집사 관리자 페이지</h2>
                 <div className="loginForm">
-                    <form method="post" action="url" id="login-form">
-                        <input
-                            type="email"
-                            placeholder={"이메일"}
-                            onChange={(e) => {
-                                emailCheck(e.target.value);
-                            }}
-                        />
-                        <img
-                            src={isEmail ? doneIcon : notDoneIcon}
-                            alt="img icon error"
-                        />
-                        <input
-                            type={showPswd ? "text" : "password"}
-                            id="inputPw"
-                            placeholder={"비밀번호"}
-                        />
-                        <img
-                            onClick={showPw}
-                            src={showPswd ? viewIcon : hideIcon}
-                            alt="pw icon error"
-                            id="pwClick"
-                        />
+                    <form method="post" id="login-form" onSubmit={onSubmitHandler}>
+                        <input type="email" placeholder={"이메일"} name="email"
+                            onChange={(e) => {emailCheck(e.target.value);}}/>
+                        <img src={isEmail ? doneIcon : notDoneIcon} alt="img icon error" />
+                        <input type={showPswd ? "text" : "password"} id="inputPw" placeholder={"비밀번호"} name="password"/>
+                        <img onClick={showPw} src={showPswd ? viewIcon : hideIcon} alt="pw icon error" id="pwClick"/>
                         <input className="submitBtn" type="submit" value="로그인"/>
                     </form>
                 </div>
