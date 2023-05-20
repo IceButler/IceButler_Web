@@ -11,15 +11,15 @@ import WithdrawUserManage from 'pages/UserManage/WithdrawUserManage'
 function App() {
   return (
     <div className="App">
-      {/* <Sidebar /> */}
+      <Sidebar />
       <Routes>
-        <Route path="/login" Component={Login} />
-        <Route path="/" Component={UserManage} />
-        <Route path="/foodManage" Component={FoodManage} />
-        <Route path="/reportManage" Component={ReportManage} />
-        <Route path="/completeReportManage" Component={CompleteReportManage} />
-        <Route path="/userManage" Component={UserManage} />
-        <Route path="/withdrawUserManage" Component={WithdrawUserManage} />
+        <Route path="/login"element={<Login/>} />
+        <Route path="/" element={<UserManage/>}/>
+        <Route path="/foodManage" element={<FoodManage/>} />
+        <Route path="/reportManage" element={<ReportManage/>} />
+        <Route path="/completeReportManage" element={<CompleteReportManage/>} />
+        <Route path="/userManage" element={<UserManage />}/>
+        <Route path="/withdrawUserManage" element={<WithdrawUserManage/>} />
       </Routes>
     </div>
   );
