@@ -6,8 +6,11 @@ import doneIcon from "assets/images/login/done.png";
 import notDoneIcon from "assets/images/login/notDone.png";
 import logo512 from "assets/images/whiteLogo512.png";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 // axios.defaults.baseURL = "https://www.abc.com"; -> csrf 에러 해결되면 이걸로 변경 
 function Login() {
+    const movePage = useNavigate();
     // For email
     const [isEmail, setIsEmail] = useState(false);
     // For pw
@@ -39,10 +42,9 @@ function Login() {
 
     // submit
     const onSubmitHandler = (e) => {
-        e.preventDefault();
         const inputEmail = e.target.email.value;
         const inputPw = e.target.password.value;
-
+        e.preventDefault();
         axios.post('/admin/login',{
             email: inputEmail,
             password: inputPw
@@ -51,7 +53,8 @@ function Login() {
             // setCookie('exp', res.payload.accessTokenExpiresIn) cookie 까지 필요할까요,?
             axios.defaults.headers.common['Authorization'] = accessToken;
             console.log(accessToken);
-            // document.location.href = '/' // 이동할 페이지
+            // document.location.href = '/'
+            movePage('/');
         }).catch((error) => {
             alert("로그인에 실패했습니다. 정보를 다시 한 번 더 입력해주새요.")
         });

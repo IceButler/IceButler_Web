@@ -12,16 +12,15 @@ function App() {
   return (
     <div className="App">
       {/* <Sidebar /> */}
-      <Login />
-      {/* <Routes>
+      <Routes>
+        <Route path="/login" Component={Login} />
         <Route path="/" Component={UserManage} />
         <Route path="/foodManage" Component={FoodManage} />
         <Route path="/reportManage" Component={ReportManage} />
         <Route path="/completeReportManage" Component={CompleteReportManage} />
         <Route path="/userManage" Component={UserManage} />
         <Route path="/withdrawUserManage" Component={WithdrawUserManage} />
-        <Route path="/login" Component={Login} />
-      </Routes> */}
+      </Routes>
     </div>
   );
 }
