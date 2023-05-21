@@ -54,10 +54,10 @@ input{
 }
 .loginForm img{
     position: absolute;
-    margin: 15px -40px;
+    margin: 13px -40px;
     background-color: transparent;
-    width: 25px;
-    height: 25px;
+    width: 23px;
+    height: 23px;
 }
 .input::placeholder{
     color: #D2D2D2;

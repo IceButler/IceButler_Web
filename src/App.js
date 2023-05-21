@@ -1,7 +1,7 @@
 import 'App.css';
 import Login from 'pages/Login/Login'
 import Sidebar from 'components/Sidebar/Sidebar';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
 import FoodManage from 'pages/FoodManage/FoodManage'
 import ReportManage from 'pages/ReportManage/ReportManage'
 import CompleteReportManage from 'pages/ReportManage/CompleteReportManage'
@@ -9,18 +9,26 @@ import UserManage from 'pages/UserManage/UserManage'
 import WithdrawUserManage from 'pages/UserManage/WithdrawUserManage'
 
 function App() {
+
+  const SidebarLayout = () => (
+    <>
+      <Sidebar />
+      <Outlet />
+    </>
+  );
+
   return (
     <div className="App">
-      <Sidebar />
-      {/* <Login /> */}
       <Routes>
-        <Route path="/" Component={UserManage} />
-        <Route path="/foodManage" Component={FoodManage} />
-        <Route path="/reportManage" Component={ReportManage} />
-        <Route path="/completeReportManage" Component={CompleteReportManage} />
-        <Route path="/userManage" Component={UserManage} />
-        <Route path="/withdrawUserManage" Component={WithdrawUserManage} />
-        <Route path="/login" Component={Login} />
+        <Route path="/login"element={<Login/>} />
+        <Route element={<SidebarLayout/>}>
+          <Route path="/" element={<UserManage/>}/>
+          <Route path="/foodManage" element={<FoodManage/>} />
+          <Route path="/reportManage" element={<ReportManage/>} />
+          <Route path="/completeReportManage" element={<CompleteReportManage/>} />
+          <Route path="/userManage" element={<UserManage />}/>
+          <Route path="/withdrawUserManage" element={<WithdrawUserManage/>} />
+        </Route>
       </Routes>
     </div>
   );
