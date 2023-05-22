@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import React from 'react';
+import { NavLink, useLocation } from "react-router-dom";
 import './Sidebar.css'
 import FoodManageActiveIcon from 'assets/images/sidebarIcon/foodActive.png'
 import ReportManageActiveIcon from 'assets/images/sidebarIcon/reportActive.png'
@@ -12,22 +12,14 @@ import ToggleInactiveIcon from 'assets/images/sidebarIcon/toggleInactive.png'
 import LogoutIcon from 'assets/images/sidebarIcon/logout.png'
 
 function Sidebar() {
-    const [currentActive, setCurrentActive] = useState("food");
-    const toggleMenu = (path) => {
-        setCurrentActive(path)
-        console.log(currentActive)
-    }
-
     const reportMenus = [
         { index: 3, name: "신고 내역", path: "/reportManage" },
         { index: 4, name: "처리 내역", path: "/completeReportManage" }
     ];
-
     const userMenus = [
         { index: 6, name: "일반 회원", path: "/userManage" },
         { index: 7, name: "탈퇴 회원", path: "/withdrawUserManage" }
     ];
-
     const menus = [
         { index: 1, name: "식품 관리", path: "/foodManage", submenu: null, type: "food" },
         { index: 2, name: "신고 관리", path: "/reportManage", submenu: reportMenus, type: "report" },
@@ -47,6 +39,58 @@ function Sidebar() {
         else return ob[0].inactiveIcon;
     }
 
+    function UseToggleIconImg(menu) {
+        const img =
+            <img
+                src={useLocation().pathname.toLowerCase().includes(menu.type) ? ToggleActiveIcon : ToggleInactiveIcon}
+                className="toggleIcon"
+                alt="toggleIcon"
+            />;
+        if (menu.submenu !== null)
+            return img
+    }
+
+    function UseMenuIconImg(menu) {
+        return (
+            <img
+                src={getMenuIcon(menu.path, useLocation().pathname.toLowerCase().includes(menu.type))}
+                className="menuIcon"
+                alt="menuIcon"
+            />
+        )
+    }
+
+    function UseMainMenuItem(menu) {
+        return (
+            <div className='mainMenu'>
+                <NavLink to={menu.path}
+                    className={useLocation().pathname.toLowerCase().includes(menu.type) ? "sidebarListItem active" : "sidebarListItem"}>
+                    {UseMenuIconImg(menu)}
+                    {menu.name}
+                    {UseToggleIconImg(menu)}
+                </NavLink>
+            </div>
+        )
+    }
+
+    function UseSubMenuItems(menu) {
+        return (
+            <div className={useLocation().pathname.toLowerCase().includes(menu.type) ? "show-menu" : "hide-menu"} >
+                {
+                    menu.submenu.map((submenu) => {
+                        return (
+                            <div className='subMenu' key={submenu.index}>
+                                <NavLink to={submenu.path}
+                                    className={({ isActive }) => isActive ? "sidebarListItem active" : "sidebarListItem"}>
+                                    {submenu.name}
+                                </NavLink>
+                            </div>
+                        )
+                    })
+                }
+            </div >
+        )
+    }
 
     return (
         <div className="sidebar">
@@ -58,66 +102,32 @@ function Sidebar() {
                         alt="logo"
                     />
                     <h2 className="sidebarTitle">냉집사</h2>
-                    <ul key={100} className="sidebarList">
-                        {menus.map((menu) => {
-                            const toggleIconImg =
-                                <img
-                                    src={currentActive.toLowerCase().includes(menu.type) ? ToggleActiveIcon : ToggleInactiveIcon}
-                                    className="toggleIcon"
-                                    alt="toggleIcon"
-                                />;
-                            const mainLi =
-                                <li
-                                    key={menu.name}
-                                    className={"sidebarListItem" + (currentActive.toLowerCase().includes(menu.type) ? " active" : "")}
-                                    currentactive={currentActive}
-                                    onClick={() => toggleMenu(menu.path)}
-                                >
-                                    <Link to={menu.path}>
-                                        <img
-                                            src={getMenuIcon(menu.path, currentActive.toLowerCase().includes(menu.type))}
-                                            className="menuIcon"
-                                            alt="menuIcon"
-                                        />
-                                        {menu.name}
-                                        {menu.submenu !== null ? toggleIconImg : null}
-                                    </Link>
-                                </li>;
 
-                            if (menu.submenu !== null) {
-                                const subMenuLi = menu.submenu.map((sub) => {
-                                    return (
-                                        <li
-                                            key={sub.name}
-                                            className={"sidebarListItem" + (currentActive.includes(sub.path) ? " active" : "")}
-                                            onClick={() => toggleMenu(sub.path)}>
-                                            <Link to={sub.path}>{sub.name}</Link>
-                                        </li>
-                                    )
-                                })
-                                const subMenuUl =
-                                    <div key={menu.type + "sub"}>
-                                        {mainLi}
-                                        <ul key={menu.name + "sub"}
-                                            className={currentActive.toLowerCase().includes(menu.type) ? "show-menu" : "hide-menu"}>
-                                            {subMenuLi}
-                                        </ul>
-                                    </div>;
+                    <div className="sidebarList">
+                        {menus.map((menu) => {
+                            if (menu.submenu !== null)
                                 return (
-                                    subMenuUl
+                                    <div className='menus' key={menu.index}>
+                                        {UseMainMenuItem(menu)}
+                                        {UseSubMenuItems(menu)}
+                                    </div>
                                 )
-                            }
-                            else return (mainLi)
+                            else
+                                return (
+                                    <div className='menu' key={menu.index}>
+                                        {UseMainMenuItem(menu)}
+                                    </div>
+                                )
                         })}
-                    </ul>
+                    </div>
                 </div>
-                <div className='logoutMenu'>
-                    <img
-                        src={LogoutIcon}
-                        className="menuIcon"
-                        alt="menuIcon" />
-                    로그아웃
-                </div>
+            </div>
+            <div className='logoutMenu'>
+                <img
+                    src={LogoutIcon}
+                    className="menuIcon"
+                    alt="menuIcon" />
+                로그아웃
             </div>
         </div>
     );
