@@ -20,14 +20,13 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/login"element={<Login/>} />
-        <Route element={<SidebarLayout/>}>
-          <Route path="/" element={<UserManage/>}/>
-          <Route path="/foodManage" element={<FoodManage/>} />
-          <Route path="/reportManage" element={<ReportManage/>} />
-          <Route path="/completeReportManage" element={<CompleteReportManage/>} />
-          <Route path="/userManage" element={<UserManage />}/>
-          <Route path="/withdrawUserManage" element={<WithdrawUserManage/>} />
+        <Route path="/" element={<Login />} />
+        <Route element={<SidebarLayout />}>
+          <Route path="/foodManage" element={<FoodManage />} />
+          <Route path="/reportManage" element={<ReportManage />} />
+          <Route path="/completeReportManage" element={<CompleteReportManage />} />
+          <Route path="/userManage" element={<UserManage />} />
+          <Route path="/withdrawUserManage" element={<WithdrawUserManage />} />
         </Route>
       </Routes>
     </div>

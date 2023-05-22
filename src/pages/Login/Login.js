@@ -45,16 +45,16 @@ function Login() {
         const inputEmail = e.target.email.value;
         const inputPw = e.target.password.value;
         e.preventDefault();
-        axios.post('/admin/login',{
+        axios.post('/admin/login', {
             email: inputEmail,
             password: inputPw
         }).then((res) => {
-            const accessToken =  res.data.data.accessToken
+            const accessToken = res.data.data.accessToken
             // setCookie('exp', res.payload.accessTokenExpiresIn) cookie 까지 필요할까요,?
             axios.defaults.headers.common['Authorization'] = accessToken;
             console.log(accessToken);
             // document.location.href = '/'
-            movePage('/');
+            movePage('/foodManage');
         }).catch((error) => {
             alert("로그인에 실패했습니다. 정보를 다시 한 번 더 입력해주새요.")
         });
@@ -68,11 +68,11 @@ function Login() {
                 <div className="loginForm">
                     <form method="post" id="login-form" onSubmit={onSubmitHandler}>
                         <input type="email" placeholder={"이메일"} name="email"
-                            onChange={(e) => {emailCheck(e.target.value);}}/>
+                            onChange={(e) => { emailCheck(e.target.value); }} />
                         <img src={isEmail ? doneIcon : notDoneIcon} alt="img icon error" />
-                        <input type={showPswd ? "text" : "password"} id="inputPw" placeholder={"비밀번호"} name="password"/>
-                        <img onClick={showPw} src={showPswd ? viewIcon : hideIcon} alt="pw icon error" id="pwClick"/>
-                        <input className="submitBtn" type="submit" value="로그인"/>
+                        <input type={showPswd ? "text" : "password"} id="inputPw" placeholder={"비밀번호"} name="password" />
+                        <img onClick={showPw} src={showPswd ? viewIcon : hideIcon} alt="pw icon error" id="pwClick" />
+                        <input className="submitBtn" type="submit" value="로그인" />
                     </form>
                 </div>
             </div>
