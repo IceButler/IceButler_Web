@@ -33,3 +33,9 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
+th:first-child {
+  border-top-left-radius: 0.75em;
+}
+th:last-child {
+  border-top-right-radius: 0.75em;
+}
