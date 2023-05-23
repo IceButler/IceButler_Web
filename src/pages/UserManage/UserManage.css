@@ -20,7 +20,9 @@
     width: 100%;
     background-color: #fffcfc;
     min-width: 800px;
+    min-height: 600px;
     border-collapse: collapse;
+    position: relative;
 }
 thead tr{
   height: 60px;
@@ -38,4 +40,9 @@ th:first-child {
 }
 th:last-child {
   border-top-right-radius: 0.75em;
+}
+.paging {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }

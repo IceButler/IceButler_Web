@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import './UserManage.css'
 import axios from 'axios';
 import Tr from './UserTr';
+import Paging from 'components/Paging.js'
 
 const UserManage = () => {
     const [info, setInfo] = useState([]);
@@ -42,6 +43,7 @@ const UserManage = () => {
                 </thead>
                 <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit}/>
             </table>
+            <div className='paging'><Paging/></div>
             </div>
         </div>
         </div>
