@@ -1,0 +1,50 @@
+.foodManageContainer {
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 70px;
+    padding-right: 70px;
+    flex-grow: 1;
+    position: relative;
+  }
+  .foodTitle {
+      margin-top: 70px;
+      margin-bottom: 20px;
+      text-align: left;
+      font-size: 2em;
+      color: #4c4c4c;
+  }
+  .foodContent {
+      border-radius: 0 0 0.75em 0.75em;
+      height: calc(100vh - 180px);
+      width: 100%;
+      background-color: #fffcfc;
+      min-width: 800px;
+      min-height: 600px;
+      border-collapse: collapse;
+      overflow-y: scroll;
+  }
+  .foodTable {
+    width: 100%;
+    max-height: 400px;
+    padding: 0;
+    border-collapse: collapse;
+    position: relative;
+  }
+  .foodTable thead tr{
+    height: 60px;
+    width: 100%;
+    background-color: #2A3042;
+    border-spacing: 0px;
+    color:white;
+    /* position: absolute; */
+  }
+  .foodPaging{
+    text-align: center;
+  }
+  .paging {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
