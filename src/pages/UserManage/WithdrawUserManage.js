@@ -42,8 +42,10 @@ const WithdrawUserManage = () => {
                     </tr>
                 </thead>
                 <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit}/>
+                <tr className='withDrawPaging'>
+                            <td colSpan="4"><Paging /></td>
+                        </tr>
             </table>
-            <div className='paging'><Paging/></div>
             </div>
         </div>
         </div>
