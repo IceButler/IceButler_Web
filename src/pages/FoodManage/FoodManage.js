@@ -50,7 +50,7 @@ function FoodManage() {
                 </div>
                 {/* <img className='foodDeleteIcon' src={foodTrash} alt = "img icon error"/> */}
                 {/* <button className = "foodDeleteBtn" value="선택 삭제">선택 삭제</button> */}
-                <div className='paging'><Paging/></div>
+                <div className='foodPaging'><Paging/></div>
             </div>
         </div>
     );
