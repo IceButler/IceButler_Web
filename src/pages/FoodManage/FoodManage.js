@@ -3,6 +3,7 @@ import './FoodManage.css'
 import Paging from 'components/Paging.js'
 import axios from 'axios';
 import Tr from './FoodTr';
+import foodTrash from "assets/images/food/trash.png";
 
 function FoodManage() {
     const [info, setInfo] = useState([]);
@@ -28,11 +29,11 @@ function FoodManage() {
     }
 
     return (
-        <div className='page'>
-            <div className='foodManageContainer'>
-                <div className='foodTitle'>식품 회원</div>
-                <div className='foodContent'>
-                    <table className='foodTable'>
+        <div className = "page">
+            <div className = "foodManageContainer">
+                <div className = "foodTitle">식품 회원</div>
+                <div className = "foodContent">
+                    <table className="foodTable">
                         <thead>
                             <tr>
                                 <th>아이콘</th>
@@ -43,11 +44,13 @@ function FoodManage() {
                         </thead>
                         <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit} />
                         <tr className='foodPaging'>
-                            <td colSpan="4"><Paging /></td>
+                            {/* <td colSpan="4"><Paging /></td> */}
                         </tr>
                     </table>
-                    {/* <div className='paging'><Paging /></div> */}
                 </div>
+                {/* <img className='foodDeleteIcon' src={foodTrash} alt = "img icon error"/> */}
+                {/* <button className = "foodDeleteBtn" value="선택 삭제">선택 삭제</button> */}
+                <div className='paging'><Paging/></div>
             </div>
         </div>
     );

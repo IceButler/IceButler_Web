@@ -13,10 +13,12 @@ const Td = ({item, handleRemove, handleEdit}) => {
     return (
         <>
         <tr>
+            <td onClick={onRemove}><img src = {email}/></td>
             <td>{item.email}</td>
+            <td onClick={onRemove}><img src = {email}/></td>
             <td>{item.email}</td>
-            <td>{item.id}</td>
-            <td onClick={onRemove}><img src = {email} width="30%"/></td>
+            {/* <td>{item.id}</td> */}
+            
         </tr>
         </>
     )
