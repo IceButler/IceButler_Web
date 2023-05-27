@@ -43,14 +43,14 @@ function FoodManage() {
                             </tr>
                         </thead>
                         <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit} />
-                        <tr className='foodPaging'>
-                            {/* <td colSpan="4"><Paging /></td> */}
-                        </tr>
                     </table>
                 </div>
                 {/* <img className='foodDeleteIcon' src={foodTrash} alt = "img icon error"/> */}
-                {/* <button className = "foodDeleteBtn" value="선택 삭제">선택 삭제</button> */}
-                <div className='foodPaging'><Paging/></div>
+                
+                <div className='foodPaging'>
+                    <button className = "foodDeleteBtn" value="선택 삭제">선택 삭제</button>
+                    <Paging/>
+                </div>
             </div>
         </div>
     );
