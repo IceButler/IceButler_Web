@@ -1,0 +1,72 @@
+.foodManageContainer {
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 70px;
+    padding-right: 70px;
+    position: relative;
+    overflow-y: scroll;
+    
+}
+.foodTitle {
+    margin-top: 70px;
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 2em;
+    color: #4c4c4c;
+}
+.foodContent {
+    box-sizing: border-box;
+    border-radius: 0 0 0.75em 0.75em;
+    height: calc(100vh - 220px);
+    width: 100%;
+    background-color: #fffcfc;
+    min-width: 800px;
+    min-height: 600px;
+    border-collapse: collapse;
+    overflow-y: scroll;
+
+}
+.foodTable {
+    width: 100%;
+    max-height: 100px;
+    padding: 0;
+    border-collapse: collapse;
+    border-spacing: 100px;
+}
+.foodTable thead tr{
+    height: 60px;
+    width: 100%;
+    background-color: #2A3042;
+    border-spacing: 0px;
+    color:white;
+}
+.foodPaging {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    float: left;
+}
+.foodDelete{
+    width: 100%;
+    height: auto;
+}
+.foodDeleteBtn{
+    /* z-index: 2; */
+    position: absolute;
+    top: 10%;
+    margin-right: 0;
+    cursor: pointer;
+    right: 2%;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    background-color: #DCEBFF;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 10px;
+    border: none;
+    color: black;
+}
