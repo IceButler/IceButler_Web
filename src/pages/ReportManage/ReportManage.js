@@ -22,32 +22,32 @@ function ReportManage() {
         // TODO
     }
 
-    const handleEdit = (id) => {
-        console.log("성공2");
-        // TODO
-    }
-
     return (
         <div className='page'>
             <div className='reportManageContainer'>
                 <div className='reportManageTitle'>신고 내역</div>
                 <div className='reportManageContent'>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>닉네임</th>
-                                <th>이메일</th>
-                                <th>신고 누적 횟수</th>
-                                <th>이메일 전송</th>
-                            </tr>
-                        </thead>
-                        <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit} />
-                        <tfoot className='reportManagePaging'>
-                            <tr>
-                                <td colSpan="4"><Paging /></td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                    <div className='reportManageBar' />
+                    <div className='reportTable'>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>신고 번호</th>
+                                    <th>레시피</th>
+                                    <th>작성자</th>
+                                    <th>신고 사유</th>
+                                    <th>신고자</th>
+                                    <th>신고 일자</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <Tr info={info} handleRemove={handleRemove} />
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className='reportManagePaging'>
+                        <Paging />
+                    </div>
                 </div>
             </div>
         </div>

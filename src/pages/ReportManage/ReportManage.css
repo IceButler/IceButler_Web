@@ -21,24 +21,49 @@
     min-height: 550px;
     width: 100%;
     background-color: white;
+    position: relative;
+}
+
+.reportManageBar {
+    border-radius: 12px;
+    height: 60px;
+    width: 100%;
+    background-color: #2A3042;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+}
+
+.reportTable {
     overflow-y: scroll;
+    height: calc(100% - 41px);
+}
+
+.reportManageContent table {
+    width: 100%;
 }
 
 .reportManageContent thead {
+    width: 100%;
     position: sticky;
     top: 0;
     border-radius: 12px;
-    height: 50px;
+    height: 60px;
     z-index: 1;
 }
 
-.reportManageContent tbody {
-    position: sticky;
-    top: 0;
+.reportManageContent thead tr {
+    background-color: transparent;
 }
 
-.reportManageContent tfoot {
-    position: sticky;
+.reportManageContent tbody tr {
+    color: #4c4c4c;
+    text-align: center;
+    height: 50px;
+}
+
+.reportManagePaging {
+    position: relative;
     bottom: 0;
-    background-color: white;
+    height: 40px;
 }

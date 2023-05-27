@@ -1,17 +1,26 @@
 import React from 'react';
-import Td from './ReportManageTd';
 
-const Tr = ({ info, handleRemove, handleEdit }) => {
+const Tr = ({ info, handleRemove }) => {
+    const onRemove = (item) => {
+        handleRemove(item.id)
+    }
     return (
-        <tbody>
+        <>
             {
-                info.map(item => {
+                info.map((item, index) => {
                     return (
-                        <Td key={item.id} item={item} handleRemove={handleRemove} handleEdit={handleEdit} />
+                        <tr key={index}>
+                            <td>{item.id}</td>
+                            <td>{item.email}</td>
+                            <td>{item.id}</td>
+                            <td>{item.email}</td>
+                            <td>{item.id}</td>
+                            <td onClick={onRemove(item)}>{item.id}</td>
+                        </tr>
                     )
                 })
             }
-        </tbody>
+        </>
     )
 }
 
