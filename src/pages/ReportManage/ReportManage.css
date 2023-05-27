@@ -1,0 +1,44 @@
+.reportManageContainer {
+    width: 100%;
+    height: calc(100vh - 90px);
+    padding: 50px;
+    padding-top: 40px;
+    min-width: 800px;
+}
+
+.reportManageTitle {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 25px;
+    font-weight: bold;
+    color: #4c4c4c;
+}
+
+.reportManageContent {
+    border-radius: 12px;
+    height: calc(100vh - 145px);
+    min-height: 550px;
+    width: 100%;
+    background-color: white;
+    overflow-y: scroll;
+}
+
+.reportManageContent thead {
+    position: sticky;
+    top: 0;
+    border-radius: 12px;
+    height: 50px;
+    z-index: 1;
+}
+
+.reportManageContent tbody {
+    position: sticky;
+    top: 0;
+}
+
+.reportManageContent tfoot {
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+}
