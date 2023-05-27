@@ -61,6 +61,7 @@ function Login() {
 
     }
     return (
+        <div className="page">
         <div className="loginContainer">
             <div className="loginPage">
                 <img src={logo512} alt="logo icon error" />
@@ -77,6 +78,8 @@ function Login() {
                 </div>
             </div>
         </div>
+        </div>
+        
     );
 }
 
