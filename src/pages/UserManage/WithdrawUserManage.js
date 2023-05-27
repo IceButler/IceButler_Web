@@ -11,9 +11,9 @@ const WithdrawUserManage = () => {
 
     // 데이터 호출
     useEffect(() => {
-        // axios.get('https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/dev-ice-bulter-main/admin/users?active=true')
-        axios.get('https://jsonplaceholder.typicode.com/users')
-        .then(res => setInfo(res.data))
+        axios.get('/users?active=false')
+        // axios.get('https://jsonplaceholder.typicode.com/users')
+        .then(res => setInfo(res.data.data.content))
         .catch(err => console.log(err));
     }, []);
 
@@ -29,7 +29,7 @@ const WithdrawUserManage = () => {
 
     return (
         <div className='page'>
-        <div className='withdrawUserManageContainer'>
+        <div className='container'>
             <div className='title'>탈퇴 회원</div>
             <div className ='content'>
             <table>
@@ -42,11 +42,9 @@ const WithdrawUserManage = () => {
                     </tr>
                 </thead>
                 <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit}/>
-                <tr className='withDrawPaging'>
-                            <td colSpan="4"><Paging /></td>
-                        </tr>
             </table>
             </div>
+            <div className='paging'><Paging/></div>
         </div>
         </div>
     );

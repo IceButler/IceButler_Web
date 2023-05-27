@@ -7,7 +7,7 @@ const Tr = ({info, handleRemove, handleEdit}) => {
             {
                 info.map(item => {
                     return (
-                        <Td key={item.id} item={item} handleRemove={handleRemove} handleEdit={handleEdit}/>
+                        <Td key={item.userIdx} item={item} handleRemove={handleRemove} handleEdit={handleEdit}/>
                     )
                 })
             }
