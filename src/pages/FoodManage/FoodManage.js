@@ -45,10 +45,11 @@ function FoodManage() {
                         <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit} />
                     </table>
                 </div>
-                {/* <img className='foodDeleteIcon' src={foodTrash} alt = "img icon error"/> */}
+               
                 
                 <div className='foodPaging'>
                     <button className = "foodDeleteBtn" value="선택 삭제">선택 삭제</button>
+                    {/* <img className='foodDeleteIcon' src={foodTrash} alt = "img icon error"/> */}
                     <Paging/>
                 </div>
             </div>

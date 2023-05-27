@@ -6,7 +6,8 @@
     padding-left: 70px;
     padding-right: 70px;
     position: relative;
-    overflow-y: scroll;
+    overflow-y: visible;
+    margin: 0;
     
 }
 .foodTitle {
@@ -63,10 +64,17 @@
     right: 2%;
     width: 100px;
     height: 40px;
-    text-align: center;
+    /* text-align: center; */
     background-color: #DCEBFF;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     border-radius: 10px;
     border: none;
     color: black;
+}
+.foodDeleteIcon{
+    margin: 13px -40px;
+    position: absolute;
+    background-color: transparent;
+    width: 23px;
+    height: 23px
 }
