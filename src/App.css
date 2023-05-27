@@ -8,4 +8,5 @@
   background-color: rgba(220,235,255,0.6);
   display: flex;
   flex-grow: 1;
+  min-height: 100vh;
 }
