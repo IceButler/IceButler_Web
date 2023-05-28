@@ -7,22 +7,35 @@ import foodTrash from "assets/images/food/trash.png";
 
 function FoodManage() {
     const [info, setInfo] = useState([]);
+    const [currentPage, setPage] = useState(1);
+    const [totalElements, setTotalElements] = useState(0);
+    const [size, setSize] = useState(0);
 
-    const nextId = useRef(11);
+
+    // const nextId = useRef(11);
 
     // 데이터 호출
     useEffect(() => {
+        fetchData(currentPage);
+    }, [currentPage]);
+
+
+    const fetchData = (page) => {
         axios.get('admin/foods',{
             params:{
-                cond: ""
+                cond: '',
+                page: page-1,
+                size:16
             }
         })
         .then(res => {
             setInfo(res.data.data.content)
+            setTotalElements(res.data.data.totalElements);
             console.log(res.data)
+            setSize(16)
         })
         .catch(err => console.log(err))
-    }, []);
+    };
 
     const handleRemove = (id) => {
         console.log("성공");
@@ -33,6 +46,9 @@ function FoodManage() {
         console.log("성공2");
         // TODO
     }
+    const handlePageChange = (page) => {
+        setPage(page);
+      };
 
     return (
         <div className='page'>
@@ -61,7 +77,7 @@ function FoodManage() {
                         
                         <button className="foodDeleteBtn" value="선택 삭제">
                         <img className='foodDeleteIcon' src={foodTrash} alt = "img icon error"/>선택 삭제</button>
-                        <Paging />
+                        <Paging currentPage={currentPage} size={size} count={totalElements} handlePageChange={handlePageChange}/>
                     </div>
                 </div>
             </div>

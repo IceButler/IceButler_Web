@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './WithdrawUserManage.css';
 import axios from 'axios';
-import Tr from './UserTr';
+import Tr from './WithdrawUserTr';
 import Paging from 'components/Paging.js';
 
 const WithdrawUserManage = () => {
@@ -39,11 +39,11 @@ const WithdrawUserManage = () => {
 
   return (
     <div className='page'>
-      <div className='withdrawUserManageContainer'>
-        <div className='withdrawUserManageTitle'>탈퇴 회원</div>
-        <div className='withdrawUserManageContent'>
-          <div className='withdrawUserManageBar' />
-          <div className='withdrawUserManageTable'>
+      <div className='userManageContainer'>
+        <div className='userManageTitle'>탈퇴 회원</div>
+        <div className='userManageContent'>
+          <div className='userManageBar' />
+          <div className='userManageTable'>
             <table>
               <thead>
                 <tr>
@@ -58,7 +58,7 @@ const WithdrawUserManage = () => {
               </tbody>
             </table>
           </div>
-          <div className='withdrawUserManagePaging'>
+          <div className='userManagePaging'>
             <Paging currentPage={currentPage} count={totalElements} handlePageChange={handlePageChange} />
           </div>
         </div>
