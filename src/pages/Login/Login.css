@@ -3,7 +3,8 @@
     background-color: rgba(220, 235, 255, 0.6);
     position: relative;
 }
-.loginPage{
+
+.loginPage {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -12,22 +13,26 @@
     background-color: white;
     border-radius: 10px;
 }
-.loginPage img{
+
+.loginPage img {
     margin-top: 10%;
     width: 200px;
     height: 200px;
 }
-.loginPage h2{
+
+.loginPage h2 {
     font-size: 40px;
     font-weight: 700;
     padding: 10px;
 }
-.loginForm{
+
+.loginForm {
     width: 80%;
     margin: 0 auto;
     min-width: 400px;
 }
-input{
+
+.loginForm input {
     margin-left: 0;
     width: 350px;
     height: 50px;
@@ -38,7 +43,8 @@ input{
     border-radius: 10px;
     box-sizing: border-box;
 }
-.submitBtn{
+
+.loginForm input[id="submitBtn"] {
     box-sizing: border-box;
     width: 350px;
     height: 50px;
@@ -52,13 +58,15 @@ input{
     background-color: #AACCF9;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
-.loginForm img{
+
+.loginForm img {
     position: absolute;
     margin: 13px -40px;
     background-color: transparent;
     width: 23px;
     height: 23px;
 }
-.input::placeholder{
+
+.input::placeholder {
     color: #D2D2D2;
 }

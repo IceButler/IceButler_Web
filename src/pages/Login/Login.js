@@ -72,7 +72,7 @@ function Login() {
                         <img src={isEmail ? doneIcon : notDoneIcon} alt="img icon error" />
                         <input type={showPswd ? "text" : "password"} id="inputPw" placeholder={"비밀번호"} name="password" />
                         <img onClick={showPw} src={showPswd ? viewIcon : hideIcon} alt="pw icon error" id="pwClick" />
-                        <input className="submitBtn" type="submit" value="로그인" />
+                        <input className="submitBtn" id="submitBtn" type="submit" value="로그인" />
                     </form>
                 </div>
             </div>

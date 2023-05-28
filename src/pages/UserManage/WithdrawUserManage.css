@@ -1,28 +1,73 @@
-.content {
-    border-radius: 0 0 0.75em 0.75em;
-    height: calc(100vh - 180px);
+.userManageContainer {
     width: 100%;
-    background-color: #fffcfc;
+    height: calc(100vh - 90px);
+    padding: 50px;
+    padding-top: 40px;
     min-width: 800px;
-    min-height: 600px;
-    border-collapse: collapse;
+}
+
+.userManageTitle {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 25px;
+    font-weight: bold;
+    color: #4c4c4c;
+}
+
+.userManageContent {
+    border-radius: 12px;
+    height: calc(100vh - 145px);
+    min-height: 550px;
+    width: 100%;
+    background-color: white;
     position: relative;
+}
+
+.userManageBar {
+    border-radius: 12px;
+    height: 60px;
+    width: 100%;
+    background-color: #2A3042;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+}
+
+.userManageTable {
     overflow-y: scroll;
+    height: calc(100% - 41px);
+    border-collapse: collapse;
 }
-thead tr{
-  height: 60px;
-  width: 100%;
-  background-color: #2A3042;
-  border-spacing: 0px;
-  color:white;
+
+.userManageContent table {
+    width: 100%;
+    border-collapse: collapse;
 }
-table {
-  width: 100%;
-  border-collapse: collapse;
+
+.userManageContent thead {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    border-radius: 12px;
+    height: 60px;
+    z-index: 1;
+    color: white;
 }
-th:first-child {
-  border-top-left-radius: 0.75em;
+
+.userManageContent thead tr {
+    background-color: transparent;
 }
-th:last-child {
-  border-top-right-radius: 0.75em;
+
+.userManageContent tbody tr {
+    color: #4c4c4c;
+    text-align: center;
+    height: 50px;
+    border-bottom: #E1E0E2 solid 1px;
+}
+
+.userManagePaging {
+    position: relative;
+    bottom: 0;
+    height: 40px;
 }

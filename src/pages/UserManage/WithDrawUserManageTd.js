@@ -3,7 +3,7 @@ import email from 'assets/images/email.png'
 
 const Td = ({item, handleRemove, handleEdit}) => {
     const onRemove = () => {
-        handleRemove(item.id)
+        handleRemove(item.userIdx)
     }
 
     const onEdit = () => {
@@ -13,9 +13,9 @@ const Td = ({item, handleRemove, handleEdit}) => {
     return (
         <>
         <tr>
+            <td>{item.nickname}</td>
             <td>{item.email}</td>
-            <td>{item.email}</td>
-            <td>{item.id}</td>
+            <td>{item.reportCount}</td>
             <td onClick={onRemove}><img src = {email} width="30%"/></td>
         </tr>
         </>
