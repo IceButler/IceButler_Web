@@ -8,6 +8,7 @@ const UserManage = () => {
   const [info, setInfo] = useState([]);
   const [currentPage, setPage] = useState(1);
   const [totalElements, setTotalElements] = useState(0);
+  const [size, setSize] = useState(0);
 
   useEffect(() => {
     fetchData(currentPage);
@@ -18,19 +19,24 @@ const UserManage = () => {
       .then(res => {
         setInfo(res.data.data.content);
         setTotalElements(res.data.data.totalElements);
+        setSize(10)
       })
       .catch(err => console.log(err));
       console.log(page);
   };
 
-  const handleRemove = (id) => {
-    console.log("성공");
-    // TODO
-  };
-
-  const handleEdit = (id) => {
-    console.log("성공2");
-    // TODO
+  // TODO 서버 수정되면 수정
+  const withdrawUser = (idx) => {
+    axios.delete(`admin/users`, {
+        userIdx: idx
+    }).then(res => {
+        console.log('HTTP POST 요청 성공');
+        // 성공적으로 요청을 보냈을 때 실행할 작업
+      })
+      .catch(err => {
+        console.error('HTTP POST 요청 실패:', err);
+        // 요청 실패 시 실행할 작업
+      });
   };
 
   const handlePageChange = (page) => {
@@ -55,12 +61,12 @@ const UserManage = () => {
                 </tr>
               </thead>
               <tbody>
-                <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit} />
+                <Tr info={info} withdrawUser={withdrawUser} />
               </tbody>
             </table>
           </div>
           <div className='userManagePaging'>
-            <Paging currentPage={currentPage} count={totalElements} handlePageChange={handlePageChange} />
+            <Paging currentPage={currentPage} size={size} count={totalElements} handlePageChange={handlePageChange} />
           </div>
         </div>
       </div>
