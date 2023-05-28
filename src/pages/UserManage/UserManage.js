@@ -23,14 +23,18 @@ const UserManage = () => {
       console.log(page);
   };
 
-  const handleRemove = (id) => {
-    console.log("성공");
-    // TODO
-  };
-
-  const handleEdit = (id) => {
-    console.log("성공2");
-    // TODO
+  // TODO 서버 수정되면 수정
+  const withdrawUser = (idx) => {
+    axios.delete(`admin/users`, {
+        userIdx: idx
+    }).then(res => {
+        console.log('HTTP POST 요청 성공');
+        // 성공적으로 요청을 보냈을 때 실행할 작업
+      })
+      .catch(err => {
+        console.error('HTTP POST 요청 실패:', err);
+        // 요청 실패 시 실행할 작업
+      });
   };
 
   const handlePageChange = (page) => {
@@ -55,7 +59,7 @@ const UserManage = () => {
                 </tr>
               </thead>
               <tbody>
-                <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit} />
+                <Tr info={info} withdrawUser={withdrawUser} />
               </tbody>
             </table>
           </div>
