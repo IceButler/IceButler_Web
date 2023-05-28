@@ -1,4 +1,4 @@
-.withdrawUserManageContainer {
+.userManageContainer {
     width: 100%;
     height: calc(100vh - 90px);
     padding: 50px;
@@ -6,7 +6,7 @@
     min-width: 800px;
 }
 
-.withdrawUserManageTitle {
+.userManageTitle {
     margin-top: 0px;
     margin-bottom: 20px;
     text-align: left;
@@ -15,7 +15,7 @@
     color: #4c4c4c;
 }
 
-.withdrawUserManageContent {
+.userManageContent {
     border-radius: 12px;
     height: calc(100vh - 145px);
     min-height: 550px;
@@ -24,7 +24,7 @@
     position: relative;
 }
 
-.withdrawUserManageBar {
+.userManageBar {
     border-radius: 12px;
     height: 60px;
     width: 100%;
@@ -34,16 +34,17 @@
     top: 0;
 }
 
-.withdrawUserManageTable {
+.userManageTable {
     overflow-y: scroll;
     height: calc(100% - 41px);
 }
 
-.withdrawUserManageContent table {
+.userManageContent table {
     width: 100%;
+    color: white;
 }
 
-.withdrawUserManageContent thead {
+.userManageContent thead {
     width: 100%;
     position: sticky;
     top: 0;
@@ -52,17 +53,17 @@
     z-index: 1;
 }
 
-.withdrawUserManageContent thead tr {
+.userManageContent thead tr {
     background-color: transparent;
 }
 
-.withdrawUserManageContent tbody tr {
+.userManageContent tbody tr {
     color: #4c4c4c;
     text-align: center;
     height: 50px;
 }
 
-.withdrawUserManagePaging {
+.userManagePaging {
     position: relative;
     bottom: 0;
     height: 40px;
