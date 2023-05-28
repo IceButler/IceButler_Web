@@ -1,0 +1,259 @@
+.reportDetailContainer {
+    width: 100%;
+    height: calc(100vh - 90px);
+    padding: 50px;
+    padding-top: 40px;
+    min-width: 1000px;
+}
+
+.reportDetailTitle {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 25px;
+    font-weight: bold;
+    color: #4c4c4c;
+}
+
+.contentBox {
+    border-radius: 12px;
+    height: calc(100vh - 145px);
+    min-height: 550px;
+    width: 100%;
+    background-color: #fffcfc;
+}
+
+.titleBar {
+    line-height: 60px;
+    border-radius: 12px;
+    height: 60px;
+    width: 100%;
+    background-color: #2A3042;
+    text-align: left;
+    font-weight: 800;
+    font-size: 20px;
+    color: white;
+    padding-left: 30px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.titleBar img {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translate(-50%, -50%);
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+}
+
+.detailContent {
+    overflow-y: scroll;
+    padding: 20px;
+    box-sizing: border-box;
+    max-height: calc(100% - 60px);
+}
+
+.reportInfo,
+.reportMemo {
+    display: inline-block;
+}
+
+.reportContent {
+    border-bottom: #9C9C9C solid 1px;
+    padding-bottom: 10px;
+    overflow: hidden;
+    height: auto;
+    display: flex;
+}
+
+.reportInfo {
+    width: 50%;
+    text-align: left;
+}
+
+.report-line {
+    display: flex;
+}
+
+.span-title {
+    display: block;
+    background: #2A3042;
+    border-radius: 20px;
+    width: 100px;
+    min-width: 100px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+    text-align: center !important;
+}
+
+.span-info {
+    display: block;
+    height: auto;
+    width: calc(100% - 120px);
+    line-height: 35px;
+    font-size: 17px;
+    color: #575757 !important;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    word-wrap: break-word;
+}
+
+.reportMemo {
+    width: 50%;
+    height: 100%;
+}
+
+#memo-form {
+    width: 100%;
+}
+
+#memo-form textarea {
+    width: 100%;
+    height: 130px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #2A3042;
+    box-sizing: border-box;
+    font-size: 15px;
+    resize: none;
+    background-color: #F7F8F9;
+}
+
+#memo-form input[type=submit] {
+    height: 35px;
+    width: 70px;
+    background: #AACCF9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    border: none;
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.memoHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.recipeContent {
+    margin-top: 20px;
+}
+
+.recipeTop {
+    display: flex;
+    height: auto;
+}
+
+.recipeInfo {
+    width: 50%;
+    text-align: left;
+    display: flex;
+    position: relative;
+    max-height: 160px;
+}
+
+@media (max-width: 1460px) {
+    .recipeInfo {
+        max-height: 210px;
+    }
+
+    .recipeInfo-line {
+        display: inline !important;
+    }
+
+    .recipeInfo-line .span-info {
+        line-height: normal;
+        display: inline;
+        margin: 5px;
+    }
+
+    .recipeInfo-line .span-title {
+        margin: 8px 0px;
+    }
+
+    .recipeInfo-line:nth-last-of-type(1) .span-title,
+    .recipeInfo-line:nth-last-of-type(1) .span-info {
+        margin-bottom: 10px !important;
+    }
+
+    .recipeInfo-line:first-of-type .span-title {
+        margin-top: 0px !important;
+    }
+}
+
+.recipeDetailInfo {
+    position: absolute;
+    top: 50%;
+    left: 320px;
+    transform: translate(0, -50%);
+}
+
+.mainImg {
+    width: 300px;
+    height: 160px;
+    margin-right: 20px;
+    object-fit: contain;
+}
+
+.recipeInfo-line {
+    display: flex;
+}
+
+.recipeInfo-line:nth-last-of-type(1) .span-title,
+.recipeInfo-line:nth-last-of-type(1) .span-info {
+    margin-bottom: 0;
+}
+
+.recipeFood {
+    width: 50%;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+}
+
+.recipeFood .span-title {
+    margin: 0;
+}
+
+.recipeFood ul {
+    width: 100%;
+    padding: 0px;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.recipeFood li {
+    display: inline-block;
+    background-color: #AACCF9;
+    text-align: center;
+    height: 1em;
+    font-size: 1em;
+    line-height: 1em;
+    border-radius: 15px;
+    padding: 8px 15px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.recipeBottom {
+    margin-top: 10px;
+    height: auto;
+}
+
+.recipeGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
