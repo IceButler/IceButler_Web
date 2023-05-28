@@ -29,23 +29,28 @@ const WithdrawUserManage = () => {
 
     return (
         <div className='page'>
-        <div className='container'>
-            <div className='title'>탈퇴 회원</div>
-            <div className ='content'>
-            <table>
-                <thead>
-                    <tr>
-                        <th>닉네임</th>
-                        <th>이메일</th>
-                        <th>신고 누적 횟수</th>
-                        <th>이메일 전송</th>
-                    </tr>
-                </thead>
-                <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit}/>
-            </table>
+            <div className='withdrawUserManageContainer'>
+                <div className='withdrawUserManageTitle'>탈퇴 회원</div>
+                <div className ='withdrawUserManageContent'>
+                    <div className = 'withdrawUserManageBar'/>
+                    <div className = 'withdrawUserManageTable'>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>닉네임</th>
+                                <th>이메일</th>
+                                <th>신고 누적 횟수</th>
+                                <th>이메일 전송</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit}/>
+                        </tbody>
+                    </table>
+                    </div>
+                    <div className='withdrawUserManagePaging'><Paging/></div>
+                </div>
             </div>
-            <div className='paging'><Paging/></div>
-        </div>
         </div>
     );
 };

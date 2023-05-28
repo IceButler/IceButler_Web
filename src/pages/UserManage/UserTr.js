@@ -1,17 +1,26 @@
 import React from 'react';
-import Td from './WithDrawUserManageTd';
+import email from 'assets/images/email.png'
 
 const Tr = ({info, handleRemove, handleEdit}) => {
+    const onRemove = (item) => {
+        handleRemove(item.userIdx)
+    }
+
     return (
-        <tbody>
+        <>
             {
                 info.map(item => {
                     return (
-                        <Td key={item.userIdx} item={item} handleRemove={handleRemove} handleEdit={handleEdit}/>
+                        <tr key={item.userIdx}>
+                            <td>{item.nickname}</td>
+                            <td>{item.email}</td>
+                            <td>{item.reportCount}</td>
+                            <td onClick={onRemove(item)}><img src = {email} width="20%"/></td>
+                        </tr> 
                     )
                 })
             }
-        </tbody>
+        </>
     )
 }
 
