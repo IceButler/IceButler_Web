@@ -51,7 +51,7 @@ function ReportManage() {
                             <div className='reportMemo'>
                                 <form method="patch" id="memo-form" onSubmit={onSubmitHandler}>
                                     <div className='memoHeader'>
-                                        <span>처리메모</span>
+                                        <span className='span-title'>처리메모</span>
                                         <input type='submit' className='memoBtn' value="저장" />
                                     </div>
                                     <textarea form='memo-form' name='memo'></textarea>
@@ -59,8 +59,74 @@ function ReportManage() {
                             </div>
                         </div>
                         <div className='recipeContent'>
-                            <span>대표사진</span>
-
+                            <div className='recipeTop'>
+                                <div className='recipeInfo'>
+                                    <img className='mainImg' src={`${process.env.PUBLIC_URL}/logo192.png`} alt='mainImg' />
+                                    <div className='recipeDetailInfo'>
+                                        <div className='recipeInfo-line'>
+                                            <span className='span-title'>카테고리</span>
+                                            <span className='span-info'>국/찌개/전골</span>
+                                        </div>
+                                        <div className='recipeInfo-line'>
+                                            <span className='span-title'>분량</span>
+                                            <span className='span-info'>1인분</span>
+                                        </div>
+                                        <div className='recipeInfo-line'>
+                                            <span className='span-title'>소요시간</span>
+                                            <span className='span-info'>90분</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='recipeFood'>
+                                    <span className='span-title'>재료</span>
+                                    <ul>
+                                        <li>재료 1인분</li>
+                                        <li>재료 1장</li>
+                                        <li>고춧가루 100g</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료 1인분</li>
+                                        <li>재료 1장</li>
+                                        <li>고춧가루 100g</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료 1인분</li>
+                                        <li>재료 1장</li>
+                                        <li>고춧가루 100g</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료 1인분</li>
+                                        <li>재료 1장</li>
+                                        <li>고춧가루 100g</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료 1인분</li>
+                                        <li>재료 1장</li>
+                                        <li>고춧가루 100g</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                        <li>재료</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className='recipeBottom'>
+                                <span className='span-title'>레시피</span>
+                            </div>
                         </div>
                     </div>
                 </div>
