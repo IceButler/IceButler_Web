@@ -31,6 +31,10 @@ function Sidebar() {
         { type: "user", activeIcon: UserManageActiveIcon, inactiveIcon: UserManageInactiveIcon }
     ]
 
+    const handleLogout = () => {
+       
+      };
+
     function getMenuIcon(path, isActive) {
         const ob = menuIcons.filter(function (m) {
             return path.toLowerCase().includes(m.type)
@@ -122,7 +126,7 @@ function Sidebar() {
                     </div>
                 </div>
             </div>
-            <div className='logoutMenu'>
+            <div className='logoutMenu' onClick={handleLogout}>
                 <img
                     src={LogoutIcon}
                     className="menuIcon"
