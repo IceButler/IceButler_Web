@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ReportManage.css'
 import axios from 'axios';
 import Tr from './ReportTr';
@@ -7,20 +7,15 @@ import Paging from 'components/Paging.js'
 function ReportManage() {
     const [info, setInfo] = useState([]);
 
-    const nextId = useRef(11);
-
-    // 데이터 호출
+    ///데이터 호출
     useEffect(() => {
-        // axios.get('https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/dev-ice-bulter-main/admin/users?active=true')
-        axios.get('https://jsonplaceholder.typicode.com/users')
-            .then(res => setInfo(res.data))
+        axios.get('/reports?type=1')
+            .then(res => {
+                setInfo(res.data.data.content)
+                console.log(res.data.data.content)
+            })
             .catch(err => console.log(err));
     }, []);
-
-    const handleRemove = (id) => {
-        console.log("성공");
-        // TODO
-    }
 
     return (
         <div className='page'>
@@ -41,7 +36,7 @@ function ReportManage() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <Tr info={info} handleRemove={handleRemove} />
+                                <Tr info={info} />
                             </tbody>
                         </table>
                     </div>

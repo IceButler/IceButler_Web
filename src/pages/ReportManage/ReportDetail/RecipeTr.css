@@ -1,11 +1,11 @@
 .recipeItem {
-    padding: 10px;
-    box-sizing: border-box;
+    padding: 15px;
+    /* box-sizing: border-box; */
     font-size: 16px;
+    text-align: left;
 }
 
 .recipeNum {
-    text-align: left;
     color: #649CE5;
     margin: 0;
 }
@@ -20,12 +20,13 @@
     width: 120px;
     height: 70px;
     margin-left: 10px;
-    object-fit: contain;
+    object-fit: cover;
     position: absolute;
     right: 0;
+    border-radius: 10px;
 }
 
 .recipeDetailContent p {
     white-space: break-spaces;
-    margin-right: 120px;
+    margin-right: 125px;
 }

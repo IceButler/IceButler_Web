@@ -60,6 +60,7 @@
     color: #4c4c4c;
     text-align: center;
     height: 50px;
+    border-bottom: #E1E0E2 solid 1px;
 }
 
 .reportManagePaging {
