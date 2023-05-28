@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, useLocation } from "react-router-dom";
 import './Sidebar.css'
+import axios from "axios";
 import FoodManageActiveIcon from 'assets/images/sidebarIcon/foodActive.png'
 import ReportManageActiveIcon from 'assets/images/sidebarIcon/reportActive.png'
 import UserManageActiveIcon from 'assets/images/sidebarIcon/userActive.png'
@@ -10,8 +11,10 @@ import UserManageInactiveIcon from 'assets/images/sidebarIcon/userInactive.png'
 import ToggleActiveIcon from 'assets/images/sidebarIcon/toggleActive.png'
 import ToggleInactiveIcon from 'assets/images/sidebarIcon/toggleInactive.png'
 import LogoutIcon from 'assets/images/sidebarIcon/logout.png'
+import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
+    const movePage = useNavigate();
     const reportMenus = [
         { index: 3, name: "신고 내역", path: "/reportManage" },
         { index: 4, name: "처리 내역", path: "/completeReportManage" }
@@ -32,8 +35,9 @@ function Sidebar() {
     ]
 
     const handleLogout = () => {
-       
-      };
+        axios.defaults.headers.common['Authorization'] =null
+        movePage('/');
+    };
 
     function getMenuIcon(path, isActive) {
         const ob = menuIcons.filter(function (m) {
