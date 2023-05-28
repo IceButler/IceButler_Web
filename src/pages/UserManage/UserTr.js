@@ -6,6 +6,7 @@ const Tr = ({info, handleRemove, handleEdit}) => {
         handleRemove(item.userIdx)
     }
 
+
     return (
         <>
             {
