@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ReportManage.css'
 import axios from 'axios';
 import Tr from './ReportTr';
@@ -6,21 +6,26 @@ import Paging from 'components/Paging.js'
 
 function ReportManage() {
     const [info, setInfo] = useState([]);
+    const [currentPage, setPage] = useState(1);
+    const [totalElements, setTotalElements] = useState(0);
 
-    const nextId = useRef(11);
-
-    // 데이터 호출
     useEffect(() => {
-        // axios.get('https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/dev-ice-bulter-main/admin/users?active=true')
-        axios.get('https://jsonplaceholder.typicode.com/users')
-            .then(res => setInfo(res.data))
-            .catch(err => console.log(err));
-    }, []);
+        fetchData(currentPage);
+    }, [currentPage]);
 
-    const handleRemove = (id) => {
-        console.log("성공");
-        // TODO
-    }
+    const fetchData = (page) => {
+        axios.get(`/reports?type=1&size=10&page=${page - 1}`)
+            .then(res => {
+                setInfo(res.data.data.content);
+                setTotalElements(res.data.data.totalElements);
+            })
+            .catch(err => console.log(err));
+        console.log(page);
+    };
+
+    const handlePageChange = (page) => {
+        setPage(page);
+    };
 
     return (
         <div className='page'>
@@ -32,21 +37,21 @@ function ReportManage() {
                         <table>
                             <thead>
                                 <tr>
-                                    <th>신고 번호</th>
-                                    <th>레시피</th>
-                                    <th>작성자</th>
-                                    <th>신고 사유</th>
-                                    <th>신고자</th>
-                                    <th>신고 일자</th>
+                                    <th width="10%">신고 번호</th>
+                                    <th width="30%">레시피</th>
+                                    <th width="10%">작성자</th>
+                                    <th width="20%">신고 사유</th>
+                                    <th width="10%">신고자</th>
+                                    <th width="20%">신고 일자</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <Tr info={info} handleRemove={handleRemove} />
+                                <Tr info={info} path={'/reportManage/'} />
                             </tbody>
                         </table>
                     </div>
                     <div className='reportManagePaging'>
-                        <Paging />
+                        <Paging currentPage={currentPage} count={totalElements} handlePageChange={handlePageChange} />
                     </div>
                 </div>
             </div>
