@@ -27,7 +27,7 @@
     margin: 0 auto;
     min-width: 400px;
 }
-input{
+.loginForm input{
     margin-left: 0;
     width: 350px;
     height: 50px;

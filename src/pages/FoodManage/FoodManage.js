@@ -29,27 +29,34 @@ function FoodManage() {
     }
 
     return (
-        <div className = "page">
-            <div className = "foodManageContainer">
-                <div className = "foodTitle">식품 회원</div>
-                <div className = "foodContent">
-                    <table className="foodTable">
-                        <thead>
-                            <tr>
-                                <th>아이콘</th>
-                                <th>식품명</th>
-                                <th>아이콘</th>
-                                <th>식품명</th>
-                            </tr>
-                        </thead>
-                        <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit} />
-                    </table>
-                </div>
-                {/* <img className='foodDeleteIcon' src={foodTrash} alt = "img icon error"/> */}
-                
-                <div className='foodPaging'>
-                    <button className = "foodDeleteBtn" value="선택 삭제">선택 삭제</button>
-                    <Paging/>
+        <div className='page'>
+            <div className='foodManageContainer'>
+                <div className='foodManageTitle'>식품 내역</div>
+                <div className='foodManageContent'>
+                    <div className='foodManageBar' />
+                    <div className='foodManageTable'>
+                        <table className="foodTable">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>아이콘</th>
+                                    <th>식품명</th>
+                                    <th></th>
+                                    <th>아이콘</th>
+                                    <th>식품명</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit} />
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className='foodManagePaging'>
+                        
+                        <button className="foodDeleteBtn" value="선택 삭제">
+                        <img className='foodDeleteIcon' src={foodTrash} alt = "img icon error"/>선택 삭제</button>
+                        <Paging />
+                    </div>
                 </div>
             </div>
         </div>

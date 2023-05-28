@@ -1,17 +1,28 @@
 import React from 'react';
-import Td from './FoodTd';
+import email from 'assets/images/email.png'
 
 const Tr = ({info, handleRemove, handleEdit}) => {
+    const onRemove = (item) => {
+        handleRemove(item.id)
+    }
     return (
-        <tbody>
+        <>
             {
-                info.map(item => {
+                info.map((item, index) => {
                     return (
-                        <Td key={item.id} item={item} handleRemove={handleRemove} handleEdit={handleEdit}/>
+                        <tr key={index}>
+                            <td><input type="checkbox"/></td>
+                            <td onClick={onRemove} ><img src = {email}/></td>
+                            <td>{item.email}</td>
+                            <td><input type="checkbox"/></td>
+                            <td onClick={onRemove}><img src = {email}/></td>
+                            <td>{item.email}</td>
+                        {/* <td>{item.id}</td> */}
+                        </tr>
                     )
                 })
             }
-        </tbody>
+        </>
     )
 }
 
