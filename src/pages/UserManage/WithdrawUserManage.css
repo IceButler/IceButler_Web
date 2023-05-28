@@ -37,11 +37,12 @@
 .userManageTable {
     overflow-y: scroll;
     height: calc(100% - 41px);
+    border-collapse: collapse;
 }
 
 .userManageContent table {
     width: 100%;
-    color: white;
+    border-collapse: collapse;
 }
 
 .userManageContent thead {
@@ -51,6 +52,7 @@
     border-radius: 12px;
     height: 60px;
     z-index: 1;
+    color: white;
 }
 
 .userManageContent thead tr {
@@ -61,6 +63,7 @@
     color: #4c4c4c;
     text-align: center;
     height: 50px;
+    border-bottom: #E1E0E2 solid 1px;
 }
 
 .userManagePaging {
