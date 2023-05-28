@@ -12,12 +12,11 @@ const Tr = ({info, handleRemove, handleEdit}) => {
                     return (
                         <tr key={index}>
                             <td><input type="checkbox"/></td>
-                            <td onClick={onRemove} ><img src = {email}/></td>
-                            <td>{item.email}</td>
+                            <td onClick={onRemove} ><img src = {item.foodImgUrl}/></td>
+                            <td>{item.foodName}</td>
                             <td><input type="checkbox"/></td>
-                            <td onClick={onRemove}><img src = {email}/></td>
-                            <td>{item.email}</td>
-                        {/* <td>{item.id}</td> */}
+                            <td onClick={onRemove}><img src = {item.foodImgUrl}/></td>
+                            <td>{item.foodName}</td>
                         </tr>
                     )
                 })

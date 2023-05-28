@@ -12,10 +12,16 @@ function FoodManage() {
 
     // 데이터 호출
     useEffect(() => {
-        // axios.get('https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/dev-ice-bulter-main/admin/users?active=true')
-        axios.get('https://jsonplaceholder.typicode.com/users')
-            .then(res => setInfo(res.data))
-            .catch(err => console.log(err));
+        axios.get('admin/foods',{
+            params:{
+                cond: ""
+            }
+        })
+        .then(res => {
+            setInfo(res.data.data.content)
+            console.log(res.data)
+        })
+        .catch(err => console.log(err))
     }, []);
 
     const handleRemove = (id) => {
