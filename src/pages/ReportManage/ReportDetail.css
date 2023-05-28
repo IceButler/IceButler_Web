@@ -176,9 +176,6 @@
         line-height: normal;
         display: inline;
         margin: 5px;
-        /* position: relative;
-        left: 25%;
-        transform: translate(0, -25%); */
     }
 
     .recipeInfo-line .span-title {
@@ -254,4 +251,9 @@
 .recipeBottom {
     margin-top: 10px;
     height: auto;
+}
+
+.recipeGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import './ReportDetail.css'
 import MoreIcon from 'assets/images/moreIcon.png'
+import RecipeTr from './RecipeTr';
 
 function ReportManage() {
     let { reportIdx } = useParams();
@@ -18,6 +19,16 @@ function ReportManage() {
             alert("저장에 실패했습니다.")
         });
     }
+
+    const [info, setInfo] = useState([]);
+
+    // 데이터 호출
+    useEffect(() => {
+        // axios.get('https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/dev-ice-bulter-main/admin/users?active=true')
+        axios.get('https://jsonplaceholder.typicode.com/users')
+            .then(res => setInfo(res.data))
+            .catch(err => console.log(err));
+    }, []);
 
     return (
         <div className='page'>
@@ -126,6 +137,9 @@ function ReportManage() {
                             </div>
                             <div className='recipeBottom'>
                                 <span className='span-title'>레시피</span>
+                                <div className='recipeGrid'>
+                                    <RecipeTr info={info} />
+                                </div>
                             </div>
                         </div>
                     </div>

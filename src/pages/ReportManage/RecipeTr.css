@@ -1,0 +1,31 @@
+.recipeItem {
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.recipeNum {
+    text-align: left;
+    color: #649CE5;
+    margin: 0;
+}
+
+.recipeDetailContent {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.recipeImg {
+    width: 120px;
+    height: 70px;
+    margin-left: 10px;
+    object-fit: contain;
+    position: absolute;
+    right: 0;
+}
+
+.recipeDetailContent p {
+    white-space: break-spaces;
+    margin-right: 120px;
+}
