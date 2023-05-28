@@ -6,16 +6,26 @@ import Paging from 'components/Paging.js'
 
 function ReportManage() {
     const [info, setInfo] = useState([]);
+    const [currentPage, setPage] = useState(1);
+    const [totalElements, setTotalElements] = useState(0);
 
-    ///데이터 호출
     useEffect(() => {
-        axios.get('/reports?type=1')
+        fetchData(currentPage);
+    }, [currentPage]);
+
+    const fetchData = (page) => {
+        axios.get(`/reports?type=1&size=10&page=${page - 1}`)
             .then(res => {
-                setInfo(res.data.data.content)
-                console.log(res.data.data.content)
+                setInfo(res.data.data.content);
+                setTotalElements(res.data.data.totalElements);
             })
             .catch(err => console.log(err));
-    }, []);
+        console.log(page);
+    };
+
+    const handlePageChange = (page) => {
+        setPage(page);
+    };
 
     return (
         <div className='page'>
@@ -27,21 +37,21 @@ function ReportManage() {
                         <table>
                             <thead>
                                 <tr>
-                                    <th>신고 번호</th>
-                                    <th>레시피</th>
-                                    <th>작성자</th>
-                                    <th>신고 사유</th>
-                                    <th>신고자</th>
-                                    <th>신고 일자</th>
+                                    <th width="10%">신고 번호</th>
+                                    <th width="30%">레시피</th>
+                                    <th width="10%">작성자</th>
+                                    <th width="20%">신고 사유</th>
+                                    <th width="10%">신고자</th>
+                                    <th width="20%">신고 일자</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <Tr info={info} />
+                                <Tr info={info} path={'/reportManage/'} />
                             </tbody>
                         </table>
                     </div>
                     <div className='reportManagePaging'>
-                        <Paging />
+                        <Paging currentPage={currentPage} count={totalElements} handlePageChange={handlePageChange} />
                     </div>
                 </div>
             </div>

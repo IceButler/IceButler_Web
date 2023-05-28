@@ -41,6 +41,7 @@
 
 .reportManageContent table {
     width: 100%;
+    border-collapse: collapse;
 }
 
 .reportManageContent thead {
@@ -50,6 +51,7 @@
     border-radius: 12px;
     height: 60px;
     z-index: 1;
+    color: white;
 }
 
 .reportManageContent thead tr {

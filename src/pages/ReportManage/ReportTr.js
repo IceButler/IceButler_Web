@@ -1,19 +1,19 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Tr = ({ info }) => {
+const Tr = ({ info, path }) => {
     return (
         <>
             {
                 info.map((item, index) => {
                     return (
                         <tr key={index}>
-                            <td>{item.recipeReportIdx}</td>
-                            <td><NavLink to={'/reportManage/' + item.recipeReportIdx}>{item.recipeName}</NavLink></td>
-                            <td>{item.author}</td>
-                            <td>{item.reason}</td>
-                            <td>{item.reporter}</td>
-                            <td>{item.reportDate}</td>
+                            <td width="10%">{item.recipeReportIdx}</td>
+                            <td width="30%"><NavLink to={'/reportManage/' + item.recipeReportIdx}>{item.recipeName}</NavLink></td>
+                            <td width="10%">{item.author}</td>
+                            <td width="20%">{item.reason}</td>
+                            <td width="10%">{item.reporter}</td>
+                            <td width="20%">{item.reportDate}</td>
                         </tr>
                     )
                 })

@@ -30,6 +30,7 @@ function App() {
           <Route path="/userManage" element={<UserManage />} />
           <Route path="/withdrawUserManage" element={<WithdrawUserManage />} />
           <Route path="/reportManage/:recipeReportIdx" element={<ReportManageDetail />} />
+          <Route path="/completeReportManage/:recipeReportIdx" element={<ReportManageDetail />} />
         </Route>
       </Routes>
     </div>
