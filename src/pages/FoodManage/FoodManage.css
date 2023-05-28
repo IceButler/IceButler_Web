@@ -42,7 +42,10 @@
 }
 
 .foodManageTable table {
+    height: 100%;
     width: 100%;
+    color: white;
+    border-collapse: collapse;
 }
 
 .foodManageTable thead {
@@ -61,8 +64,8 @@
 .foodManageTable tbody tr {
     color: #4c4c4c;
     text-align: center;
-    height: 50px;
     border-bottom: #E1E0E2 solid 1px;
+    height: 50px;
 }
 
 .foodManagePaging {
