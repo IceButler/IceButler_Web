@@ -31,7 +31,7 @@ function FoodManage() {
     return (
         <div className='page'>
             <div className='foodManageContainer'>
-                <div className='foodManageTitle'>식품 내역</div>
+                <div className='foodManageTitle'>식품 관리</div>
                 <div className='foodManageContent'>
                     <div className='foodManageBar' />
                     <div className='foodManageTable'>
