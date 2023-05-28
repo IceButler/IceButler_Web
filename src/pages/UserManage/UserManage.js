@@ -8,6 +8,7 @@ const UserManage = () => {
   const [info, setInfo] = useState([]);
   const [currentPage, setPage] = useState(1);
   const [totalElements, setTotalElements] = useState(0);
+  const [size, setSize] = useState(0);
 
   useEffect(() => {
     fetchData(currentPage);
@@ -18,6 +19,7 @@ const UserManage = () => {
       .then(res => {
         setInfo(res.data.data.content);
         setTotalElements(res.data.data.totalElements);
+        setSize(10)
       })
       .catch(err => console.log(err));
       console.log(page);
@@ -64,7 +66,7 @@ const UserManage = () => {
             </table>
           </div>
           <div className='userManagePaging'>
-            <Paging currentPage={currentPage} count={totalElements} handlePageChange={handlePageChange} />
+            <Paging currentPage={currentPage} size={size} count={totalElements} handlePageChange={handlePageChange} />
           </div>
         </div>
       </div>
