@@ -1,5 +1,4 @@
 import React from 'react';
-import email from 'assets/images/email.png'
 
 const Tr = ({info, handleRemove, handleEdit}) => {
     const onRemove = (item) => {
