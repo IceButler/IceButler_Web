@@ -1,28 +1,69 @@
-.content {
-    border-radius: 0 0 0.75em 0.75em;
-    height: calc(100vh - 180px);
+.withdrawUserManageContainer {
     width: 100%;
-    background-color: #fffcfc;
+    height: calc(100vh - 90px);
+    padding: 50px;
+    padding-top: 40px;
     min-width: 800px;
-    min-height: 600px;
-    border-collapse: collapse;
+}
+
+.withdrawUserManageTitle {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 25px;
+    font-weight: bold;
+    color: #4c4c4c;
+}
+
+.withdrawUserManageContent {
+    border-radius: 12px;
+    height: calc(100vh - 145px);
+    min-height: 550px;
+    width: 100%;
+    background-color: white;
     position: relative;
+}
+
+.withdrawUserManageBar {
+    border-radius: 12px;
+    height: 60px;
+    width: 100%;
+    background-color: #2A3042;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+}
+
+.withdrawUserManageTable {
     overflow-y: scroll;
+    height: calc(100% - 41px);
 }
-thead tr{
-  height: 60px;
-  width: 100%;
-  background-color: #2A3042;
-  border-spacing: 0px;
-  color:white;
+
+.withdrawUserManageContent table {
+    width: 100%;
 }
-table {
-  width: 100%;
-  border-collapse: collapse;
+
+.withdrawUserManageContent thead {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    border-radius: 12px;
+    height: 60px;
+    z-index: 1;
 }
-th:first-child {
-  border-top-left-radius: 0.75em;
+
+.withdrawUserManageContent thead tr {
+    background-color: transparent;
 }
-th:last-child {
-  border-top-right-radius: 0.75em;
+
+.withdrawUserManageContent tbody tr {
+    color: #4c4c4c;
+    text-align: center;
+    height: 50px;
+}
+
+.withdrawUserManagePaging {
+    position: relative;
+    bottom: 0;
+    height: 40px;
 }
