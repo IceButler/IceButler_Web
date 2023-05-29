@@ -27,9 +27,8 @@ const UserManage = () => {
 
   // TODO 서버 수정되면 수정
   const withdrawUser = (idx) => {
-    axios.delete(`admin/users`, {
-        userIdx: idx
-    }).then(res => {
+    axios.delete(`admin/users/${idx}`)
+    .then(res => {
         console.log('HTTP POST 요청 성공');
         // 성공적으로 요청을 보냈을 때 실행할 작업
       })
