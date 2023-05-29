@@ -31,15 +31,10 @@ const WithdrawUserManage = () => {
       console.log(page);
   };
 
-  const handleRemove = (id) => {
-    console.log("성공");
-    // TODO
-  };
-
-  const handleEdit = (id) => {
-    console.log("성공2");
-    // TODO
-  };
+    // 이메일 전송
+    const onSendEmail = (item) => {
+      movePage('/email', { item: item }); 
+    };
 
   const handlePageChange = (page) => {
     setPage(page);
@@ -62,7 +57,7 @@ const WithdrawUserManage = () => {
                 </tr>
               </thead>
               <tbody>
-                <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit} />
+                <Tr info={info} onSendEmail={onSendEmail} />
               </tbody>
             </table>
           </div>
