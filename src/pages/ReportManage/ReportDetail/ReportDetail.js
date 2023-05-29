@@ -4,14 +4,26 @@ import axios from "axios";
 import './ReportDetail.css'
 import MoreIcon from 'assets/images/moreIcon.png'
 import RecipeTr from './RecipeTr';
+import RecipeFoodLi from './RecipeFoodLi';
 
 function ReportManage() {
-    let { reportIdx } = useParams();
+    let { recipeReportIdx } = useParams();
+
+    const [info, setInfo] = useState([]);
+
+    // 데이터 호출
+    useEffect(() => {
+        axios.get('/reports/' + recipeReportIdx)
+            .then(res => {
+                setInfo(res.data.data)
+            })
+            .catch(err => console.log(err));
+    }, [recipeReportIdx]);
 
     const onSubmitHandler = (e) => {
         const inputMemo = e.target.memo.value;
         e.preventDefault();
-        axios.post('/admin/' + reportIdx, {
+        axios.patch('/reports/' + recipeReportIdx, {
             memo: inputMemo
         }).then((res) => {
             alert("저장되었습니다.")
@@ -20,23 +32,13 @@ function ReportManage() {
         });
     }
 
-    const [info, setInfo] = useState([]);
-
-    // 데이터 호출
-    useEffect(() => {
-        // axios.get('https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/dev-ice-bulter-main/admin/users?active=true')
-        axios.get('https://jsonplaceholder.typicode.com/users')
-            .then(res => setInfo(res.data))
-            .catch(err => console.log(err));
-    }, []);
-
     return (
         <div className='page'>
             <div className='reportDetailContainer'>
                 <p className="reportDetailTitle">신고 상세 내역</p>
                 <div className="contentBox">
                     <div className="titleBar">
-                        레시피 제목
+                        {info.recipeName}
                         <img src={MoreIcon} alt='more' />
                     </div>
                     <div className='detailContent'>
@@ -44,19 +46,19 @@ function ReportManage() {
                             <div className='reportInfo'>
                                 <div className='report-line'>
                                     <span className='span-title'>작성자</span>
-                                    <span className='span-info'>작성자</span>
+                                    <span className='span-info'>{info.author}</span>
                                 </div>
                                 <div className='report-line'>
                                     <span className='span-title'>신고사유</span>
-                                    <span className='span-info'>작성자</span>
+                                    <span className='span-info'>{info.reason}</span>
                                 </div>
                                 <div className='report-line'>
                                     <span className='span-title'>신고자</span>
-                                    <span className='span-info'>작성자</span>
+                                    <span className='span-info'>{info.reporter}</span>
                                 </div>
                                 <div className='report-line'>
                                     <span className='span-title'>신고일자</span>
-                                    <span className='span-info'>작성자</span>
+                                    <span className='span-info'>{info.reportDate}</span>
                                 </div>
                             </div>
                             <div className='reportMemo'>
@@ -65,80 +67,40 @@ function ReportManage() {
                                         <span className='span-title'>처리메모</span>
                                         <input type='submit' className='memoBtn' value="저장" />
                                     </div>
-                                    <textarea form='memo-form' name='memo'></textarea>
+                                    <textarea form='memo-form' name='memo' value={info.memo}></textarea>
                                 </form>
                             </div>
                         </div>
                         <div className='recipeContent'>
                             <div className='recipeTop'>
                                 <div className='recipeInfo'>
-                                    <img className='mainImg' src={`${process.env.PUBLIC_URL}/logo192.png`} alt='mainImg' />
+                                    <img className='mainImg' src={info.recipeImgUrl} alt='mainImg' />
                                     <div className='recipeDetailInfo'>
                                         <div className='recipeInfo-line'>
                                             <span className='span-title'>카테고리</span>
-                                            <span className='span-info'>국/찌개/전골</span>
+                                            <span className='span-info'>{info.recipeCategory}</span>
                                         </div>
                                         <div className='recipeInfo-line'>
                                             <span className='span-title'>분량</span>
-                                            <span className='span-info'>1인분</span>
+                                            <span className='span-info'>{info.quantity}인분</span>
                                         </div>
                                         <div className='recipeInfo-line'>
                                             <span className='span-title'>소요시간</span>
-                                            <span className='span-info'>90분</span>
+                                            <span className='span-info'>{info.leadTime}분</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div className='recipeFood'>
                                     <span className='span-title'>재료</span>
                                     <ul>
-                                        <li>재료 1인분</li>
-                                        <li>재료 1장</li>
-                                        <li>고춧가루 100g</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료 1인분</li>
-                                        <li>재료 1장</li>
-                                        <li>고춧가루 100g</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료 1인분</li>
-                                        <li>재료 1장</li>
-                                        <li>고춧가루 100g</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료 1인분</li>
-                                        <li>재료 1장</li>
-                                        <li>고춧가루 100g</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료 1인분</li>
-                                        <li>재료 1장</li>
-                                        <li>고춧가루 100g</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
-                                        <li>재료</li>
+                                        <RecipeFoodLi info={info.recipeFoods} />
                                     </ul>
                                 </div>
                             </div>
                             <div className='recipeBottom'>
                                 <span className='span-title'>레시피</span>
                                 <div className='recipeGrid'>
-                                    <RecipeTr info={info} />
+                                    <RecipeTr info={info.cookery} />
                                 </div>
                             </div>
                         </div>

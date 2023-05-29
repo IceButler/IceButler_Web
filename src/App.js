@@ -4,7 +4,7 @@ import Sidebar from 'components/Sidebar/Sidebar';
 import { Routes, Route, Outlet } from 'react-router-dom';
 import FoodManage from 'pages/FoodManage/FoodManage'
 import ReportManage from 'pages/ReportManage/ReportManage'
-import ReportManageDetail from 'pages/ReportManage/ReportDetail'
+import ReportManageDetail from 'pages/ReportManage/ReportDetail/ReportDetail'
 import CompleteReportManage from 'pages/ReportManage/CompleteReportManage'
 import UserManage from 'pages/UserManage/UserManage'
 import WithdrawUserManage from 'pages/UserManage/WithdrawUserManage'
@@ -29,7 +29,8 @@ function App() {
           <Route path="/completeReportManage" element={<CompleteReportManage />} />
           <Route path="/userManage" element={<UserManage />} />
           <Route path="/withdrawUserManage" element={<WithdrawUserManage />} />
-          <Route path="/reportManage/:reportIdx" element={<ReportManageDetail />} />
+          <Route path="/reportManage/:recipeReportIdx" element={<ReportManageDetail />} />
+          <Route path="/completeReportManage/:recipeReportIdx" element={<ReportManageDetail />} />
         </Route>
       </Routes>
     </div>
