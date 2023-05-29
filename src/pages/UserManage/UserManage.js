@@ -42,6 +42,8 @@ const UserManage = () => {
     axios.delete(`/admin/users/${idx}`)
     .then(res => {
         console.log('HTTP 요청 성공');
+        alert('성공적으로 탈퇴되었습니다.');
+        fetchData(currentPage);
       })
       .catch(err => {
         console.error('HTTP 요청 실패:', err);
