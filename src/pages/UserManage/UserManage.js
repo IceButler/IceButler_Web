@@ -3,6 +3,7 @@ import './WithdrawUserManage.css';
 import axios from 'axios';
 import Tr from './UserTr';
 import Paging from 'components/Paging.js';
+import { useNavigate } from "react-router-dom";
 
 const UserManage = () => {
   const [info, setInfo] = useState([]);
@@ -10,19 +11,24 @@ const UserManage = () => {
   const [totalElements, setTotalElements] = useState(0);
   const [size, setSize] = useState(0);
 
+  const movePage = useNavigate();
+
   useEffect(() => {
     fetchData(currentPage);
   }, [currentPage]);
 
   const fetchData = (page) => {
-    axios.get(`/users?active=true&size=10&page=${page-1}`)
-      .then(res => {
-        setInfo(res.data.data.content);
-        setTotalElements(res.data.data.totalElements);
-        setSize(10)
-      })
-      .catch(err => console.log(err));
-      console.log(page);
+    if(axios.defaults.headers.common['Authorization'] ==null){
+      movePage('/');
+    }
+      axios.get(`/users?active=true&size=10&page=${page-1}`)
+        .then(res => {
+          setInfo(res.data.data.content);
+          setTotalElements(res.data.data.totalElements);
+          setSize(10)
+        })
+        .catch(err => console.log(err));
+        console.log(page);
   };
 
   // TODO 서버 수정되면 수정
