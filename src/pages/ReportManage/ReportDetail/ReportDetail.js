@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import './ReportDetail.css'
 import MoreIcon from 'assets/images/moreIcon.png'
 import RecipeTr from './RecipeTr';
 import RecipeFoodLi from './RecipeFoodLi';
+import RecipeMenu from './RecipeMenu';
 
 function ReportManage() {
     let { recipeReportIdx } = useParams();
 
     const [info, setInfo] = useState([]);
 
+    const movePage = useNavigate();
+
     // 데이터 호출
     useEffect(() => {
+        if (axios.defaults.headers.common['Authorization'] == null) {
+            movePage('/');
+        }
         axios.get('/reports/' + recipeReportIdx)
             .then(res => {
                 setInfo(res.data.data)
@@ -32,6 +38,24 @@ function ReportManage() {
         });
     }
 
+    const handleHide = (id) => {
+        axios.delete('/reports/' + recipeReportIdx
+        ).then((res) => {
+            alert("레시피가 숨김 처리되었습니다.")
+        }).catch((error) => {
+            alert("처리에 실패했습니다.")
+        });
+    };
+
+    const handleComplete = (id) => {
+        axios.post('/reports/' + recipeReportIdx
+        ).then((res) => {
+            alert("신고 완료 처리되었습니다.")
+        }).catch((error) => {
+            alert("처리에 실패했습니다.")
+        });
+    };
+
     return (
         <div className='page'>
             <div className='reportDetailContainer'>
@@ -40,6 +64,7 @@ function ReportManage() {
                     <div className="titleBar">
                         {info.recipeName}
                         <img src={MoreIcon} alt='more' />
+                        <RecipeMenu info={info} handleComplete={handleComplete} handleHide={handleHide} />
                     </div>
                     <div className='detailContent'>
                         <div className='reportContent'>
