@@ -1,0 +1,115 @@
+.userManageContainer {
+    width: 100%;
+    height: calc(100vh - 90px);
+    padding: 50px;
+    padding-top: 40px;
+    min-width: 800px;
+}
+
+.userManageTitle {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 25px;
+    font-weight: bold;
+    color: #4c4c4c;
+}
+
+.userManageContent {
+    border-radius: 12px;
+    height: calc(100vh - 145px);
+    min-height: 550px;
+    width: 100%;
+    background-color: white;
+    position: relative;
+}
+
+.userManageBar {
+    border-radius: 12px;
+    height: 60px;
+    width: 100%;
+    background-color: #2A3042;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+}
+
+.userManageTable {
+    overflow-y: scroll;
+    height: calc(100% - 41px);
+    border-collapse: collapse;
+}
+
+.userManageContent table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.userManageContent thead {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    border-radius: 12px;
+    height: 60px;
+    z-index: 1;
+    color: white;
+}
+
+.userManageContent thead tr {
+    background-color: transparent;
+}
+
+.userManageContent tbody tr {
+    color: #4c4c4c;
+    text-align: center;
+    height: 50px;
+    border-bottom: #E1E0E2 solid 1px;
+}
+
+.userManagePaging {
+    position: relative;
+    bottom: 0;
+    height: 40px;
+}
+
+.emailTitleBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 60px;
+    height: 100px;
+    width: calc(100% - 100px);
+    padding: 0 40px;
+}
+
+.emailTitle {
+    flex: 1;
+    font-size: 20px;
+}
+
+.emailTitleName {
+    margin-right: 40px;
+    font-size: 20px;
+}
+
+.emailContent {
+    /* margin-top: 100px;   수정된 부분 */
+    width: 100%;       /* 수정된 부분 */
+    height: 300px;     /* 수정된 부분 */
+  }
+
+.sendEmailBtn {
+    cursor: pointer;
+    background-color: #DCEBFF;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 10px;
+    border: none;
+    color: black;
+}
+
+.sendEmailIcon {
+    background-color: transparent;
+    width: 25px;
+    height: 25px;
+}
