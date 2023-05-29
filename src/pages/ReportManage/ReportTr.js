@@ -9,7 +9,7 @@ const Tr = ({ info, path }) => {
                     return (
                         <tr key={index}>
                             <td width="10%">{item.recipeReportIdx}</td>
-                            <td width="30%"><NavLink to={'/reportManage/' + item.recipeReportIdx}>{item.recipeName}</NavLink></td>
+                            <td width="30%"><NavLink to={path + item.recipeReportIdx}>{item.recipeName}</NavLink></td>
                             <td width="10%">{item.author}</td>
                             <td width="20%">{item.reason}</td>
                             <td width="10%">{item.reporter}</td>

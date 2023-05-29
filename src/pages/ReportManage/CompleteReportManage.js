@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import './ReportManage.css'
 import axios from 'axios';
 import Tr from './ReportTr';
@@ -9,11 +10,16 @@ function CompleteReportManage() {
     const [currentPage, setPage] = useState(1);
     const [totalElements, setTotalElements] = useState(0);
 
+    const movePage = useNavigate();
+
     useEffect(() => {
         fetchData(currentPage);
     }, [currentPage]);
 
     const fetchData = (page) => {
+        if (axios.defaults.headers.common['Authorization'] == null) {
+            movePage('/');
+        }
         axios.get(`/reports?type=0&size=10&page=${page - 1}`)
             .then(res => {
                 setInfo(res.data.data.content);
