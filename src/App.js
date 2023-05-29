@@ -8,6 +8,7 @@ import ReportManageDetail from 'pages/ReportManage/ReportDetail/ReportDetail'
 import CompleteReportManage from 'pages/ReportManage/CompleteReportManage'
 import UserManage from 'pages/UserManage/UserManage'
 import WithdrawUserManage from 'pages/UserManage/WithdrawUserManage'
+import Email from 'pages/Email/Email';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/withdrawUserManage" element={<WithdrawUserManage />} />
           <Route path="/reportManage/:recipeReportIdx" element={<ReportManageDetail />} />
           <Route path="/completeReportManage/:recipeReportIdx" element={<ReportManageDetail />} />
+          <Route path="/email" element={<Email />} />
         </Route>
       </Routes>
     </div>

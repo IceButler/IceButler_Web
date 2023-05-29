@@ -13,6 +13,7 @@ const UserManage = () => {
 
   const movePage = useNavigate();
 
+  // 데이터 호출
   useEffect(() => {
     fetchData(currentPage);
   }, [currentPage]);
@@ -31,19 +32,23 @@ const UserManage = () => {
         console.log(page);
   };
 
-  // TODO 서버 수정되면 수정
+  // 이메일 전송
+  const onSendEmail = (item) => {
+    movePage('/email', { item: item }); 
+  };
+
+  // 회원 탈퇴
   const withdrawUser = (idx) => {
     axios.delete(`/admin/users/${idx}`)
     .then(res => {
-        console.log('HTTP POST 요청 성공');
-        // 성공적으로 요청을 보냈을 때 실행할 작업
+        console.log('HTTP 요청 성공');
       })
       .catch(err => {
-        console.error('HTTP POST 요청 실패:', err);
-        // 요청 실패 시 실행할 작업
+        console.error('HTTP 요청 실패:', err);
       });
   };
 
+  // 페이징
   const handlePageChange = (page) => {
     setPage(page);
   };
@@ -66,7 +71,7 @@ const UserManage = () => {
                 </tr>
               </thead>
               <tbody>
-                <Tr info={info} withdrawUser={withdrawUser} />
+                <Tr info={info} onSendEmail={onSendEmail} withdrawUser={withdrawUser} />
               </tbody>
             </table>
           </div>
