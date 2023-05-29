@@ -4,13 +4,14 @@ import Paging from 'components/Paging.js'
 import axios from 'axios';
 import Tr from './FoodTr';
 import foodTrash from "assets/images/food/trash.png";
+import { useNavigate } from "react-router-dom";
 
 function FoodManage() {
     const [info, setInfo] = useState([]);
     const [currentPage, setPage] = useState(1);
     const [totalElements, setTotalElements] = useState(0);
     const [size, setSize] = useState(0);
-
+    const movePage = useNavigate();
 
     // const nextId = useRef(11);
 
@@ -21,6 +22,10 @@ function FoodManage() {
 
 
     const fetchData = (page) => {
+        if(axios.defaults.headers.common['Authorization'] ==null){
+            movePage('/');
+
+        }
         axios.get('admin/foods',{
             params:{
                 cond: '',
