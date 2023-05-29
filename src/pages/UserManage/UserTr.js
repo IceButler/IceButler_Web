@@ -3,13 +3,7 @@ import email from 'assets/images/user/email.png'
 import withdraw from 'assets/images/user/withdraw.png'
 import { useNavigate } from 'react-router-dom';
 
-const Tr = ({ info, withdrawUser }) => {
-  const navigate = useNavigate();
-
-  const onSendEmail = (item) => {
-    navigate('/sendEmail', { item: item }); // TODO 이메일 페이지 생성 후, navigate url 설정
-  };
-
+const Tr = ({ info, onSendEmail, withdrawUser }) => {
 
   const tdStyle = {
     position: 'relative',

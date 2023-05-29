@@ -3,6 +3,7 @@ import './WithdrawUserManage.css';
 import axios from 'axios';
 import Tr from './UserTr';
 import Paging from 'components/Paging.js';
+import { useNavigate } from "react-router-dom";
 
 const UserManage = () => {
   const [info, setInfo] = useState([]);
@@ -10,35 +11,46 @@ const UserManage = () => {
   const [totalElements, setTotalElements] = useState(0);
   const [size, setSize] = useState(0);
 
+  const movePage = useNavigate();
+
+  // 데이터 호출
   useEffect(() => {
     fetchData(currentPage);
   }, [currentPage]);
 
   const fetchData = (page) => {
-    axios.get(`/users?active=true&size=10&page=${page-1}`)
-      .then(res => {
-        setInfo(res.data.data.content);
-        setTotalElements(res.data.data.totalElements);
-        setSize(10)
-      })
-      .catch(err => console.log(err));
-      console.log(page);
+    if(axios.defaults.headers.common['Authorization'] ==null){
+      movePage('/');
+    }
+      axios.get(`/users?active=true&size=10&page=${page-1}`)
+        .then(res => {
+          setInfo(res.data.data.content);
+          setTotalElements(res.data.data.totalElements);
+          setSize(10)
+        })
+        .catch(err => console.log(err));
+        console.log(page);
   };
 
-  // TODO 서버 수정되면 수정
+  // 이메일 전송
+  const onSendEmail = (item) => {
+    movePage('/email', { item: item }); 
+  };
+
+  // 회원 탈퇴
   const withdrawUser = (idx) => {
-    axios.delete(`admin/users`, {
-        userIdx: idx
-    }).then(res => {
-        console.log('HTTP POST 요청 성공');
-        // 성공적으로 요청을 보냈을 때 실행할 작업
+    axios.delete(`/admin/users/${idx}`)
+    .then(res => {
+        console.log('HTTP 요청 성공');
+        alert('성공적으로 탈퇴되었습니다.');
+        fetchData(currentPage);
       })
       .catch(err => {
-        console.error('HTTP POST 요청 실패:', err);
-        // 요청 실패 시 실행할 작업
+        console.error('HTTP 요청 실패:', err);
       });
   };
 
+  // 페이징
   const handlePageChange = (page) => {
     setPage(page);
   };
@@ -61,7 +73,7 @@ const UserManage = () => {
                 </tr>
               </thead>
               <tbody>
-                <Tr info={info} withdrawUser={withdrawUser} />
+                <Tr info={info} onSendEmail={onSendEmail} withdrawUser={withdrawUser} />
               </tbody>
             </table>
           </div>

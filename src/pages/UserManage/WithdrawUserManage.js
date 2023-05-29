@@ -3,6 +3,7 @@ import './WithdrawUserManage.css';
 import axios from 'axios';
 import Tr from './WithdrawUserTr';
 import Paging from 'components/Paging.js';
+import { useNavigate } from "react-router-dom";
 
 const WithdrawUserManage = () => {
   const [info, setInfo] = useState([]);
@@ -10,11 +11,16 @@ const WithdrawUserManage = () => {
   const [totalElements, setTotalElements] = useState(0);
   const [size, setSize] = useState(0);
 
+  const movePage = useNavigate();
+
   useEffect(() => {
     fetchData(currentPage);
   }, [currentPage]);
 
   const fetchData = (page) => {
+    if(axios.defaults.headers.common['Authorization'] ==null){
+      movePage('/');
+    }
     axios.get(`/users?active=false&size=10&page=${page-1}`)
       .then(res => {
         setInfo(res.data.data.content);
@@ -25,15 +31,10 @@ const WithdrawUserManage = () => {
       console.log(page);
   };
 
-  const handleRemove = (id) => {
-    console.log("성공");
-    // TODO
-  };
-
-  const handleEdit = (id) => {
-    console.log("성공2");
-    // TODO
-  };
+    // 이메일 전송
+    const onSendEmail = (item) => {
+      movePage('/email', { item: item }); 
+    };
 
   const handlePageChange = (page) => {
     setPage(page);
@@ -56,7 +57,7 @@ const WithdrawUserManage = () => {
                 </tr>
               </thead>
               <tbody>
-                <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit} />
+                <Tr info={info} onSendEmail={onSendEmail} />
               </tbody>
             </table>
           </div>
