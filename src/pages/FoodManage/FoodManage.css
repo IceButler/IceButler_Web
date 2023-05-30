@@ -23,7 +23,7 @@
     height: 40px;
     width: 210px;
     border: 1px solid;
-    background: #ffffff;
+    background: #FAFAFA;
     border: none;
     border-radius: 12px;
     position: absolute;
@@ -41,6 +41,7 @@
     padding-bottom: 5%;
     border: 0px;
     color: #4c4c4c;
+    background-color: transparent;
     outline: none;
 }
 
