@@ -4,6 +4,7 @@ import Paging from 'components/Paging.js'
 import axios from 'axios';
 import Tr from './FoodTr';
 import foodTrash from "assets/images/food/trash.png";
+import foodSearch from "assets/images/food/search.png";
 import { useNavigate } from "react-router-dom";
 
 function FoodManage() {
@@ -60,6 +61,14 @@ function FoodManage() {
             <div className='foodManageContainer'>
                 <div className='foodManageTitle'>식품 관리</div>
                 <div className='foodManageContent'>
+                    <div className='foodSearch'>
+                    <form method="post" id="login-form">
+                        <button>
+                            <img src={foodSearch} alt='img error' onClick=""/>
+                        </button>
+                        <input type="text" placeholder={"식품명 검색"} name="foodSearch"/>
+                    </form>
+                    </div>
                     <div className='foodManageBar' />
                     <div className='foodManageTable'>
                         <table className="foodTable">
@@ -79,7 +88,6 @@ function FoodManage() {
                         </table>
                     </div>
                     <div className='foodManagePaging'>
-                        
                         <button className="foodDeleteBtn" value="선택 삭제">
                         <img className='foodDeleteIcon' src={foodTrash} alt = "img icon error"/>선택 삭제</button>
                         <Paging currentPage={currentPage} size={size} count={totalElements} handlePageChange={handlePageChange}/>
