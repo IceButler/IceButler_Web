@@ -70,7 +70,10 @@ function FoodManage() {
                         <button>
                             <img src={foodSearch} alt='img error' onClick={onSearchClickHandler}/>
                         </button>
-                        <input type="text" placeholder={"식품명 검색"} onChange={(e) => setSearchWord(e.target.value)} name="searchword"/>
+                        <input type="text" placeholder={"식품명 검색"} onChange={(e) => {
+                            setPage(1)
+                            setSearchWord(e.target.value)}
+                            } name="searchword"/>
                     </div>
                     <div className='foodManageBar' />
                     <div className='foodManageTable'>
