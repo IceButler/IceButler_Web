@@ -4,6 +4,9 @@ const Tr = ({ info, onSendEmail }) => {
 
   const tdStyle = {
     position: 'relative',
+    flex: '1',
+    flexBasis: '0',
+    minWidth: '0',
   };
 
   const imgStyle = {
@@ -15,16 +18,20 @@ const Tr = ({ info, onSendEmail }) => {
   return (
     <>
       {
-        info.map(item => {
-          return (
+        info.length > 0 ? (
+          info.map(item => (
             <tr key={item.userIdx}>
-              <td style={tdStyle} width="30%">{item.nickname}</td>
-              <td style={tdStyle} width="30%">{item.email}</td>
-              <td style={tdStyle} width="20%">{item.reportCount}</td>
-              <td style={tdStyle} width="20%" onClick={() => onSendEmail(item)}><img src={email} style={imgStyle} /></td>
+              <td style={{ ...tdStyle, flex: '3' }}>{item.nickname}</td>
+              <td style={{ ...tdStyle, flex: '4' }}>{item.email}</td>
+              <td style={{ ...tdStyle, flex: '2' }}>{item.reportCount}</td>
+              <td style={tdStyle} onClick={() => onSendEmail(item)}><img src={email} style={imgStyle} /></td>
             </tr>
-          )
-        })
+          ))
+        ) : (
+          <tr>
+            <td colSpan={5} style={tdStyle}>검색 결과가 없습니다.</td>
+          </tr>
+        )
       }
     </>
   )

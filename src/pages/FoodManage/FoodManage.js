@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import './FoodManage.css'
 import Paging from 'components/Paging.js'
 import axios from 'axios';
@@ -10,13 +10,13 @@ import { useNavigate } from "react-router-dom";
 function FoodManage() {
     const [info, setInfo] = useState([]);
     const [currentPage, setPage] = useState(1);
+    const [checkedItems, setCheckedItems] = useState(new Set());
+    const [checkedStatusList, setCheckedStatusList] = useState(new Array(16).fill(false));
     const [totalElements, setTotalElements] = useState(0);
     const [size, setSize] = useState(0);
     const movePage = useNavigate();
 
     const [searchWord, setSearchWord] = useState("")
-
-    // const nextId = useRef(11);
 
     // 데이터 호출
     useEffect(() => {
@@ -44,20 +44,63 @@ function FoodManage() {
             })
             .catch(err => console.log(err))
     };
+
     const onSearchClickHandler = (e) => {
         e.preventDefault();
-    }
+    };
 
-    const handleRemove = (id) => {
-        console.log("성공");
-        // TODO
-    }
+    const setChecked = (id, isChecked) => {
+        if (isChecked) {
+            checkedItems.add(id);
+            setCheckedItems(checkedItems);
+        } else if (!isChecked && checkedItems.has(id)) {
+            checkedItems.delete(id);
+            setCheckedItems(checkedItems);
+        }
+        // console.log(checkedItems);
+    };
 
-    const handleEdit = (id) => {
+    const handleRemove = () => {
+        checkedItems.forEach((id) => {
+            axios.delete(`/admin/foods/${id}`)
+            .then(res => {
+                console.log('HTTP 요청 성공');
+                alert('성공적으로 삭제되었습니다.');
+                fetchData(currentPage);
+                checkedItems.clear();
+            })
+            .catch(err => {
+                console.error('HTTP 요청 실패:', err);
+            });
+            console.log(id);
+        })
+        checkedItems.clear();
+        setCheckedStatusList(new Array(16).fill(false));
+    }
+    // checkbox
+    const checkedItemHandler = (id, isChecked) => {
+        setChecked(id, isChecked);
+      };
+  
+    const checkHandler = (id, i) => {
+        const updatedCheckedStatusList = [...checkedStatusList];
+        if(checkedStatusList[i] === undefined || checkedStatusList[i] === false){
+            updatedCheckedStatusList[i] = true;
+          }else{
+            updatedCheckedStatusList[i] = false;
+          }
+    
+          checkedItemHandler(id, updatedCheckedStatusList[i]);
+          setCheckedStatusList(updatedCheckedStatusList);
+    };
+
+    const handleEdit = () => {
         console.log("성공2");
         // TODO
     }
     const handlePageChange = (page) => {
+        setCheckedItems(new Set());
+        setCheckedStatusList(new Array(16).fill(false));
         setPage(page);
     };
 
@@ -83,14 +126,16 @@ function FoodManage() {
                                 <tr>
                                     <th></th>
                                     <th>아이콘</th>
+                                    <th>카테고리</th>
                                     <th>식품명</th>
                                     <th></th>
                                     <th>아이콘</th>
+                                    <th>카테고리</th>
                                     <th>식품명</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit} />
+                                <Tr info={info} checkedItems={checkedItems} checkHandler = {checkHandler} checkedStatusList = {checkedStatusList} handleEdit={handleEdit} />
                             </tbody>
                         </table>
                     </div>
@@ -105,4 +150,7 @@ function FoodManage() {
     );
 }
 
+
+
 export default FoodManage;
+// export handleRemove;
