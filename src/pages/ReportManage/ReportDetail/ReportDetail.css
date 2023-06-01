@@ -38,6 +38,7 @@
     position: relative;
 }
 
+/** 더보기 메뉴 **/
 .titleBar img {
     position: absolute;
     top: 50%;
@@ -46,6 +47,41 @@
     height: 25px;
     width: 25px;
     cursor: pointer;
+}
+
+.detailMenuBox {
+    border: #EFF0F6 solid 1px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 14px rgba(74, 58, 255, 0.01),
+        0px 9px 26px rgba(23, 15, 73, 0.05);
+    background-color: white;
+    width: 150px;
+    height: 90px;
+    color: #817F9E;
+    position: absolute;
+    right: 20px;
+    top: 50px;
+    /* display: none; */
+}
+
+.detailMenu {
+    margin: 0;
+    font-size: 18px;
+    line-height: 45px;
+    height: 45px;
+    text-align: center;
+}
+
+.detailMenu:hover {
+    background-color: #A3C7F7;
+}
+
+.detailMenuBox #top {
+    border-radius: 15px 15px 0 0;
+}
+
+.detailMenuBox #bottom {
+    border-radius: 0 0 15px 15px;
 }
 
 .detailContent {
