@@ -125,9 +125,11 @@ function FoodManage() {
                                 <tr>
                                     <th></th>
                                     <th>아이콘</th>
+                                    <th>카테고리</th>
                                     <th>식품명</th>
                                     <th></th>
                                     <th>아이콘</th>
+                                    <th>카테고리</th>
                                     <th>식품명</th>
                                 </tr>
                             </thead>
