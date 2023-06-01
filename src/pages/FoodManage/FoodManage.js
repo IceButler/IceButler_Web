@@ -25,24 +25,24 @@ function FoodManage() {
 
 
     const fetchData = (page) => {
-        if(axios.defaults.headers.common['Authorization'] ==null){
+        if (axios.defaults.headers.common['Authorization'] == null) {
             movePage('/');
 
         }
-        axios.get('admin/foods',{
-            params:{
+        axios.get('admin/foods', {
+            params: {
                 cond: searchWord,
-                page: page-1,
-                size:16
+                page: page - 1,
+                size: 16
             }
         })
-        .then(res => {
-            setInfo(res.data.data.content)
-            setTotalElements(res.data.data.totalElements);
-            console.log(res.data)
-            setSize(16)
-        })
-        .catch(err => console.log(err))
+            .then(res => {
+                setInfo(res.data.data.content)
+                setTotalElements(res.data.data.totalElements);
+                console.log(res.data)
+                setSize(16)
+            })
+            .catch(err => console.log(err))
     };
     const onSearchClickHandler = (e) => {
         e.preventDefault();
@@ -59,7 +59,7 @@ function FoodManage() {
     }
     const handlePageChange = (page) => {
         setPage(page);
-      };
+    };
 
     return (
         <div className='page'>
@@ -68,12 +68,13 @@ function FoodManage() {
                 <div className='foodManageContent'>
                     <div className='foodSearch'>
                         <button>
-                            <img src={foodSearch} alt='img error' onClick={onSearchClickHandler}/>
+                            <img src={foodSearch} alt='img error' onClick={onSearchClickHandler} />
                         </button>
                         <input type="text" placeholder={"식품명 검색"} onChange={(e) => {
                             setPage(1)
-                            setSearchWord(e.target.value)}
-                            } name="searchword"/>
+                            setSearchWord(e.target.value)
+                        }
+                        } name="searchword" />
                     </div>
                     <div className='foodManageBar' />
                     <div className='foodManageTable'>
@@ -95,8 +96,8 @@ function FoodManage() {
                     </div>
                     <div className='foodManagePaging'>
                         <button className="foodDeleteBtn" value="선택 삭제">
-                        <img className='foodDeleteIcon' src={foodTrash} alt = "img icon error"/>선택 삭제</button>
-                        <Paging currentPage={currentPage} size={size} count={totalElements} handlePageChange={handlePageChange}/>
+                            <img className='foodDeleteIcon' src={foodTrash} alt="img icon error" />선택 삭제</button>
+                        <Paging currentPage={currentPage} size={size} count={totalElements} handlePageChange={handlePageChange} />
                     </div>
                 </div>
             </div>
