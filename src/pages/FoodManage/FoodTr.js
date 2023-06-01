@@ -1,10 +1,9 @@
 import React from 'react';
-// import { handleRemove } from './FoodManage';
 
 const Tr = ({ info, checkHandler, checkedStatusList, handleEdit }) => {
     const rows = [];
     const maxRows = 16;
-    
+
     for (let i = 0; i < maxRows; i=i+2) {
       const item = info[i];
       const item2 = info[i+1];
@@ -27,7 +26,7 @@ const Tr = ({ info, checkHandler, checkedStatusList, handleEdit }) => {
           )}
           {item2 ? (
             <>
-              <td width="7%"><input type="checkbox" checked={checkedStatusList[i+1]} onChange={(e) => checkHandler(item.foodIdx, i)}/></td>
+              <td width="7%"><input type="checkbox" checked={checkedStatusList[i+1]} onChange={(e) => checkHandler(item.foodIdx, i+1)}/></td>
               <td width="23%">
                 <img src={item2.foodImgUrl} alt="food_img" />
               </td>

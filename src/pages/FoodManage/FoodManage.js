@@ -62,7 +62,7 @@ function FoodManage() {
 
     const handleRemove = () => {
         checkedItems.forEach((id) => {
-            axios.delete(`/admin/food/${id}`)
+            axios.delete(`/admin/foods/${id}`)
             .then(res => {
                 console.log('HTTP 요청 성공');
                 alert('성공적으로 삭제되었습니다.');
