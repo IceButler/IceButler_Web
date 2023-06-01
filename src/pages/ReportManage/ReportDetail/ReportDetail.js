@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import './ReportDetail.css'
 import MoreIcon from 'assets/images/moreIcon.png'
@@ -38,20 +38,22 @@ function ReportManage() {
     }
 
     const handleHide = (id) => {
-        axios.delete('/reports/' + recipeReportIdx
+        setMenuBtnClick(false)
+        axios.delete('/reports/' + id
         ).then((res) => {
             alert("레시피가 숨김 처리되었습니다.")
         }).catch((error) => {
-            alert("처리에 실패했습니다.")
+            alert("숨김 처리에 실패했습니다.")
         });
     };
 
     const handleComplete = (id) => {
-        axios.post('/reports/' + recipeReportIdx
+        setMenuBtnClick(false)
+        axios.post('/reports/' + id
         ).then((res) => {
             alert("신고 완료 처리되었습니다.")
         }).catch((error) => {
-            alert("처리에 실패했습니다.")
+            alert("완료 처리에 실패했습니다.")
         });
     };
 
@@ -71,6 +73,10 @@ function ReportManage() {
         };
     }, []);
 
+    function UseBtnEnbaleByLocation() {
+        return useLocation().pathname.includes("completeReportManage")
+    }
+
     return (
         <div className='page'>
             <div className='reportDetailContainer'>
@@ -78,16 +84,20 @@ function ReportManage() {
                 <div className="contentBox">
                     <div className="titleBar">
                         {info.recipeName}
-                        <img src={MoreIcon} alt='more' onClick={() => { menuBtnClick === true ? setMenuBtnClick(false) : setMenuBtnClick(true) }} />
+                        <img src={MoreIcon} alt='more' onClick={() => { setMenuBtnClick(true) }} />
                         {
                             menuBtnClick === true
                                 ?
-                                (<div className='detailMenuBox' ref={outSection}
-                                    onClick={(e) => {
-                                        setMenuBtnClick(false)
-                                    }}>
-                                    <div id='top' className='detailMenu'>레시피 숨기기</div>
-                                    <div id='bottom' className='detailMenu'>신고 완료 처리</div>
+                                (<div className='detailMenuBox' ref={outSection}>
+                                    <div id='top' className='detailMenu'>
+                                        <button
+                                            disabled={UseBtnEnbaleByLocation()}
+                                            onClick={() => handleHide(info.recipeIdx)}>레시피 숨기기</button>
+                                    </div>
+                                    <div id='bottom' className={UseBtnEnbaleByLocation() ? 'detailMenu enable' : 'detailMenu'}>
+                                        <button disabled={UseBtnEnbaleByLocation()}
+                                            onClick={() => handleComplete(recipeReportIdx)}>신고 완료 처리</button>
+                                    </div>
                                 </div>)
                                 : null
                         }
@@ -158,7 +168,7 @@ function ReportManage() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 

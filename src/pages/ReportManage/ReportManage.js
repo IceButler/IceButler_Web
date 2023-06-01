@@ -4,6 +4,7 @@ import './ReportManage.css'
 import axios from 'axios';
 import Tr from './ReportTr';
 import Paging from 'components/Paging.js'
+import SearchIcon from "assets/images/food/search.png";
 
 function ReportManage() {
     const [info, setInfo] = useState([]);
@@ -11,23 +12,49 @@ function ReportManage() {
     const [totalElements, setTotalElements] = useState(0);
 
     const movePage = useNavigate();
+    const [searchWord, setSearchWord] = useState("")
 
     useEffect(() => {
         fetchData(currentPage);
-    }, [currentPage]);
+    }, [currentPage, searchWord]);
+
+    function writeParams(page) {
+        if (searchWord === "")
+            return (
+                {
+                    type: 1,
+                    page: page - 1,
+                    size: 10
+                }
+            )
+        else
+            return (
+                {
+                    type: 1,
+                    nickname: searchWord,
+                    page: page - 1,
+                    size: 10
+                }
+            )
+    }
 
     const fetchData = (page) => {
         if (axios.defaults.headers.common['Authorization'] == null) {
             movePage('/');
         }
-        axios.get(`/reports?type=1&size=10&page=${page - 1}`)
+        axios.get(`/reports`, {
+            params: writeParams(page)
+        })
             .then(res => {
                 setInfo(res.data.data.content);
                 setTotalElements(res.data.data.totalElements);
             })
             .catch(err => console.log(err));
-        console.log(page);
     };
+
+    const onSearchClickHandler = (e) => {
+        e.preventDefault();
+    }
 
     const handlePageChange = (page) => {
         setPage(page);
@@ -38,6 +65,16 @@ function ReportManage() {
             <div className='reportManageContainer'>
                 <div className='reportManageTitle'>신고 내역</div>
                 <div className='reportManageContent'>
+                    <div className='reportSearch'>
+                        <button>
+                            <img src={SearchIcon} alt='img error' onClick={onSearchClickHandler} />
+                        </button>
+                        <input type="text" placeholder={"닉네임 검색"} onChange={(e) => {
+                            setPage(1)
+                            setSearchWord(e.target.value)
+                        }
+                        } name="searchword" />
+                    </div>
                     <div className='reportManageBar' />
                     <div className='reportTable'>
                         <table>
