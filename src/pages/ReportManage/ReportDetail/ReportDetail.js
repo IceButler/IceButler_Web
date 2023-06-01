@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import './ReportDetail.css'
 import MoreIcon from 'assets/images/moreIcon.png'
 import RecipeTr from './RecipeTr';
 import RecipeFoodLi from './RecipeFoodLi';
-import RecipeMenu from './RecipeMenu';
 
 function ReportManage() {
     let { recipeReportIdx } = useParams();
@@ -56,6 +55,22 @@ function ReportManage() {
         });
     };
 
+    const [menuBtnClick, setMenuBtnClick] = useState(false);
+    const outSection = useRef();
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (outSection.current && !outSection.current.contains(event.target)) {
+                setMenuBtnClick(false); // detailMenuBox 외부를 클릭한 경우
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     return (
         <div className='page'>
             <div className='reportDetailContainer'>
@@ -63,8 +78,19 @@ function ReportManage() {
                 <div className="contentBox">
                     <div className="titleBar">
                         {info.recipeName}
-                        <img src={MoreIcon} alt='more' />
-                        <RecipeMenu info={info} handleComplete={handleComplete} handleHide={handleHide} />
+                        <img src={MoreIcon} alt='more' onClick={() => { menuBtnClick === true ? setMenuBtnClick(false) : setMenuBtnClick(true) }} />
+                        {
+                            menuBtnClick === true
+                                ?
+                                (<div className='detailMenuBox' ref={outSection}
+                                    onClick={(e) => {
+                                        setMenuBtnClick(false)
+                                    }}>
+                                    <div id='top' className='detailMenu'>레시피 숨기기</div>
+                                    <div id='bottom' className='detailMenu'>신고 완료 처리</div>
+                                </div>)
+                                : null
+                        }
                     </div>
                     <div className='detailContent'>
                         <div className='reportContent'>
@@ -92,7 +118,7 @@ function ReportManage() {
                                         <span className='span-title'>처리메모</span>
                                         <input type='submit' className='memoBtn' value="저장" />
                                     </div>
-                                    <textarea form='memo-form' name='memo' value={info.memo}></textarea>
+                                    <textarea form='memo-form' name='memo' defaultValue={info.memo}></textarea>
                                 </form>
                             </div>
                         </div>
