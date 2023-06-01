@@ -7,7 +7,7 @@ const RecipeTr = ({ info }) => {
             {
                 info && info.map((item, index) => {
                     return (
-                        <li className='foodLi'>
+                        <li className='foodLi' key={index}>
                             {item.foodName} {item.foodDetail}
                         </li>
                     )

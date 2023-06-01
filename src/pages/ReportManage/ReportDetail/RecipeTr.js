@@ -9,7 +9,7 @@ const RecipeTr = ({ info }) => {
                     return (
                         <div className='recipeItem' key={index}>
                             <p className='recipeNum'>{item.nextIdx + 1}</p>
-                            <div className='recipeDetailContent'>
+                            <div className='recipeDetailContent' key={"recipe" + item.nextIdx}>
                                 {item.cookeryImgUrl ? (
                                     <>
                                         <p>{item.description}</p>
