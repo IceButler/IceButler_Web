@@ -8,6 +8,7 @@ import searchIcon from "assets/images/food/search.png";
 
 const UserManage = () => {
   const [info, setInfo] = useState([]);
+  const [item, setItem] = useState([]);
   const [currentPage, setPage] = useState(1);
   const [totalElements, setTotalElements] = useState(0);
   const [size, setSize] = useState(0);
@@ -36,7 +37,8 @@ const UserManage = () => {
 
   // 이메일 전송
   const onSendEmail = (item) => {
-    movePage('/email', { item: item }); 
+    console.log(item.email);
+    movePage('/email', { state: { item: item } }); 
   };
 
   // 회원 탈퇴
