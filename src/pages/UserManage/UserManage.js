@@ -5,6 +5,7 @@ import Tr from './UserTr';
 import Paging from 'components/Paging.js';
 import { useNavigate } from "react-router-dom";
 import searchIcon from "assets/images/food/search.png";
+import { sendWithdrawEmailAuto } from 'pages/Email/WithdrawEmail.js';
 
 const UserManage = () => {
   const [info, setInfo] = useState([]);
@@ -43,17 +44,17 @@ const UserManage = () => {
 
   // 회원 탈퇴
   const withdrawUser = (item) => {
-    const confirmation = window.confirm("탈퇴되었습니다. 전송할 이메일을 수정하시겠습니까?");
-
+    const confirmation = window.confirm(
+      `성공적으로 탈퇴되었습니다. 
+전송할 이메일을 수정하시겠습니까?`);
     axios.delete(`/admin/users/${item.userIdx}`)
     .then(res => {
           if (confirmation) {
-            movePage('/withdrawEmail', {item}); 
+            movePage('/withdrawEmail', { state: { item: item } }); 
           } else {
-            // sendEmail(idx); 
+            sendWithdrawEmailAuto(item);
+            alert('탈퇴 메일이 전송되었습니다.');
         }
-        console.log('HTTP 요청 성공');
-        alert('성공적으로 탈퇴되었습니다.');
         fetchData(currentPage);
       })
       .catch(err => {
