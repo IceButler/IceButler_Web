@@ -163,3 +163,12 @@
     border-radius: 10px;
     box-sizing: border-box;
 }
+.foodManageTable select {
+    width: 70px;
+    height: 40px;
+    border: 1px solid #e8e9ea;
+    font-size: 15px;
+    background-color: #F7F8F9;
+    border-radius: 10px;
+    text-align: center;
+}
