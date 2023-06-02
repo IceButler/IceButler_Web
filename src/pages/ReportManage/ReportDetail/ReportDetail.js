@@ -39,7 +39,7 @@ function ReportManage() {
 
     const handleHide = (id) => {
         setMenuBtnClick(false)
-        axios.delete('/reports/' + id
+        axios.delete('/recipes/' + id
         ).then((res) => {
             alert("레시피가 숨김 처리되었습니다.")
         }).catch((error) => {
@@ -90,9 +90,7 @@ function ReportManage() {
                                 ?
                                 (<div className='detailMenuBox' ref={outSection}>
                                     <div id='top' className='detailMenu'>
-                                        <button
-                                            disabled={UseBtnEnbaleByLocation()}
-                                            onClick={() => handleHide(info.recipeIdx)}>레시피 숨기기</button>
+                                        <button onClick={() => handleHide(info.recipeIdx)}>레시피 숨기기</button>
                                     </div>
                                     <div id='bottom' className={UseBtnEnbaleByLocation() ? 'detailMenu enable' : 'detailMenu'}>
                                         <button disabled={UseBtnEnbaleByLocation()}
