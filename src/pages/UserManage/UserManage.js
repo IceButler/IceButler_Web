@@ -14,19 +14,20 @@ const UserManage = () => {
   const [totalElements, setTotalElements] = useState(0);
   const [size, setSize] = useState(0);
   const [searchWord, setSearchWord] = useState("")
+  const [order, setOrder] = useState(false);
 
   const movePage = useNavigate();
 
   // 데이터 호출
   useEffect(() => {
     fetchData(currentPage);
-  }, [currentPage, searchWord]);
+  }, [currentPage, searchWord, order]);
 
   const fetchData = (page) => {
     if(axios.defaults.headers.common['Authorization'] ==null){
       movePage('/');
     }
-      axios.get(`/users?active=true&size=10&page=${page-1}&nickname=${searchWord}`)
+      axios.get(`/users?active=true&size=10&page=${page-1}&nickname=${searchWord}&order=${order}`)
         .then(res => {
           setInfo(res.data.data.content);
           setTotalElements(res.data.data.totalElements);
@@ -72,6 +73,12 @@ const UserManage = () => {
     e.preventDefault();
 }
 
+// 신고 누적 횟수 정렬
+const handleReportCountClick = () => {
+  setOrder(!order);
+  fetchData(currentPage);
+};
+
   return (
     <div className='page'>
       <div className='userManageContainer'>
@@ -93,7 +100,9 @@ const UserManage = () => {
                 <tr>
                   <th width="30%">닉네임</th>
                   <th width="30%">이메일</th>
-                  <th width="20%">신고 누적 횟수</th>
+                  <th width="20%" onClick={handleReportCountClick}>
+                    {order ? '신고 누적 횟수 ▼' : '신고 누적 횟수 ―'}
+                  </th>
                   <th width="10%">이메일 전송</th>
                   <th width="10%">회원 탈퇴</th>
                 </tr>
