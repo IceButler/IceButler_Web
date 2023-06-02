@@ -1,7 +1,6 @@
 import React from 'react';
 import email from 'assets/images/user/email.png'
 import withdraw from 'assets/images/user/withdraw.png'
-import { useNavigate } from 'react-router-dom';
 
 const Tr = ({ info, onSendEmail, withdrawUser }) => {
 

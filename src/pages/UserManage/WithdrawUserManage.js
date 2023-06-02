@@ -48,49 +48,49 @@ const WithdrawUserManage = () => {
   // 검색
   const onSearchClickHandler = (e) => {
     e.preventDefault();
-}
+  }
 
-// 신고 누적 횟수 정렬
-const handleReportCountClick = () => {
-  setOrder(!order);
-  fetchData(currentPage);
-};
+  // 신고 누적 횟수 정렬
+  const handleReportCountClick = () => {
+    setOrder(!order);
+    fetchData(currentPage);
+  };
 
   return (
     <div className='page'>
       <div className='userManageContainer'>
         <div className='userManageTitle'>탈퇴 회원</div>
         <div className='userManageContent'>
-        <div className='userManageSearch'>
-                        <button>
-                            <img src={searchIcon} alt='img error' onClick={onSearchClickHandler}/>
-                        </button>
-                        <input type="text" placeholder={"닉네임 검색"} onChange={(e) => {
-                            setPage(1)
-                            setSearchWord(e.target.value)}
-                            } name="searchWord"/>
-                    </div>
+          <div className='userManageSearch'>
+            <button>
+                <img src={searchIcon} alt='img error' onClick={onSearchClickHandler}/>
+            </button>
+            <input type="text" placeholder={"닉네임 검색"} onChange={(e) => {
+                setPage(1)
+                setSearchWord(e.target.value)}
+                } name="searchWord"/>
+          </div>
           <div className='userManageBar' />
-          <div className='userManageTable'>
-            <table>
-              <thead>
-                <tr>
-                  <th width="30%">닉네임</th>
-                  <th width="30%">이메일</th>
-                  <th width="20%" onClick={handleReportCountClick}>
-                    {order ? '신고 누적 횟수 ▼' : '신고 누적 횟수 ―'}
-                  </th>
-                  <th width="20%">이메일 전송</th>
-                </tr>
-              </thead>
-              <tbody>
-                <Tr info={info} onSendEmail={onSendEmail} />
-              </tbody>
-            </table>
-          </div>
-          <div className='userManagePaging'>
-            <Paging currentPage={currentPage} size={size} count={totalElements} handlePageChange={handlePageChange} />
-          </div>
+            <div className='userManageTable'>
+              <table>
+                <thead>
+                  <tr>
+                    <th width="30%">닉네임</th>
+                    <th width="30%">이메일</th>
+                    <th width="20%" onClick={handleReportCountClick}>
+                      {order ? '신고 누적 횟수 ▼' : '신고 누적 횟수 ―'}
+                    </th>
+                    <th width="20%">이메일 전송</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <Tr info={info} onSendEmail={onSendEmail} />
+                </tbody>
+              </table>
+            </div>
+            <div className='userManagePaging'>
+              <Paging currentPage={currentPage} size={size} count={totalElements} handlePageChange={handlePageChange} />
+            </div>
         </div>
       </div>
     </div>

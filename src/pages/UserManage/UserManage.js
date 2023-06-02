@@ -84,15 +84,15 @@ const handleReportCountClick = () => {
       <div className='userManageContainer'>
         <div className='userManageTitle'>일반 회원</div>
         <div className='userManageContent'>
-        <div className='userManageSearch'>
-                        <button>
-                            <img src={searchIcon} alt='img error' onClick={onSearchClickHandler}/>
-                        </button>
-                        <input type="text" placeholder={"닉네임 검색"} onChange={(e) => {
-                            setPage(1)
-                            setSearchWord(e.target.value)}
-                            } name="searchWord"/>
-                    </div>
+          <div className='userManageSearch'>
+            <button>
+                <img src={searchIcon} alt='img error' onClick={onSearchClickHandler}/>
+            </button>
+            <input type="text" placeholder={"닉네임 검색"} onChange={(e) => {
+                setPage(1)
+                setSearchWord(e.target.value)}
+                } name="searchWord"/>
+          </div>
           <div className='userManageBar' />
           <div className='userManageTable'>
             <table>
