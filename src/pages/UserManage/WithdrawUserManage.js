@@ -36,7 +36,7 @@ const WithdrawUserManage = () => {
 
   // 이메일 전송
   const onSendEmail = (item) => {
-    movePage('/email', { item: item }); 
+    movePage('/email', { state: { item: item } }); 
   };
 
   // 페이징
