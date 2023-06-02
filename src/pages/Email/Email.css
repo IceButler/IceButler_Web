@@ -1,9 +1,10 @@
-.userManageContainer {
+.emailManageContainer {
     width: 100%;
     height: calc(100vh - 90px);
     padding: 50px;
     padding-top: 40px;
     min-width: 800px;
+    position: relative;
 }
 
 .userManageTitle {
@@ -15,13 +16,16 @@
     color: #4c4c4c;
 }
 
-.userManageContent {
+.emailManageContent {
     border-radius: 12px;
     height: calc(100vh - 145px);
     min-height: 550px;
     width: 100%;
     background-color: white;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .userManageBar {
@@ -35,7 +39,6 @@
 }
 
 .userManageTable {
-    overflow-y: scroll;
     height: calc(100% - 41px);
     border-collapse: collapse;
 }
@@ -80,13 +83,20 @@
     top: 60px;
     height: 100px;
     width: calc(100% - 100px);
-    padding: 0 40px;
 }
 
 .emailTitle {
+    height: 40px;
     flex: 1;
     font-size: 20px;
+    border: 1px solid #E6E6E6;
+    background-color: #FAFAFA;
+    padding-left: 15px; 
+    border-radius: 5px;
 }
+.emailTitle::placeholder {
+    font-size: 15px;
+  }
 
 .emailTitleName {
     margin-right: 40px;
@@ -94,9 +104,16 @@
 }
 
 .emailContent {
-    /* margin-top: 100px;   수정된 부분 */
-    width: 100%;       /* 수정된 부분 */
-    height: 300px;     /* 수정된 부분 */
+    margin-top: 170px;       
+    resize: none;
+    box-sizing: border-box;
+    width: calc(100% - 100px);
+    position: relative;
+    height: calc(100% - 250px);
+    border: 1px solid #E6E6E6;
+    background-color: #FAFAFA;
+    border-radius: 5px;
+    padding: 20px;
   }
 
 .sendEmailBtn {
@@ -106,10 +123,24 @@
     border-radius: 10px;
     border: none;
     color: black;
+    width: 90px;
+    height: 30px;
+    position: absolute;
+    bottom: 20px;
+    right: 50px;
+    padding: 0;
+    padding-left: 15px;
 }
 
 .sendEmailIcon {
+    left: 10px;
+    position: absolute;
     background-color: transparent;
-    width: 25px;
-    height: 25px;
+    width: 15px;
+    height: auto;
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
 }

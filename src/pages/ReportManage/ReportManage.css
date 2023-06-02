@@ -24,6 +24,49 @@
     position: relative;
 }
 
+.reportSearch {
+    right: 0;
+    top: -50px;
+    height: 40px;
+    width: 300px;
+    border: 1px solid;
+    background: #FAFAFA;
+    border: none;
+    border-radius: 12px;
+    position: absolute;
+}
+
+.reportSearch form {
+    height: 100%;
+    width: 100%;
+}
+
+.reportSearch input {
+    font-size: 16px;
+    width: 230px;
+    height: 40px;
+    border: 0px;
+    color: #4c4c4c;
+    background-color: transparent;
+    outline: none;
+}
+
+.reportSearch button {
+    width: 40px;
+    height: 100%;
+    border: 0px;
+    outline: none;
+    float: right;
+    float: left;
+    background-color: transparent;
+}
+
+.reportSearch button img {
+    width: 30px;
+    height: 30px;
+    padding-top: 3px;
+}
+
 .reportManageBar {
     border-radius: 12px;
     height: 60px;
