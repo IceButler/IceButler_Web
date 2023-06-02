@@ -150,3 +150,31 @@
 .foodManageTable input {
     margin-left: 20px;
 }
+
+.foodEditImg{
+    margin-left: 2px;
+    width: 7px;
+    height: 7px;
+}
+
+.foodManageTable tbody td input[id="editInput"]  {
+    width: 80px;
+    height: 40px;
+    border: 1px solid #e8e9ea;
+    font-size: 15px;
+    text-align: center;
+    padding: 0 10px;
+    margin-bottom: 16px;
+    background-color: #F7F8F9;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.foodManageTable select {
+    width: 80px;
+    height: 40px;
+    border: 1px solid #e8e9ea;
+    font-size: 15px;
+    background-color: #F7F8F9;
+    border-radius: 10px;
+    text-align: center;
+}

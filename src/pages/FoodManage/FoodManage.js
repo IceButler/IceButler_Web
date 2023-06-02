@@ -14,6 +14,7 @@ function FoodManage() {
     const [checkedStatusList, setCheckedStatusList] = useState(new Array(16).fill(false));
     const [totalElements, setTotalElements] = useState(0);
     const [size, setSize] = useState(0);
+    const [edit, setEdit] = useState(false);
     const movePage = useNavigate();
 
     const [searchWord, setSearchWord] = useState("")
@@ -21,7 +22,8 @@ function FoodManage() {
     // 데이터 호출
     useEffect(() => {
         fetchData(currentPage);
-    }, [currentPage, searchWord]);
+        setEdit(false);
+    }, [currentPage, searchWord, edit]);
 
 
     const fetchData = (page) => {
@@ -94,10 +96,6 @@ function FoodManage() {
           setCheckedStatusList(updatedCheckedStatusList);
     };
 
-    const handleEdit = () => {
-        console.log("성공2");
-        // TODO
-    }
     const handlePageChange = (page) => {
         setCheckedItems(new Set());
         setCheckedStatusList(new Array(16).fill(false));
@@ -135,7 +133,7 @@ function FoodManage() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <Tr info={info} checkedItems={checkedItems} checkHandler = {checkHandler} checkedStatusList = {checkedStatusList} handleEdit={handleEdit} />
+                                <Tr info={info} checkedItems={checkedItems} checkHandler = {checkHandler} checkedStatusList = {checkedStatusList} setEdit={setEdit} />
                             </tbody>
                         </table>
                     </div>
