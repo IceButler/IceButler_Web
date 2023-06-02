@@ -164,7 +164,7 @@
     box-sizing: border-box;
 }
 .foodManageTable select {
-    width: 70px;
+    width: 80px;
     height: 40px;
     border: 1px solid #e8e9ea;
     font-size: 15px;
