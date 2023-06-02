@@ -40,9 +40,16 @@ const UserManage = () => {
   };
 
   // 회원 탈퇴
-  const withdrawUser = (idx) => {
-    axios.delete(`/admin/users/${idx}`)
+  const withdrawUser = (item) => {
+    const confirmation = window.confirm("탈퇴되었습니다. 전송할 이메일을 수정하시겠습니까?");
+
+    axios.delete(`/admin/users/${item.userIdx}`)
     .then(res => {
+          if (confirmation) {
+            movePage('/withdrawEmail', {item}); 
+          } else {
+            // sendEmail(idx); 
+        }
         console.log('HTTP 요청 성공');
         alert('성공적으로 탈퇴되었습니다.');
         fetchData(currentPage);
