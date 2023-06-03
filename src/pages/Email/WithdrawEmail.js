@@ -133,7 +133,7 @@ const Email = () => {
                 <label className="emailTitleName">제목</label>
                 <input type="text" className="emailTitle" name="title" placeholder='제목을 입력해주세요' value={defaultTitle}></input>
           </div>
-            <textarea style={{ fontFamily: 'NanumSquare' }} className="emailContent" name="message" rows="20" cols="50">
+            <textarea className="emailContent" name="message" rows="20" cols="50">
             {defaultMessage}</textarea>
             <button className="sendEmailBtn" type='submit' value="Send">
             <img className='sendEmailIcon' src={sendEmailUrl} alt="버튼 아이콘" />

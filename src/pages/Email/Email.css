@@ -114,6 +114,7 @@
     background-color: #FAFAFA;
     border-radius: 5px;
     padding: 20px;
+    font-family: inherit;
   }
 
 .sendEmailBtn {
