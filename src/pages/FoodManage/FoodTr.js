@@ -33,6 +33,37 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
     setEditCategory(true);
   };
 
+  const postFoodImgUrl = (data, file) => {
+    let putUrl = data.presignedUrl.replace(/"/g, '');
+    console.log(data.presignedUrl)
+    const formData = new FormData();
+    formData.append('file', file);
+    axios.put(putUrl, formData)
+      .then((res) => {
+        console.log(res);
+      }).catch((error) => {
+        console.log(error);
+      });
+  }
+
+  const getFoodImgUrl = (e) => {
+    var file = e.target.files[0];
+    console.log(file);
+    var type = file.type.split("/");
+    console.log(type[1]);
+    axios.get('presigned-url', {
+      params: {
+        ext: type[1],
+        dir: "food"
+      }
+    }).then((res) => {
+      console.log(res);
+      postFoodImgUrl(res.data, file);
+    }).catch((error) => {
+      console.log(error);
+    })
+  }
+
   const handleFoodNameTdClick = (index, foodName, category) => {
     setSelectedCategory(category);
     setEditingIndex(index);
@@ -94,7 +125,12 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
           <>
             <td width="5%"><input type="checkbox" checked={checkedStatusList[i]} onChange={(e) => checkHandler(item.foodIdx, i)} /></td>
             <td width="15%" >
-              <img src={item.foodImgUrl} alt="food_img" />
+              <form method="put" enctype="multipart/form-data">
+                <label className='foodImgBtn' for="chooseFile">
+                  <img src={item.foodImgUrl} alt="food_img" />
+                </label>
+                <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onChange={(e) => getFoodImgUrl(e)} />
+              </form>
             </td>
 
             <td
@@ -164,7 +200,12 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
           <>
             <td width="5%"><input type="checkbox" checked={checkedStatusList[i + 1]} onChange={(e) => checkHandler(item2.foodIdx, i + 1)} /></td>
             <td width="15%">
-              <img src={item2.foodImgUrl} alt="food_img" />
+              <form method="post" enctype="multipart/form-data">
+                <label className='foodImgBtn' for="chooseFile">
+                  <img src={item2.foodImgUrl} alt="food_img" />
+                </label>
+                <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onChange={(e) => getFoodImgUrl(e)} />
+              </form>
             </td>
             <td
               width="15%"
