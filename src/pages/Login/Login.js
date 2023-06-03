@@ -51,7 +51,7 @@ function Login() {
         }).then((res) => {
             const accessToken = res.data.data.accessToken
             // setCookie('exp', res.payload.accessTokenExpiresIn) cookie 까지 필요할까요,?
-            axios.defaults.headers.common['Authorization'] = accessToken;
+            // axios.defaults.headers.common['Authorization'] = accessToken;
             console.log(accessToken);
             // document.location.href = '/'
             movePage('/foodManage');
