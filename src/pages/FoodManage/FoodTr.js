@@ -204,7 +204,7 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
                   id="editInput"
                   value={editedFoodName}
                   onChange={foodNameChange}
-                  onKeyDown={(e) => handleKeyDown(e, item2.foodIdx)}
+                  onKeyDown={(e) => handleKeyDown(e, item2)}
                   autoFocus
                 />
               ) : (
