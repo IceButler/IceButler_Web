@@ -33,8 +33,9 @@ function App() {
           <Route path="/withdrawUserManage" element={<WithdrawUserManage />} />
           <Route path="/reportManage/:recipeReportIdx" element={<ReportManageDetail />} />
           <Route path="/completeReportManage/:recipeReportIdx" element={<ReportManageDetail />} />
-          <Route path="/email" element={<Email />} />
-          <Route path="/withdrawEmail" element={<WithdrawEmail />} />
+          <Route path="/userManage/email" element={<Email />} />
+          <Route path="/withdrawUserManage/email" element={<Email />} />
+          <Route path="/withdrawUserManage/withdrawEmail" element={<WithdrawEmail />} />
         </Route>
       </Routes>
     </div>

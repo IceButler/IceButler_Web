@@ -39,7 +39,7 @@ const UserManage = () => {
   // 이메일 전송
   const onSendEmail = (item) => {
     console.log(item.email);
-    movePage('/email', { state: { item: item } }); 
+    movePage('/userManage/email', { state: { item: item } }); 
   };
 
   // 회원 탈퇴
@@ -50,7 +50,7 @@ const UserManage = () => {
     axios.delete(`/admin/users/${item.userIdx}`)
     .then(res => {
           if (confirmation) {
-            movePage('/withdrawEmail', { state: { item: item } }); 
+            movePage('/userManage/withdrawEmail', { state: { item: item } }); 
           } else {
             sendWithdrawEmailAuto(item);
             alert('탈퇴 메일이 전송되었습니다.');
