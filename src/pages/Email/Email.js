@@ -3,6 +3,7 @@ import sendEmailUrl from "assets/images/send.png";
 import './Email.css'
 import emailjs from '@emailjs/browser';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const Email = () => {
@@ -11,6 +12,7 @@ const Email = () => {
   const nickname = location.state.item.nickname;
 
   const form = useRef(null);
+  const navigate = useNavigate();
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -25,6 +27,7 @@ const Email = () => {
       .then((result) => {
           console.log(result.text);
           alert("전송되었습니다.");
+          navigate(-1);
       }, (error) => {
         alert("실패했습니다.");
           console.log(error.text);

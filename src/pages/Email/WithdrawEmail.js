@@ -4,6 +4,7 @@ import './Email.css'
 import emailjs from '@emailjs/browser';
 import {useLocation} from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 export const sendWithdrawEmailAuto = (item) => {
@@ -77,6 +78,7 @@ const Email = () => {
 혹시, 정지/탈퇴를 원하지 않으시면 본 메일로 회신해 주시면 확인 후 처리해 드리겠습니다.`;
 
   const form = useRef(null);
+  const navigate = useNavigate();
 
   const sendWithdrawEmail = (e) => {
     e.preventDefault();
@@ -113,6 +115,7 @@ const Email = () => {
       .then((result) => {
           console.log(result.text);
           alert("전송되었습니다.");
+          navigate(-1);
       }, (error) => {
         alert("실패했습니다.");
           console.log(error.text);
