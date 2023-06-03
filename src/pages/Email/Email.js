@@ -42,7 +42,7 @@ const Email = () => {
                 <label className="emailTitleName">제목</label>
                 <input type="text" className="emailTitle" name="title" placeholder='제목을 입력해주세요' value={`[냉집사] ${nickname}님, 안내 메일 드립니다.`}></input>
           </div>
-            <textarea className="emailContent" name="message" rows="20" cols="50">
+            <textarea style={{ fontFamily: 'NanumSquare' }} className="emailContent" name="message" rows="20" cols="50">
             {`${nickname}님, 안녕하세요.
 냉장고 유통기한 관리 어플, 냉집사입니다.`}</textarea>
             <button className="sendEmailBtn" type='submit' value="Send">
