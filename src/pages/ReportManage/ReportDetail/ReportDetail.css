@@ -185,6 +185,7 @@
     font-size: 15px;
     resize: none;
     background-color: #F7F8F9;
+    font-family: inherit;
 }
 
 #memo-form input[type=submit] {
