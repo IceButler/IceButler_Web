@@ -34,7 +34,6 @@ const UserManage = () => {
           setSize(10)
         })
         .catch(err => console.log(err));
-        console.log(page);
   };
 
   // 이메일 전송
@@ -75,8 +74,7 @@ const UserManage = () => {
 
 // 신고 누적 횟수 정렬
 const handleReportCountClick = () => {
-  setOrder(!order);
-  fetchData(currentPage);
+  setOrder(!order)
 };
 
   return (
