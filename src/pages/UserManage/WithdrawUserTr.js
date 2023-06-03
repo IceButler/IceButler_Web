@@ -10,7 +10,6 @@ const Tr = ({ info, onSendEmail }) => {
   };
 
   const imgStyle = {
-    width: '100%',
     height: '40px',
     objectFit: 'contain',
   };
@@ -24,7 +23,7 @@ const Tr = ({ info, onSendEmail }) => {
               <td style={{ ...tdStyle, flex: '3' }}>{item.nickname}</td>
               <td style={{ ...tdStyle, flex: '4' }}>{item.email}</td>
               <td style={{ ...tdStyle, flex: '2' }}>{item.reportCount}</td>
-              <td style={{...tdStyle, cursor: 'pointer'}} onClick={() => onSendEmail(item)}><img src={email} style={imgStyle} /></td>
+              <td style={{...tdStyle}} onClick={() => onSendEmail(item)}><img src={email} style={{...imgStyle, cursor: 'pointer'}} /></td>
             </tr>
           ))
         ) : (

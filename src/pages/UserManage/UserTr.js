@@ -12,7 +12,6 @@ const Tr = ({ info, onSendEmail, withdrawUser }) => {
   };
 
   const imgStyle = {
-    width: '100%',
     height: '40px',
     objectFit: 'contain',
   };
@@ -26,8 +25,8 @@ const Tr = ({ info, onSendEmail, withdrawUser }) => {
               <td style={{ ...tdStyle, flex: '2' }}>{item.nickname}</td>
               <td style={{ ...tdStyle, flex: '3' }}>{item.email}</td>
               <td style={{ ...tdStyle, flex: '1' }}>{item.reportCount}</td>
-              <td style={{...tdStyle, cursor: 'pointer'}} onClick={() => onSendEmail(item)} ><img src={email} style={imgStyle} /></td>
-              <td style={{...tdStyle, cursor: 'pointer'}} onClick={() => withdrawUser(item)}><img src={withdraw} style={imgStyle} /></td>
+              <td style={{...tdStyle}} onClick={() => onSendEmail(item)} ><img src={email} style={{...imgStyle, cursor: 'pointer'}} /></td>
+              <td style={{...tdStyle}} onClick={() => withdrawUser(item)}><img src={withdraw} style={{...imgStyle, cursor: 'pointer'}} /></td>
             </tr>
           ))
         ) : (
