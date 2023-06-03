@@ -34,17 +34,24 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
   };
 
   const postFoodImgUrl = (data, file) => {
-    let putUrl = data.presignedUrl.replace(/"/g, '');
-    console.log(data.presignedUrl)
+    console.log(data.presignedUrl);
+    console.log(file);
+  
     const formData = new FormData();
     formData.append('file', file);
-    axios.put(putUrl, formData)
+  
+    axios.put(data.presignedUrl, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data' // Content-Type 헤더 설정
+      }
+    })
       .then((res) => {
         console.log(res);
-      }).catch((error) => {
-        console.log(error);
+      })
+      .catch((error) => {
+        console.log(error.response);
       });
-  }
+  };
 
   const getFoodImgUrl = (e) => {
     var file = e.target.files[0];
@@ -125,7 +132,7 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
           <>
             <td width="5%"><input type="checkbox" checked={checkedStatusList[i]} onChange={(e) => checkHandler(item.foodIdx, i)} /></td>
             <td width="15%" >
-              <form method="put" enctype="multipart/form-data">
+              <form>
                 <label className='foodImgBtn' for="chooseFile">
                   <img src={item.foodImgUrl} alt="food_img" />
                 </label>
