@@ -100,7 +100,7 @@ const handleReportCountClick = () => {
                 <tr>
                   <th width="30%">닉네임</th>
                   <th width="30%">이메일</th>
-                  <th width="20%" onClick={handleReportCountClick}>
+                  <th width="20%" onClick={handleReportCountClick} style={{ cursor: 'pointer' }}>
                     {order ? '신고 누적 횟수 ▼' : '신고 누적 횟수 ―'}
                   </th>
                   <th width="10%">이메일 전송</th>
