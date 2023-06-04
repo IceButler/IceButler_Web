@@ -12,20 +12,21 @@ import { Cookies } from 'react-cookie';
 const cookies = new Cookies();
 
 export const setCookie = (name, value, option) => {
-  return cookies.set(name, value, { ...option });
+    return cookies.set(name, value, { ...option });
 };
 
 export const getCookie = (name) => {
-  return cookies.get(name);
+    return cookies.get(name);
 };
 
 export const removeCookie = (name, option) => {
-  return cookies.remove(name, { ...option });
+    return cookies.remove(name, { ...option });
 };
 
-  
+
 // axios.defaults.baseURL = "https://www.abc.com"; -> csrf 에러 해결되면 이걸로 변경 
 function Login() {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
     const movePage = useNavigate();
     // For email
     const [isEmail, setIsEmail] = useState(false);
@@ -61,7 +62,7 @@ function Login() {
         const inputEmail = e.target.email.value;
         const inputPw = e.target.password.value;
         e.preventDefault();
-        axios.post('/admin/login', {
+        axios.post(`${PROXY}/admin/login`, {
             email: inputEmail,
             password: inputPw
         }).then((res) => {
