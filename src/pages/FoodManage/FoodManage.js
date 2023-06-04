@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { getCookie } from 'pages/Login/Login.js';
 
 function FoodManage() {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/main_proxy';
     const [info, setInfo] = useState([]);
     const [currentPage, setPage] = useState(1);
     const [checkedItems, setCheckedItems] = useState(new Set());
@@ -30,7 +31,7 @@ function FoodManage() {
         if (token == null) {
             movePage('/');
         }
-        axios.get('admin/foods', {
+        axios.get(`${PROXY}/admin/foods`, {
             params: {
                 cond: searchWord,
                 page: page - 1,
@@ -71,7 +72,7 @@ function FoodManage() {
             if (token == null) {
                 movePage('/');
             }
-            axios.delete(`/admin/foods/${id}`, {
+            axios.delete(`${PROXY}/admin/foods/${id}`, {
                 headers: {
                     Authorization: token
                 }

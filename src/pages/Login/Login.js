@@ -23,8 +23,6 @@ export const removeCookie = (name, option) => {
     return cookies.remove(name, { ...option });
 };
 
-
-// axios.defaults.baseURL = "https://www.abc.com"; -> csrf 에러 해결되면 이걸로 변경 
 function Login() {
     const PROXY = window.location.hostname === 'localhost' ? '' : '/main_proxy';
     const movePage = useNavigate();
@@ -71,7 +69,7 @@ function Login() {
             console.log(accessToken);
             movePage('/foodManage');
         }).catch((error) => {
-            alert("로그인에 실패했습니다. 정보를 다시 한 번 더 입력해주새요.")
+            alert("로그인에 실패했습니다. 정보를 다시 한 번 더 입력해주세요.")
         });
 
     }

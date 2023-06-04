@@ -8,6 +8,7 @@ import SearchIcon from "assets/images/food/search.png";
 import { getCookie } from 'pages/Login/Login.js';
 
 function ReportManage() {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/recipe_proxy';
     const [info, setInfo] = useState([]);
     const [currentPage, setPage] = useState(1);
     const [totalElements, setTotalElements] = useState(0);
@@ -44,7 +45,7 @@ function ReportManage() {
         if (token == null) {
             movePage('/');
         }
-        axios.get(`/reports`, {
+        axios.get(`${PROXY}/reports`, {
             params: writeParams(page),
             headers: {
                 Authorization: token
