@@ -76,15 +76,15 @@ function FoodManage() {
                     Authorization: token
                 }
             })
-            .then(res => {
-                console.log('HTTP 요청 성공');
-                alert('성공적으로 삭제되었습니다.');
-                fetchData(currentPage);
-                checkedItems.clear();
-            })
-            .catch(err => {
-                console.error('HTTP 요청 실패:', err);
-            });
+                .then(res => {
+                    console.log('HTTP 요청 성공');
+                    alert('성공적으로 삭제되었습니다.');
+                    fetchData(currentPage);
+                    checkedItems.clear();
+                })
+                .catch(err => {
+                    console.error('HTTP 요청 실패:', err);
+                });
             console.log(id);
         })
         checkedItems.clear();
@@ -93,18 +93,18 @@ function FoodManage() {
     // checkbox
     const checkedItemHandler = (id, isChecked) => {
         setChecked(id, isChecked);
-      };
-  
+    };
+
     const checkHandler = (id, i) => {
         const updatedCheckedStatusList = [...checkedStatusList];
-        if(checkedStatusList[i] === undefined || checkedStatusList[i] === false){
+        if (checkedStatusList[i] === undefined || checkedStatusList[i] === false) {
             updatedCheckedStatusList[i] = true;
-          }else{
+        } else {
             updatedCheckedStatusList[i] = false;
-          }
-    
-          checkedItemHandler(id, updatedCheckedStatusList[i]);
-          setCheckedStatusList(updatedCheckedStatusList);
+        }
+
+        checkedItemHandler(id, updatedCheckedStatusList[i]);
+        setCheckedStatusList(updatedCheckedStatusList);
     };
 
     const handlePageChange = (page) => {
@@ -144,7 +144,7 @@ function FoodManage() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <Tr info={info} checkedItems={checkedItems} checkHandler = {checkHandler} checkedStatusList = {checkedStatusList} setEdit={setEdit} />
+                                <Tr info={info} checkedItems={checkedItems} checkHandler={checkHandler} checkedStatusList={checkedStatusList} setEdit={setEdit} />
                             </tbody>
                         </table>
                     </div>
