@@ -44,10 +44,8 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
     if (token == null) {
       movePage('/');
     }
-
     axios.put(data.presignedUrl, file, {
       headers: {
-        Authorization: token,
         'Content-Type': 'multipart/form-data' // Content-Type 헤더 설정
       }
     })
@@ -77,7 +75,6 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
         Authorization: token
       }
     }).then((res) => {
-      console.log(res);
       postFoodImgUrl(res.data, file, item);
     }).catch((error) => {
       console.log(error);
@@ -108,7 +105,6 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
   };
 
   const handleSave = (item, category, imageKey) => {
-    console.log(editedFoodName);
     const requestData = imageKey === null
       ? { foodCategory: category, foodName: editedFoodName }
       : { foodImgKey: imageKey };
