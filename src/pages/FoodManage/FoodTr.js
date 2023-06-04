@@ -87,7 +87,7 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
   };
 
   const handleSave = (item, category, imageKey) => {
-    const requestData = imageKey !== null
+    const requestData = imageKey !== undefined
     ? { foodImgKey: imageKey }
     : { foodCategory: category, foodName: editedFoodName };
     console.log(imageKey);
@@ -97,23 +97,36 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
     }).catch((error) => {
       console.error('HTTP 요청 실패:', error);
     });
-
+    console.log("adf");
+    console.log(imageKey);
     // 저장 후 편집 상태 초기화
+    initialFoodTr();
+    setEdit(true);
+  };
+
+  const initialFoodTr = () => {
     setEditingIndex(null);
     setEditedFoodName('');
     setEditFoodName(false)
     setSelectedCategory('');
     setEditCategory(false);
-    setEdit(true);
-  };
+  }
 
 
 
   const handleKeyDown = (e, item) => {
     if (e.key === 'Enter') {
       handleSave(item, item.foodCategory, null);
+    } else if(e.key === 'Escape'){
+      initialFoodTr();
     }
   };
+
+  const handleCategoryKeyDown = (e) =>{
+    if(e.key === 'Escape'){
+      initialFoodTr();
+    }
+  }
 
 
   for (let i = 0; i < maxRows; i = i + 2) {
@@ -143,6 +156,7 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
                   onChange={(e) => {
                     handleCategorySelect(e.target.value, item)
                   }}
+                  onKeyDown={(e) => handleCategoryKeyDown(e)}
                 >
                   <option value={selectedCategory}>{selectedCategory}</option>
                   {categoryOptions
@@ -217,6 +231,7 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
                   onChange={(e) => {
                     handleCategorySelect(e.target.value, item2)
                   }}
+                  onKeyDown={(e) => handleCategoryKeyDown(e)}
                 >
                   <option value={selectedCategory}>{selectedCategory}</option>
                   {categoryOptions
