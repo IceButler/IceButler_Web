@@ -10,7 +10,6 @@ import { getCookie } from 'pages/Login/Login.js';
 
 const UserManage = () => {
   const [info, setInfo] = useState([]);
-  const [item, setItem] = useState([]);
   const [currentPage, setPage] = useState(1);
   const [totalElements, setTotalElements] = useState(0);
   const [size, setSize] = useState(0);
