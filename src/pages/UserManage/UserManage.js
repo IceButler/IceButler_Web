@@ -9,6 +9,8 @@ import { sendWithdrawEmailAuto } from 'pages/Email/WithdrawEmail.js';
 import { getCookie } from 'pages/Login/Login.js';
 
 const UserManage = () => {
+  const MAIN_PROXY = window.location.hostname === 'localhost' ? '' : '/main_proxy';
+  const RECIPE_PROXY = window.location.hostname === 'localhost' ? '' : '/recipe_proxy';
   const [info, setInfo] = useState([]);
   const [currentPage, setPage] = useState(1);
   const [totalElements, setTotalElements] = useState(0);
@@ -26,25 +28,25 @@ const UserManage = () => {
   const fetchData = (page) => {
     const token = getCookie('Authorization');
     if (token == null) {
-        movePage('/');
+      movePage('/');
     }
-      axios.get(`/users?active=true&size=10&page=${page-1}&nickname=${searchWord}&order=${order}`,{
-        headers: {
-          Authorization: token
+    axios.get(`${RECIPE_PROXY}/users?active=true&size=10&page=${page - 1}&nickname=${searchWord}&order=${order}`, {
+      headers: {
+        Authorization: token
       }
+    })
+      .then(res => {
+        setInfo(res.data.data.content);
+        setTotalElements(res.data.data.totalElements);
+        setSize(10)
       })
-        .then(res => {
-          setInfo(res.data.data.content);
-          setTotalElements(res.data.data.totalElements);
-          setSize(10)
-        })
-        .catch(err => console.log(err));
+      .catch(err => console.log(err));
   };
 
   // 이메일 전송
   const onSendEmail = (item) => {
     console.log(item.email);
-    movePage('/userManage/email', { state: { item: item } }); 
+    movePage('/userManage/email', { state: { item: item } });
   };
 
   // 회원 탈퇴
@@ -52,21 +54,21 @@ const UserManage = () => {
     const confirmation = window.confirm(
       `성공적으로 탈퇴되었습니다. 
 전송할 이메일을 수정하시겠습니까?`);
-const token = getCookie('Authorization');
+    const token = getCookie('Authorization');
     if (token == null) {
-        movePage('/');
+      movePage('/');
     }
-    axios.delete(`/admin/users/${item.userIdx}`,{
+    axios.delete(`${MAIN_PROXY}/admin/users/${item.userIdx}`, {
       headers: {
         Authorization: token
-    }
+      }
     })
-    .then(res => {
-          if (confirmation) {
-            movePage('/userManage/withdrawEmail', { state: { item: item } }); 
-          } else {
-            sendWithdrawEmailAuto(item);
-            alert('탈퇴 메일이 전송되었습니다.');
+      .then(res => {
+        if (confirmation) {
+          movePage('/userManage/withdrawEmail', { state: { item: item } });
+        } else {
+          sendWithdrawEmailAuto(item);
+          alert('탈퇴 메일이 전송되었습니다.');
         }
         fetchData(currentPage);
       })
@@ -83,12 +85,12 @@ const token = getCookie('Authorization');
   // 검색
   const onSearchClickHandler = (e) => {
     e.preventDefault();
-}
+  }
 
-// 신고 누적 횟수 정렬
-const handleReportCountClick = () => {
-  setOrder(!order)
-};
+  // 신고 누적 횟수 정렬
+  const handleReportCountClick = () => {
+    setOrder(!order)
+  };
 
   return (
     <div className='page'>
@@ -97,12 +99,13 @@ const handleReportCountClick = () => {
         <div className='userManageContent'>
           <div className='userManageSearch'>
             <button>
-                <img src={searchIcon} alt='img error' onClick={onSearchClickHandler}/>
+              <img src={searchIcon} alt='img error' onClick={onSearchClickHandler} />
             </button>
             <input type="text" placeholder={"닉네임 검색"} onChange={(e) => {
-                setPage(1)
-                setSearchWord(e.target.value)}
-                } name="searchWord"/>
+              setPage(1)
+              setSearchWord(e.target.value)
+            }
+            } name="searchWord" />
           </div>
           <div className='userManageBar' />
           <div className='userManageTable'>

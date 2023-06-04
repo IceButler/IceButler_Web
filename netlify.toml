@@ -14,7 +14,7 @@ status = 200
 force = true
 
 [[redirects]]
-from = '/presigned-url/*'
+from = '/s3_proxy/*'
 to = 'https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/:splat'
 status = 200
 force = true

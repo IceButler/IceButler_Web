@@ -8,6 +8,7 @@ import RecipeFoodLi from './RecipeFoodLi';
 import { getCookie } from 'pages/Login/Login.js';
 
 function ReportManage() {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/recipe_proxy';
     let { recipeReportIdx } = useParams();
 
     const [info, setInfo] = useState([]);
@@ -20,7 +21,7 @@ function ReportManage() {
         if (token == null) {
             movePage('/');
         }
-        axios.get('/reports/' + recipeReportIdx, {
+        axios.get(`${PROXY}/reports/` + recipeReportIdx, {
             headers: {
                 Authorization: token
             }
@@ -38,7 +39,7 @@ function ReportManage() {
         if (token == null) {
             movePage('/');
         }
-        axios.patch('/reports/' + recipeReportIdx, {
+        axios.patch(`${PROXY}/reports/` + recipeReportIdx, {
             memo: inputMemo
         }, {
             headers: {
@@ -57,7 +58,7 @@ function ReportManage() {
             movePage('/');
         }
         setMenuBtnClick(false)
-        axios.delete('/recipes/' + id, {
+        axios.delete(`${PROXY}/recipes/` + id, {
             headers: {
                 Authorization: token
             }
@@ -75,7 +76,7 @@ function ReportManage() {
             movePage('/');
         }
         setMenuBtnClick(false)
-        axios.post('/reports/' + id,  {
+        axios.post(`${PROXY}/reports/` + id, {
             headers: {
                 Authorization: token
             }

@@ -6,6 +6,9 @@ import { getCookie } from 'pages/Login/Login.js';
 import { useNavigate } from "react-router-dom";
 
 const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
+  const PROXY = window.location.hostname === 'localhost' ? '' : '/main_proxy';
+  const S3_PROXY = window.location.hostname === 'localhost' ? '' : '/main_proxy';
+
   const movePage = useNavigate();
   const rows = [];
   const maxRows = 16;
@@ -41,6 +44,7 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
     if (token == null) {
       movePage('/');
     }
+
     axios.put(data.presignedUrl, file, {
       headers: {
         Authorization: token,
@@ -60,16 +64,17 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
     var file = e.target.files[0];
     var type = file.type.split("/");
     const token = getCookie('Authorization');
-            if (token == null) {
-                movePage('/');
+    if (token == null) {
+      movePage('/');
     }
-    axios.get('presigned-url', {
+    //여기durl
+    axios.get(`${S3_PROXY}/presigned-url`, {
       params: {
         ext: type[1],
         dir: "food"
       },
       headers: {
-          Authorization: token
+        Authorization: token
       }
     }).then((res) => {
       console.log(res);
@@ -103,23 +108,23 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
 
   const handleSave = (item, category, imageKey) => {
     const requestData = imageKey !== undefined
-    ? { foodImgKey: imageKey }
-    : { foodCategory: category, foodName: editedFoodName };
+      ? { foodImgKey: imageKey }
+      : { foodCategory: category, foodName: editedFoodName };
     console.log(imageKey);
     const token = getCookie('Authorization');
-        if (token == null) {
-            movePage('/');
-        }
-    axios.patch(`/admin/foods/${item.foodIdx}`, requestData, {
+    if (token == null) {
+      movePage('/');
+    }
+    axios.patch(`${PROXY}/admin/foods/${item.foodIdx}`, requestData, {
       headers: {
-          Authorization: token
+        Authorization: token
       }
     })
-    .then((res) => {
-      alert('성공적으로 수정되었습니다.');
-    }).catch((error) => {
-      console.error('HTTP 요청 실패:', error);
-    });
+      .then((res) => {
+        alert('성공적으로 수정되었습니다.');
+      }).catch((error) => {
+        console.error('HTTP 요청 실패:', error);
+      });
     // 저장 후 편집 상태 초기화
     initialFoodTr();
     setEdit(true);
@@ -138,13 +143,13 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
   const handleKeyDown = (e, item) => {
     if (e.key === 'Enter') {
       handleSave(item, item.foodCategory, null);
-    } else if(e.key === 'Escape'){
+    } else if (e.key === 'Escape') {
       initialFoodTr();
     }
   };
 
-  const handleCategoryKeyDown = (e) =>{
-    if(e.key === 'Escape'){
+  const handleCategoryKeyDown = (e) => {
+    if (e.key === 'Escape') {
       initialFoodTr();
     }
   }

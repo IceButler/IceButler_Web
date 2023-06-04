@@ -8,6 +8,7 @@ import searchIcon from "assets/images/food/search.png";
 import { getCookie } from 'pages/Login/Login.js';
 
 const WithdrawUserManage = () => {
+  const PROXY = window.location.hostname === 'localhost' ? '' : '/recipe_proxy';
   const [info, setInfo] = useState([]);
   const [currentPage, setPage] = useState(1);
   const [totalElements, setTotalElements] = useState(0);
@@ -24,25 +25,25 @@ const WithdrawUserManage = () => {
 
   const fetchData = (page) => {
     const token = getCookie('Authorization');
-        if (token == null) {
-            movePage('/');
-        }
-      axios.get(`/users?active=false&size=10&page=${page-1}&nickname=${searchWord}&order=${order}`,{
-        headers: {
-          Authorization: token
+    if (token == null) {
+      movePage('/');
+    }
+    axios.get(`${PROXY}/users?active=false&size=10&page=${page - 1}&nickname=${searchWord}&order=${order}`, {
+      headers: {
+        Authorization: token
       }
+    })
+      .then(res => {
+        setInfo(res.data.data.content);
+        setTotalElements(res.data.data.totalElements);
+        setSize(10)
       })
-        .then(res => {
-          setInfo(res.data.data.content);
-          setTotalElements(res.data.data.totalElements);
-          setSize(10)
-        })
-        .catch(err => console.log(err));
+      .catch(err => console.log(err));
   };
 
   // 이메일 전송
   const onSendEmail = (item) => {
-    movePage('/withdrawUserManage/email', { state: { item: item } }); 
+    movePage('/withdrawUserManage/email', { state: { item: item } });
   };
 
   // 페이징
@@ -67,34 +68,35 @@ const WithdrawUserManage = () => {
         <div className='userManageContent'>
           <div className='userManageSearch'>
             <button>
-                <img src={searchIcon} alt='img error' onClick={onSearchClickHandler}/>
+              <img src={searchIcon} alt='img error' onClick={onSearchClickHandler} />
             </button>
             <input type="text" placeholder={"닉네임 검색"} onChange={(e) => {
-                setPage(1)
-                setSearchWord(e.target.value)}
-                } name="searchWord"/>
+              setPage(1)
+              setSearchWord(e.target.value)
+            }
+            } name="searchWord" />
           </div>
           <div className='userManageBar' />
-            <div className='userManageTable'>
-              <table>
-                <thead>
-                  <tr>
-                    <th width="30%">닉네임</th>
-                    <th width="30%">이메일</th>
-                    <th width="20%" onClick={handleReportCountClick} style={{ cursor: 'pointer' }}>
-                      {order ? '신고 누적 횟수 ▼' : '신고 누적 횟수 ―'}
-                    </th>
-                    <th width="20%">이메일 전송</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <Tr info={info} onSendEmail={onSendEmail} />
-                </tbody>
-              </table>
-            </div>
-            <div className='userManagePaging'>
-              <Paging currentPage={currentPage} size={size} count={totalElements} handlePageChange={handlePageChange} />
-            </div>
+          <div className='userManageTable'>
+            <table>
+              <thead>
+                <tr>
+                  <th width="30%">닉네임</th>
+                  <th width="30%">이메일</th>
+                  <th width="20%" onClick={handleReportCountClick} style={{ cursor: 'pointer' }}>
+                    {order ? '신고 누적 횟수 ▼' : '신고 누적 횟수 ―'}
+                  </th>
+                  <th width="20%">이메일 전송</th>
+                </tr>
+              </thead>
+              <tbody>
+                <Tr info={info} onSendEmail={onSendEmail} />
+              </tbody>
+            </table>
+          </div>
+          <div className='userManagePaging'>
+            <Paging currentPage={currentPage} size={size} count={totalElements} handlePageChange={handlePageChange} />
+          </div>
         </div>
       </div>
     </div>
