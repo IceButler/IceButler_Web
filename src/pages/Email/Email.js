@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef} from 'react';
 import sendEmailUrl from "assets/images/send.png";
 import './Email.css'
 import emailjs from '@emailjs/browser';

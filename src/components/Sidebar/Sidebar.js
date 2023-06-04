@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation } from "react-router-dom";
 import './Sidebar.css'
-import axios from "axios";
 import FoodManageActiveIcon from 'assets/images/sidebarIcon/foodActive.png'
 import ReportManageActiveIcon from 'assets/images/sidebarIcon/reportActive.png'
 import UserManageActiveIcon from 'assets/images/sidebarIcon/userActive.png'
