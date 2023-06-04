@@ -2,31 +2,31 @@
   environment = { CI = "false" }
 
 [[redirects]]
-from = '/admin/*'
-to = 'https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/dev-ice-bulter-main/:splat'
+from = '/admin'
+to = 'https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/dev-ice-bulter-main'
 status = 200
 force = true
 
 [[redirects]]
-from = '/users/*'
-to = 'https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/dev-ice-bulter-recipe/admin/:splat'
+from = '/users'
+to = 'https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/dev-ice-bulter-recipe/admin'
 status = 200
 force = true
 
 [[redirects]]
-from = '/reports/*'
-to = 'https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/dev-ice-bulter-recipe/admin/:splat'
+from = '/reports'
+to = 'https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/dev-ice-bulter-recipe/admin'
 status = 200
 force = true
 
 [[redirects]]
-from = '/recipes/*'
-to = 'https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/dev-ice-bulter-recipe/admin/:splat'
+from = '/recipes'
+to = 'https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/dev-ice-bulter-recipe/admin'
 status = 200
 force = true
 
 [[redirects]]
-from = '/presigned-url/*'
-to = 'https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/:splat'
+from = '/presigned-url'
+to = 'https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev'
 status = 200
 force = true
