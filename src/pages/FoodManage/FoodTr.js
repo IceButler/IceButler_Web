@@ -97,6 +97,7 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
   };
 
   const handleEditClick = (index, foodName) => {
+    console.log(foodName);
     setEditingIndex(index);
     setEditedFoodName(foodName);
   };
@@ -107,10 +108,11 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
   };
 
   const handleSave = (item, category, imageKey) => {
-    const requestData = imageKey !== undefined
-      ? { foodImgKey: imageKey }
-      : { foodCategory: category, foodName: editedFoodName };
-    console.log(imageKey);
+    console.log(editedFoodName);
+    const requestData = imageKey === null
+      ? { foodCategory: category, foodName: editedFoodName }
+      : { foodImgKey: imageKey };
+    console.log(requestData);
     const token = getCookie('Authorization');
     if (token == null) {
       movePage('/');
@@ -122,6 +124,7 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
     })
       .then((res) => {
         alert('성공적으로 수정되었습니다.');
+        console.log(res);
       }).catch((error) => {
         console.error('HTTP 요청 실패:', error);
       });
