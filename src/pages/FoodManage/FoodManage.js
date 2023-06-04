@@ -150,7 +150,7 @@ function FoodManage() {
                         </table>
                     </div>
                     <div className='foodManagePaging'>
-                        <button className="foodDeleteBtn" value="선택 삭제">
+                        <button className="foodDeleteBtn" value="선택 삭제" onClick={handleRemove}>
                             <img className='foodDeleteIcon' src={foodTrash} alt="img icon error" />선택 삭제</button>
                         <Paging currentPage={currentPage} size={size} count={totalElements} handlePageChange={handlePageChange} />
                     </div>
