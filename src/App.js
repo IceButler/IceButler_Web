@@ -35,7 +35,7 @@ function App() {
           <Route path="/completeReportManage/:recipeReportIdx" element={<ReportManageDetail />} />
           <Route path="/userManage/email" element={<Email />} />
           <Route path="/withdrawUserManage/email" element={<Email />} />
-          <Route path="/withdrawUserManage/withdrawEmail" element={<WithdrawEmail />} />
+          <Route path="/userManage/withdrawEmail" element={<WithdrawEmail />} />
         </Route>
       </Routes>
     </div>
