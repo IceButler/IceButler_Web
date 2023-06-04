@@ -243,7 +243,7 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
                 <label className='foodImgBtn' htmlFor="chooseFile">
                   <img className='editFoodImg' src={item2.foodImgUrl} alt="food_img" />
                 </label>
-                <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onChange={(e) => getFoodImgUrl(e, item)} />
+                <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onChange={(e) => getFoodImgUrl(e, item2)} />
               </form>
             </td>
             <td
