@@ -26,7 +26,7 @@ export const removeCookie = (name, option) => {
 
 // axios.defaults.baseURL = "https://www.abc.com"; -> csrf 에러 해결되면 이걸로 변경 
 function Login() {
-    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/main_proxy';
     const movePage = useNavigate();
     // For email
     const [isEmail, setIsEmail] = useState(false);
