@@ -27,10 +27,10 @@ function FoodManage() {
 
 
     const fetchData = (page) => {
-        if (axios.defaults.headers.common['Authorization'] == null) {
-            movePage('/');
+        // if (axios.defaults.headers.common['Authorization'] == null) {
+        //     movePage('/');
 
-        }
+        // }
         axios.get('admin/foods', {
             params: {
                 cond: searchWord,

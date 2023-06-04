@@ -28,4 +28,11 @@ module.exports = function (app) {
             changeOrigin: true,
         })
     );
+    app.use(
+        '/presigned-url',
+        createProxyMiddleware({
+            target: 'https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev',
+            changeOrigin: true,
+        })
+    );
 };

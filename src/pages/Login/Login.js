@@ -67,6 +67,7 @@ function Login() {
         }).then((res) => {
             const accessToken = res.data.data.accessToken
             setCookie('Authorization', accessToken);
+            console.log(accessToken);
             movePage('/foodManage');
         }).catch((error) => {
             alert("로그인에 실패했습니다. 정보를 다시 한 번 더 입력해주새요.")

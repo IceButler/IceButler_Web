@@ -151,24 +151,25 @@
     margin-left: 20px;
 }
 
-.foodEditImg{
+.foodEditImg {
     margin-left: 2px;
     width: 7px;
     height: 7px;
 }
 
-.foodManageTable tbody td input[id="editInput"]  {
+.foodManageTable tbody td input[id="editInput"] {
+    margin-right: 20px;
     width: 80px;
     height: 40px;
     border: 1px solid #e8e9ea;
     font-size: 15px;
     text-align: center;
     padding: 0 10px;
-    margin-bottom: 16px;
     background-color: #F7F8F9;
     border-radius: 10px;
     box-sizing: border-box;
 }
+
 .foodManageTable select {
     width: 80px;
     height: 40px;
@@ -177,4 +178,20 @@
     background-color: #F7F8F9;
     border-radius: 10px;
     text-align: center;
+}
+
+#chooseFile {
+    display: none;
+}
+
+.foodImgBtn {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.editFoodImg {
+    width: 30px;
+    height: 30px;
+
 }
