@@ -44,10 +44,8 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
     if (token == null) {
       movePage('/');
     }
-
     axios.put(data.presignedUrl, file, {
       headers: {
-        Authorization: token,
         'Content-Type': 'multipart/form-data' // Content-Type 헤더 설정
       }
     })
@@ -77,7 +75,6 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
         Authorization: token
       }
     }).then((res) => {
-      console.log(res);
       postFoodImgUrl(res.data, file, item);
     }).catch((error) => {
       console.log(error);
@@ -97,6 +94,7 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
   };
 
   const handleEditClick = (index, foodName) => {
+    console.log(foodName);
     setEditingIndex(index);
     setEditedFoodName(foodName);
   };
@@ -107,10 +105,10 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
   };
 
   const handleSave = (item, category, imageKey) => {
-    const requestData = imageKey !== undefined
-      ? { foodImgKey: imageKey }
-      : { foodCategory: category, foodName: editedFoodName };
-    console.log(imageKey);
+    const requestData = imageKey === null
+      ? { foodCategory: category, foodName: editedFoodName }
+      : { foodImgKey: imageKey };
+    console.log(requestData);
     const token = getCookie('Authorization');
     if (token == null) {
       movePage('/');
@@ -122,6 +120,7 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
     })
       .then((res) => {
         alert('성공적으로 수정되었습니다.');
+        console.log(res);
       }).catch((error) => {
         console.error('HTTP 요청 실패:', error);
       });
@@ -240,8 +239,8 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
           <>
             <td width="5%"><input type="checkbox" checked={checkedStatusList[i + 1]} onChange={(e) => checkHandler(item2.foodIdx, i + 1)} /></td>
             <td width="15%">
-              <form htmlFor="chooseFile">
-                <label className='foodImgBtn'>
+              <form>
+                <label className='foodImgBtn' htmlFor="chooseFile">
                   <img className='editFoodImg' src={item2.foodImgUrl} alt="food_img" />
                 </label>
                 <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onChange={(e) => getFoodImgUrl(e, item2)} />

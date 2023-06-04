@@ -45,7 +45,6 @@ function FoodManage() {
                 setInfo(res.data.data.content)
                 setTotalElements(res.data.data.totalElements);
                 console.log(res.data)
-                console.log(token)
                 setSize(16)
             })
             .catch(err => console.log(err))
