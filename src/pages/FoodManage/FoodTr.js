@@ -33,6 +33,37 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
     setEditCategory(true);
   };
 
+  const postFoodImgUrl = (data, file, item) => {
+    axios.put(data.presignedUrl, file, {
+      headers: {
+        'Content-Type': 'multipart/form-data' // Content-Type 헤더 설정
+      }
+    })
+      .then((res) => {
+        console.log(res);
+        handleSave(item, null, data.imageKey);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  };
+
+  const getFoodImgUrl = (e, item) => {
+    var file = e.target.files[0];
+    var type = file.type.split("/");
+    axios.get('presigned-url', {
+      params: {
+        ext: type[1],
+        dir: "food"
+      }
+    }).then((res) => {
+      console.log(res);
+      postFoodImgUrl(res.data, file, item);
+    }).catch((error) => {
+      console.log(error);
+    })
+  }
+
   const handleFoodNameTdClick = (index, foodName, category) => {
     setSelectedCategory(category);
     setEditingIndex(index);
@@ -55,34 +86,45 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
     handleSave(item, category);
   };
 
-  const handleSave = (item, category) => {
-    axios.patch(`/admin/foods/${item.foodIdx}`, {
-      foodCategory: category,
-      foodName: editedFoodName,
-      foodImgKey: item.foodImgKey
-    }).then((res) => {
+  const handleSave = (item, category, imageKey) => {
+    const requestData = imageKey !== undefined
+    ? { foodImgKey: imageKey }
+    : { foodCategory: category, foodName: editedFoodName };
+    console.log(imageKey);
+    axios.patch(`/admin/foods/${item.foodIdx}`, requestData)
+    .then((res) => {
       alert('성공적으로 수정되었습니다.');
     }).catch((error) => {
       console.error('HTTP 요청 실패:', error);
     });
-
-
     // 저장 후 편집 상태 초기화
+    initialFoodTr();
+    setEdit(true);
+  };
+
+  const initialFoodTr = () => {
     setEditingIndex(null);
     setEditedFoodName('');
     setEditFoodName(false)
     setSelectedCategory('');
     setEditCategory(false);
-    setEdit(true);
-  };
+  }
 
 
 
   const handleKeyDown = (e, item) => {
     if (e.key === 'Enter') {
-      handleSave(item, item.foodCategory);
+      handleSave(item, item.foodCategory, null);
+    } else if(e.key === 'Escape'){
+      initialFoodTr();
     }
   };
+
+  const handleCategoryKeyDown = (e) =>{
+    if(e.key === 'Escape'){
+      initialFoodTr();
+    }
+  }
 
 
   for (let i = 0; i < maxRows; i = i + 2) {
@@ -94,7 +136,12 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
           <>
             <td width="5%"><input type="checkbox" checked={checkedStatusList[i]} onChange={(e) => checkHandler(item.foodIdx, i)} /></td>
             <td width="15%" >
-              <img src={item.foodImgUrl} alt="food_img" />
+              <form>
+                <label className='foodImgBtn' for="chooseFile">
+                  <img className='editFoodImg' src={item.foodImgUrl} alt="food_img" />
+                </label>
+                <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onChange={(e) => getFoodImgUrl(e, item)} />
+              </form>
             </td>
 
             <td
@@ -107,6 +154,7 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
                   onChange={(e) => {
                     handleCategorySelect(e.target.value, item)
                   }}
+                  onKeyDown={(e) => handleCategoryKeyDown(e)}
                 >
                   <option value={selectedCategory}>{selectedCategory}</option>
                   {categoryOptions
@@ -164,7 +212,12 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
           <>
             <td width="5%"><input type="checkbox" checked={checkedStatusList[i + 1]} onChange={(e) => checkHandler(item2.foodIdx, i + 1)} /></td>
             <td width="15%">
-              <img src={item2.foodImgUrl} alt="food_img" />
+              <form method="post" enctype="multipart/form-data">
+                <label className='foodImgBtn' for="chooseFile">
+                  <img className='editFoodImg' src={item2.foodImgUrl} alt="food_img" />
+                </label>
+                <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onChange={(e) => getFoodImgUrl(e, item2)} />
+              </form>
             </td>
             <td
               width="15%"
@@ -176,6 +229,7 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
                   onChange={(e) => {
                     handleCategorySelect(e.target.value, item2)
                   }}
+                  onKeyDown={(e) => handleCategoryKeyDown(e)}
                 >
                   <option value={selectedCategory}>{selectedCategory}</option>
                   {categoryOptions

@@ -178,3 +178,19 @@
     border-radius: 10px;
     text-align: center;
 }
+
+#chooseFile {
+    display: none;
+}
+
+.foodImgBtn{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.editFoodImg{
+    width: 30px;
+    height: 30px;
+
+}
