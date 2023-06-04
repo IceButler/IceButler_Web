@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
   const PROXY = window.location.hostname === 'localhost' ? '' : '/main_proxy';
-  const S3_PROXY = window.location.hostname === 'localhost' ? '' : '/main_proxy';
+  const S3_PROXY = window.location.hostname === 'localhost' ? '' : '/s3_proxy';
 
   const movePage = useNavigate();
   const rows = [];
