@@ -97,8 +97,6 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
     }).catch((error) => {
       console.error('HTTP 요청 실패:', error);
     });
-    console.log("adf");
-    console.log(imageKey);
     // 저장 후 편집 상태 초기화
     initialFoodTr();
     setEdit(true);
