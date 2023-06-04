@@ -240,11 +240,11 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
           <>
             <td width="5%"><input type="checkbox" checked={checkedStatusList[i + 1]} onChange={(e) => checkHandler(item2.foodIdx, i + 1)} /></td>
             <td width="15%">
-              <form htmlFor="chooseFile">
-                <label className='foodImgBtn'>
+              <form>
+                <label className='foodImgBtn' htmlFor="chooseFile">
                   <img className='editFoodImg' src={item2.foodImgUrl} alt="food_img" />
                 </label>
-                <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onChange={(e) => getFoodImgUrl(e, item2)} />
+                <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onChange={(e) => getFoodImgUrl(e, item)} />
               </form>
             </td>
             <td
