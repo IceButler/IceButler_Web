@@ -33,31 +33,24 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
     setEditCategory(true);
   };
 
-  const postFoodImgUrl = (data, file) => {
-    console.log(data.presignedUrl);
-    console.log(file);
-  
-    const formData = new FormData();
-    formData.append('file', file);
-  
-    axios.put(data.presignedUrl, formData, {
+  const postFoodImgUrl = (data, file, item) => {
+    axios.put(data.presignedUrl, file, {
       headers: {
         'Content-Type': 'multipart/form-data' // Content-Type 헤더 설정
       }
     })
       .then((res) => {
         console.log(res);
+        handleSave(item, null, data.imageKey);
       })
       .catch((error) => {
         console.log(error.response);
       });
   };
 
-  const getFoodImgUrl = (e) => {
+  const getFoodImgUrl = (e, item) => {
     var file = e.target.files[0];
-    console.log(file);
     var type = file.type.split("/");
-    console.log(type[1]);
     axios.get('presigned-url', {
       params: {
         ext: type[1],
@@ -65,7 +58,7 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
       }
     }).then((res) => {
       console.log(res);
-      postFoodImgUrl(res.data, file);
+      postFoodImgUrl(res.data, file, item);
     }).catch((error) => {
       console.log(error);
     })
@@ -93,17 +86,17 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
     handleSave(item, category);
   };
 
-  const handleSave = (item, category) => {
-    axios.patch(`/admin/foods/${item.foodIdx}`, {
-      foodCategory: category,
-      foodName: editedFoodName,
-      foodImgKey: item.foodImgKey
-    }).then((res) => {
+  const handleSave = (item, category, imageKey) => {
+    const requestData = imageKey !== null
+    ? { foodImgKey: imageKey }
+    : { foodCategory: category, foodName: editedFoodName };
+    console.log(imageKey);
+    axios.patch(`/admin/foods/${item.foodIdx}`, requestData)
+    .then((res) => {
       alert('성공적으로 수정되었습니다.');
     }).catch((error) => {
       console.error('HTTP 요청 실패:', error);
     });
-
 
     // 저장 후 편집 상태 초기화
     setEditingIndex(null);
@@ -118,7 +111,7 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
 
   const handleKeyDown = (e, item) => {
     if (e.key === 'Enter') {
-      handleSave(item, item.foodCategory);
+      handleSave(item, item.foodCategory, null);
     }
   };
 
@@ -134,9 +127,9 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
             <td width="15%" >
               <form>
                 <label className='foodImgBtn' for="chooseFile">
-                  <img src={item.foodImgUrl} alt="food_img" />
+                  <img className='editFoodImg' src={item.foodImgUrl} alt="food_img" />
                 </label>
-                <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onChange={(e) => getFoodImgUrl(e)} />
+                <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onChange={(e) => getFoodImgUrl(e, item)} />
               </form>
             </td>
 
@@ -209,9 +202,9 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
             <td width="15%">
               <form method="post" enctype="multipart/form-data">
                 <label className='foodImgBtn' for="chooseFile">
-                  <img src={item2.foodImgUrl} alt="food_img" />
+                  <img className='editFoodImg' src={item2.foodImgUrl} alt="food_img" />
                 </label>
-                <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onChange={(e) => getFoodImgUrl(e)} />
+                <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onChange={(e) => getFoodImgUrl(e, item2)} />
               </form>
             </td>
             <td
