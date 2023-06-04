@@ -12,6 +12,7 @@ import ToggleActiveIcon from 'assets/images/sidebarIcon/toggleActive.png'
 import ToggleInactiveIcon from 'assets/images/sidebarIcon/toggleInactive.png'
 import LogoutIcon from 'assets/images/sidebarIcon/logout.png'
 import { useNavigate } from "react-router-dom";
+import { removeCookie } from 'pages/Login/Login.js';
 
 function Sidebar() {
     const movePage = useNavigate();
@@ -35,8 +36,9 @@ function Sidebar() {
     ]
 
     const handleLogout = () => {
-        axios.defaults.headers.common['Authorization'] =null
+        removeCookie('Authorization');
         movePage('/');
+        window.location.reload();
     };
 
     function getMenuIcon(path, isActive) {

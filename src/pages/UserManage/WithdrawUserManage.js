@@ -5,6 +5,7 @@ import Tr from './WithdrawUserTr';
 import Paging from 'components/Paging.js';
 import { useNavigate } from "react-router-dom";
 import searchIcon from "assets/images/food/search.png";
+import { getCookie } from 'pages/Login/Login.js';
 
 const WithdrawUserManage = () => {
   const [info, setInfo] = useState([]);
@@ -22,10 +23,15 @@ const WithdrawUserManage = () => {
   }, [currentPage, searchWord, order]);
 
   const fetchData = (page) => {
-    if(axios.defaults.headers.common['Authorization'] ==null){
-      movePage('/');
-    }
-      axios.get(`/users?active=false&size=10&page=${page-1}&nickname=${searchWord}&order=${order}`)
+    const token = getCookie('Authorization');
+        if (token == null) {
+            movePage('/');
+        }
+      axios.get(`/users?active=false&size=10&page=${page-1}&nickname=${searchWord}&order=${order}`,{
+        headers: {
+          Authorization: token
+      }
+      })
         .then(res => {
           setInfo(res.data.data.content);
           setTotalElements(res.data.data.totalElements);

@@ -5,6 +5,7 @@ import './ReportDetail.css'
 import MoreIcon from 'assets/images/moreIcon.png'
 import RecipeTr from './RecipeTr';
 import RecipeFoodLi from './RecipeFoodLi';
+import { getCookie } from 'pages/Login/Login.js';
 
 function ReportManage() {
     let { recipeReportIdx } = useParams();
@@ -15,10 +16,15 @@ function ReportManage() {
 
     // 데이터 호출
     useEffect(() => {
-        if (axios.defaults.headers.common['Authorization'] == null) {
+        const token = getCookie('Authorization');
+        if (token == null) {
             movePage('/');
         }
-        axios.get('/reports/' + recipeReportIdx)
+        axios.get('/reports/' + recipeReportIdx, {
+            headers: {
+                Authorization: token
+            }
+        })
             .then(res => {
                 setInfo(res.data.data)
             })
@@ -28,8 +34,16 @@ function ReportManage() {
     const onSubmitHandler = (e) => {
         const inputMemo = e.target.memo.value;
         e.preventDefault();
+        const token = getCookie('Authorization');
+        if (token == null) {
+            movePage('/');
+        }
         axios.patch('/reports/' + recipeReportIdx, {
             memo: inputMemo
+        }, {
+            headers: {
+                Authorization: token
+            }
         }).then((res) => {
             alert("저장되었습니다.")
         }).catch((error) => {
@@ -38,8 +52,16 @@ function ReportManage() {
     }
 
     const handleHide = (id) => {
+        const token = getCookie('Authorization');
+        if (token == null) {
+            movePage('/');
+        }
         setMenuBtnClick(false)
-        axios.delete('/recipes/' + id
+        axios.delete('/recipes/' + id, {
+            headers: {
+                Authorization: token
+            }
+        }
         ).then((res) => {
             alert("레시피가 숨김 처리되었습니다.")
         }).catch((error) => {
@@ -48,8 +70,16 @@ function ReportManage() {
     };
 
     const handleComplete = (id) => {
+        const token = getCookie('Authorization');
+        if (token == null) {
+            movePage('/');
+        }
         setMenuBtnClick(false)
-        axios.post('/reports/' + id
+        axios.post('/reports/' + id,  {
+            headers: {
+                Authorization: token
+            }
+        }
         ).then((res) => {
             alert("신고 완료 처리되었습니다.")
         }).catch((error) => {

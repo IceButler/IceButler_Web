@@ -6,6 +6,7 @@ import Tr from './FoodTr';
 import foodTrash from "assets/images/food/trash.png";
 import foodSearch from "assets/images/food/search.png";
 import { useNavigate } from "react-router-dom";
+import { getCookie } from 'pages/Login/Login.js';
 
 function FoodManage() {
     const [info, setInfo] = useState([]);
@@ -16,7 +17,6 @@ function FoodManage() {
     const [size, setSize] = useState(0);
     const [edit, setEdit] = useState(false);
     const movePage = useNavigate();
-
     const [searchWord, setSearchWord] = useState("")
 
     // 데이터 호출
@@ -25,23 +25,26 @@ function FoodManage() {
         setEdit(false);
     }, [currentPage, searchWord, edit]);
 
-
     const fetchData = (page) => {
-        // if (axios.defaults.headers.common['Authorization'] == null) {
-        //     movePage('/');
-
-        // }
+        const token = getCookie('Authorization');
+        if (token == null) {
+            movePage('/');
+        }
         axios.get('admin/foods', {
             params: {
                 cond: searchWord,
                 page: page - 1,
                 size: 16
+            },
+            headers: {
+                Authorization: token
             }
         })
             .then(res => {
                 setInfo(res.data.data.content)
                 setTotalElements(res.data.data.totalElements);
                 console.log(res.data)
+                console.log(token)
                 setSize(16)
             })
             .catch(err => console.log(err))
@@ -64,7 +67,15 @@ function FoodManage() {
 
     const handleRemove = () => {
         checkedItems.forEach((id) => {
-            axios.delete(`/admin/foods/${id}`)
+            const token = getCookie('Authorization');
+            if (token == null) {
+                movePage('/');
+            }
+            axios.delete(`/admin/foods/${id}`, {
+                headers: {
+                    Authorization: token
+                }
+            })
             .then(res => {
                 console.log('HTTP 요청 성공');
                 alert('성공적으로 삭제되었습니다.');

@@ -7,7 +7,23 @@ import notDoneIcon from "assets/images/login/notDone.png";
 import logo512 from "assets/images/whiteLogo512.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Cookies } from 'react-cookie';
 
+const cookies = new Cookies();
+
+export const setCookie = (name, value, option) => {
+  return cookies.set(name, value, { ...option });
+};
+
+export const getCookie = (name) => {
+  return cookies.get(name);
+};
+
+export const removeCookie = (name, option) => {
+  return cookies.remove(name, { ...option });
+};
+
+  
 // axios.defaults.baseURL = "https://www.abc.com"; -> csrf 에러 해결되면 이걸로 변경 
 function Login() {
     const movePage = useNavigate();
@@ -50,10 +66,8 @@ function Login() {
             password: inputPw
         }).then((res) => {
             const accessToken = res.data.data.accessToken
-            // setCookie('exp', res.payload.accessTokenExpiresIn) cookie 까지 필요할까요,?
-            // axios.defaults.headers.common['Authorization'] = accessToken;
+            setCookie('Authorization', accessToken);
             console.log(accessToken);
-            // document.location.href = '/'
             movePage('/foodManage');
         }).catch((error) => {
             alert("로그인에 실패했습니다. 정보를 다시 한 번 더 입력해주새요.")

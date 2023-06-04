@@ -5,6 +5,7 @@ import axios from 'axios';
 import Tr from './ReportTr';
 import Paging from 'components/Paging.js'
 import SearchIcon from "assets/images/food/search.png";
+import { getCookie } from 'pages/Login/Login.js';
 
 function CompleteReportManage() {
     const [info, setInfo] = useState([]);
@@ -39,11 +40,15 @@ function CompleteReportManage() {
     }
 
     const fetchData = (page) => {
-        if (axios.defaults.headers.common['Authorization'] == null) {
+        const token = getCookie('Authorization');
+        if (token == null) {
             movePage('/');
         }
         axios.get(`/reports`, {
-            params: writeParams(page)
+            params: writeParams(page),
+            headers: {
+                Authorization: token
+            }
         })
             .then(res => {
                 setInfo(res.data.data.content);

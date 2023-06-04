@@ -6,6 +6,7 @@ import Paging from 'components/Paging.js';
 import { useNavigate } from "react-router-dom";
 import searchIcon from "assets/images/food/search.png";
 import { sendWithdrawEmailAuto } from 'pages/Email/WithdrawEmail.js';
+import { getCookie } from 'pages/Login/Login.js';
 
 const UserManage = () => {
   const [info, setInfo] = useState([]);
@@ -24,10 +25,15 @@ const UserManage = () => {
   }, [currentPage, searchWord, order]);
 
   const fetchData = (page) => {
-    if(axios.defaults.headers.common['Authorization'] ==null){
-      movePage('/');
+    const token = getCookie('Authorization');
+    if (token == null) {
+        movePage('/');
     }
-      axios.get(`/users?active=true&size=10&page=${page-1}&nickname=${searchWord}&order=${order}`)
+      axios.get(`/users?active=true&size=10&page=${page-1}&nickname=${searchWord}&order=${order}`,{
+        headers: {
+          Authorization: token
+      }
+      })
         .then(res => {
           setInfo(res.data.data.content);
           setTotalElements(res.data.data.totalElements);
@@ -47,7 +53,15 @@ const UserManage = () => {
     const confirmation = window.confirm(
       `성공적으로 탈퇴되었습니다. 
 전송할 이메일을 수정하시겠습니까?`);
-    axios.delete(`/admin/users/${item.userIdx}`)
+const token = getCookie('Authorization');
+    if (token == null) {
+        movePage('/');
+    }
+    axios.delete(`/admin/users/${item.userIdx}`,{
+      headers: {
+        Authorization: token
+    }
+    })
     .then(res => {
           if (confirmation) {
             movePage('/userManage/withdrawEmail', { state: { item: item } }); 
