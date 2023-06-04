@@ -4,7 +4,7 @@ import './Email.css'
 import emailjs from '@emailjs/browser';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
+import { getCookie } from 'pages/Login/Login.js';
 
 const Email = () => {
   const location = useLocation();
@@ -22,7 +22,10 @@ const Email = () => {
             title : e.target.elements.title.value,
             message : e.target.elements.message.value
                };
-
+    const token = getCookie('Authorization');
+    if (token == null) {
+      navigate('/');
+    }
     emailjs.send("service_d0rcavp","template_ypn2nr6", templateParams, 'UMuQ-efYiV6XCJ6_R')
       .then((result) => {
           console.log(result.text);

@@ -5,6 +5,7 @@ import emailjs from '@emailjs/browser';
 import {useLocation} from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { getCookie } from 'pages/Login/Login.js';
 
 
 export const sendWithdrawEmailAuto = (item) => {
@@ -19,8 +20,12 @@ export const sendWithdrawEmailAuto = (item) => {
 현재 정지/탈퇴 계정으로 전환되었기 때문에 앞으로 저희 서비스를 이용하실 수 없습니다.
 혹시, 정지/탈퇴를 원하지 않으시면 본 메일로 회신해 주시면 확인 후 처리해 드리겠습니다.`;
 const userIdx = item.userIdx;
-
-axios.get(`/reports/users/${userIdx}`)
+const token = getCookie('Authorization');
+axios.get(`/reports/users/${userIdx}`, {
+  headers: {
+      Authorization: token
+  }
+})
   .then(res => {
     const reportList1 = res.data.data.userRecipeReportResList[0];
     const reportList2 = res.data.data.userRecipeReportResList[1];
@@ -83,7 +88,12 @@ const Email = () => {
   const sendWithdrawEmail = (e) => {
     e.preventDefault();
 
-    axios.get(`/reports/users/${userIdx}`)
+    const token = getCookie('Authorization');
+    axios.get(`/reports/users/${userIdx}`, {
+      headers: {
+          Authorization: token
+      }
+    })
         .then(res => {
           const reportList1 = res.data.data.userRecipeReportResList[0];
           const reportList2 = res.data.data.userRecipeReportResList[1];

@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import foodEdit from "assets/images/food/edit.png";
 import './FoodManage.css'
 import axios from 'axios';
+import { getCookie } from 'pages/Login/Login.js';
+import { useNavigate } from "react-router-dom";
 
 const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
+  const movePage = useNavigate();
   const rows = [];
   const maxRows = 16;
 
@@ -34,8 +37,13 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
   };
 
   const postFoodImgUrl = (data, file, item) => {
+    const token = getCookie('Authorization');
+    if (token == null) {
+      movePage('/');
+    }
     axios.put(data.presignedUrl, file, {
       headers: {
+        Authorization: token,
         'Content-Type': 'multipart/form-data' // Content-Type 헤더 설정
       }
     })
@@ -51,10 +59,17 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
   const getFoodImgUrl = (e, item) => {
     var file = e.target.files[0];
     var type = file.type.split("/");
+    const token = getCookie('Authorization');
+            if (token == null) {
+                movePage('/');
+    }
     axios.get('presigned-url', {
       params: {
         ext: type[1],
         dir: "food"
+      },
+      headers: {
+          Authorization: token
       }
     }).then((res) => {
       console.log(res);
@@ -91,7 +106,15 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
     ? { foodImgKey: imageKey }
     : { foodCategory: category, foodName: editedFoodName };
     console.log(imageKey);
-    axios.patch(`/admin/foods/${item.foodIdx}`, requestData)
+    const token = getCookie('Authorization');
+        if (token == null) {
+            movePage('/');
+        }
+    axios.patch(`/admin/foods/${item.foodIdx}`, requestData, {
+      headers: {
+          Authorization: token
+      }
+    })
     .then((res) => {
       alert('성공적으로 수정되었습니다.');
     }).catch((error) => {
