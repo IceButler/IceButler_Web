@@ -22,9 +22,9 @@ const WithdrawUserManage = () => {
   }, [currentPage, searchWord, order]);
 
   const fetchData = (page) => {
-    if(axios.defaults.headers.common['Authorization'] ==null){
-      movePage('/');
-    }
+    // if(axios.defaults.headers.common['Authorization'] ==null){
+    //   movePage('/');
+    // }
       axios.get(`/users?active=false&size=10&page=${page-1}&nickname=${searchWord}&order=${order}`)
         .then(res => {
           setInfo(res.data.data.content);

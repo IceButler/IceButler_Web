@@ -39,9 +39,9 @@ function ReportManage() {
     }
 
     const fetchData = (page) => {
-        if (axios.defaults.headers.common['Authorization'] == null) {
-            movePage('/');
-        }
+        // if (axios.defaults.headers.common['Authorization'] == null) {
+        //     movePage('/');
+        // }
         axios.get(`/reports`, {
             params: writeParams(page)
         })

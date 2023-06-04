@@ -9,6 +9,20 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Cookies } from 'react-cookie';
 
+const cookies = new Cookies();
+
+export const setCookie = (name, value, option) => {
+  return cookies.set(name, value, { ...option });
+};
+
+export const getCookie = (name) => {
+  return cookies.get(name);
+};
+
+export const removeCookie = (name, option) => {
+  return cookies.remove(name, { ...option });
+};
+
   
 // axios.defaults.baseURL = "https://www.abc.com"; -> csrf 에러 해결되면 이걸로 변경 
 function Login() {
@@ -17,11 +31,6 @@ function Login() {
     const [isEmail, setIsEmail] = useState(false);
     // For pw
     const [showPswd, setShowPswd] = useState(false);
-    const cookies = new Cookies();  
-
-    const setCookie = (name, value, option) => {
-        return cookies.set(name, value, { ...option });
-    };
 
     //email
     const emailRegEx =
@@ -57,7 +66,7 @@ function Login() {
             password: inputPw
         }).then((res) => {
             const accessToken = res.data.data.accessToken
-            setCookie('token', accessToken);
+            setCookie('Authorization', accessToken);
             movePage('/foodManage');
         }).catch((error) => {
             alert("로그인에 실패했습니다. 정보를 다시 한 번 더 입력해주새요.")

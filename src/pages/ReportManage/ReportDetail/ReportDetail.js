@@ -15,9 +15,9 @@ function ReportManage() {
 
     // 데이터 호출
     useEffect(() => {
-        if (axios.defaults.headers.common['Authorization'] == null) {
-            movePage('/');
-        }
+        // if (axios.defaults.headers.common['Authorization'] == null) {
+        //     movePage('/');
+        // }
         axios.get('/reports/' + recipeReportIdx)
             .then(res => {
                 setInfo(res.data.data)
