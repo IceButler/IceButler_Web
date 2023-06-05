@@ -3,24 +3,24 @@
 
 [[redirects]]
 from = '/main_proxy/*'
-to = 'env(REACT_APP_GATEWAY)/dev/dev-ice-bulter-main/:splat'
+to = "${REACT_APP_GATEWAY}/dev/dev-ice-bulter-main/:splat"
 status = 200
 force = true
 
 [[redirects]]
 from = '/recipe_proxy/*'
-to = 'env(REACT_APP_GATEWAY)/dev/dev-ice-bulter-recipe/admin/:splat'
+to = "${REACT_APP_GATEWAY}/dev/dev-ice-bulter-recipe/admin/:splat"
 status = 200
 force = true
 
 [[redirects]]
 from = '/s3_proxy/*'
-to = 'env(REACT_APP_GATEWAY)/dev/:splat'
+to = "${REACT_APP_GATEWAY}/dev/:splat"
 status = 200
 force = true
 
 [[redirects]]
 from = '/s3_direct_proxy/*'
-to = 'env(REACT_APP_S3)/dev/:splat'
+to = "${REACT_APP_GATEWAY}/dev/:splat"
 status = 200
 force = true
