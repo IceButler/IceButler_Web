@@ -27,6 +27,6 @@ force = true
 
 [[redirects]]
 from = '/s3_direct_proxy/*'
-to = "https://ice-bulter-iamge-bucket.s3.ap-northeast-2.amazonaws.com/dev/:splat"
+to = "https://ice-bulter-iamge-bucket.s3.ap-northeast-2.amazonaws.com/:splat"
 status = 200
-force = true
+force = true 
