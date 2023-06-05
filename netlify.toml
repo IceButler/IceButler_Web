@@ -21,6 +21,6 @@ force = true
 
 [[redirects]]
 from = '/s3_direct_proxy/*'
-to = 'env(REACT_APP_GATEWAY)/dev/:splat'
+to = 'env(REACT_APP_S3)/dev/:splat'
 status = 200
 force = true
