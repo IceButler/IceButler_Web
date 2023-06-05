@@ -103,7 +103,8 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
 
   const handleCategorySelect = (category, item) => {
     setSelectedCategory(category);
-    handleSave(item, category);
+    console.log(category);
+    handleSave(item, category, null);
   };
 
   const handleSave = (item, category, imageKey) => {
