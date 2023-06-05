@@ -4,34 +4,41 @@ module.exports = function (app) {
     app.use(
         '/admin',
         createProxyMiddleware({
-            target: 'https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/dev-ice-bulter-main',
+            target: `${process.env.REACT_APP_GATEWAY}/dev/dev-ice-bulter-main`,
             changeOrigin: true,
         }));
     app.use(
         '/users',
         createProxyMiddleware({
-            target: 'https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/dev-ice-bulter-recipe/admin',
+            target: `${process.env.REACT_APP_GATEWAY}/dev/dev-ice-bulter-recipe/admin`,
             changeOrigin: true,
         })
     );
     app.use(
         '/reports',
         createProxyMiddleware({
-            target: 'https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/dev-ice-bulter-recipe/admin',
+            target: `${process.env.REACT_APP_GATEWAY}/dev/dev-ice-bulter-recipe/admin`,
             changeOrigin: true,
         })
     );
     app.use(
         '/recipes',
         createProxyMiddleware({
-            target: 'https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev/dev-ice-bulter-recipe/admin',
+            target: `${process.env.REACT_APP_GATEWAY}/dev/dev-ice-bulter-recipe/admin`,
             changeOrigin: true,
         })
     );
     app.use(
         '/presigned-url',
         createProxyMiddleware({
-            target: 'https://za8hqdiis4.execute-api.ap-northeast-2.amazonaws.com/dev',
+            target: `${process.env.REACT_APP_GATEWAY}/dev`,
+            changeOrigin: true,
+        })
+    );
+    app.use(
+        '/food',
+        createProxyMiddleware({
+            target: `${process.env.REACT_APP_S3}/dev`,
             changeOrigin: true,
         })
     );
