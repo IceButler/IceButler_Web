@@ -46,7 +46,7 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
       movePage('/');
     }
     
-    axios.put(`${S3_DIRECT_PROXY}/food`+data.presignedUrlWeb, file, {
+    axios.put(`${S3_DIRECT_PROXY}/food/`+data.presignedUrlWeb, file, {
       headers: {
         'Content-Type': 'multipart/form-data' // Content-Type 헤더 설정
       }
