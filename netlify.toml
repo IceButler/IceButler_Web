@@ -15,7 +15,7 @@ force = true
 
 [[redirects]]
 from = '/recipe_proxy/*'
-to = "${REACT_APP_GATEWAY}"/dev/dev-ice-bulter-recipe/admin/:splat"
+to = "${REACT_APP_GATEWAY}/dev/dev-ice-bulter-recipe/admin/:splat"
 status = 200
 force = true
 
