@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
   const PROXY = window.location.hostname === 'localhost' ? '' : '/main_proxy';
   const S3_PROXY = window.location.hostname === 'localhost' ? '' : '/s3_proxy';
+  const S3_DIRECT_PROXY = window.location.hostname === 'localhost' ? '' : '/s3_direct_proxy';
 
   const movePage = useNavigate();
   const rows = [];
@@ -44,7 +45,8 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
     if (token == null) {
       movePage('/');
     }
-    axios.put(data.presignedUrl, file, {
+    
+    axios.put(`${S3_DIRECT_PROXY}/food`+data.presignedUrlWeb, file, {
       headers: {
         'Content-Type': 'multipart/form-data' // Content-Type 헤더 설정
       }
@@ -65,7 +67,7 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
     if (token == null) {
       movePage('/');
     }
-    //여기durl
+    //여기 url
     axios.get(`${S3_PROXY}/presigned-url`, {
       params: {
         ext: type[1],
