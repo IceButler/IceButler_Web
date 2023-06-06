@@ -124,7 +124,7 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
       .then((res) => {
         if (res.data.statusCode === 200) {
           alert('성공적으로 수정되었습니다.');
-        }else if(res.data.statusCode === 400){
+        }else if(res.data.statusCode === 404){
           alert('토큰이 만료되었습니다. 로그인 화면으로 이동합니다.');
           removeCookie('Authorization');
           movePage('/');

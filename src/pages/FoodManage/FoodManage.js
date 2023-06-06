@@ -47,7 +47,7 @@ function FoodManage() {
                     setTotalElements(res.data.data.totalElements);
                     console.log(res.data)
                     setSize(16)
-                }else if(res.data.statusCode === 400){
+                }else if(res.data.statusCode === 404){
                     alert('토큰이 만료되었습니다. 로그인 화면으로 이동합니다.');
                     removeCookie('Authorization');
                     movePage('/');
@@ -89,7 +89,7 @@ function FoodManage() {
                         alert('성공적으로 삭제되었습니다.');
                         fetchData(currentPage);
                         checkedItems.clear();
-                    }else if(res.data.statusCode === 400){
+                    }else if(res.data.statusCode === 404){
                         alert('토큰이 만료되었습니다. 로그인 화면으로 이동합니다.');
                         removeCookie('Authorization');
                         movePage('/');
