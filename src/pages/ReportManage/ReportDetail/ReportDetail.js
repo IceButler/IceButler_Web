@@ -5,7 +5,7 @@ import './ReportDetail.css'
 import MoreIcon from 'assets/images/moreIcon.png'
 import RecipeTr from './RecipeTr';
 import RecipeFoodLi from './RecipeFoodLi';
-import { getCookie } from 'pages/Login/Login.js';
+import { removeCookie, getCookie } from 'pages/Login/Login.js';
 
 function ReportManage() {
     const PROXY = window.location.hostname === 'localhost' ? '' : '/recipe_proxy';
@@ -27,7 +27,14 @@ function ReportManage() {
             }
         })
             .then(res => {
-                setInfo(res.data.data)
+                if (res.data.statusCode === 200) {
+                    setInfo(res.data.data)
+                } else if(res.data.statusCode === 400) {
+                    alert('토큰이 만료되었습니다. 로그인 화면으로 이동합니다.');
+                    removeCookie('Authorization');
+                    movePage('/');
+                    window.location.reload();
+                }
             })
             .catch(err => console.log(err));
     }, [recipeReportIdx]);
@@ -46,9 +53,13 @@ function ReportManage() {
                 Authorization: token
             }
         }).then((res) => {
-            alert("저장되었습니다.")
+            if (res.data.statusCode === 200) {
+                alert("저장되었습니다.");
+            }else{
+                alert("저장에 실패했습니다.");
+            }
         }).catch((error) => {
-            alert("저장에 실패했습니다.")
+            alert("저장에 실패했습니다.");
         });
     }
 
@@ -64,7 +75,11 @@ function ReportManage() {
             }
         }
         ).then((res) => {
-            alert("레시피가 숨김 처리되었습니다.")
+            if (res.data.statusCode === 200) {
+                alert("레시피가 숨김 처리되었습니다.")
+            }else{
+                alert("숨김 처리에 실패했습니다.")
+            }
         }).catch((error) => {
             alert("숨김 처리에 실패했습니다.")
         });
@@ -82,7 +97,11 @@ function ReportManage() {
             }
         }
         ).then((res) => {
-            alert("신고 완료 처리되었습니다.")
+            if (res.data.statusCode === 200) {
+                alert("신고 완료 처리되었습니다.")
+            }else{
+                alert("완료 처리에 실패했습니다.")
+            }
         }).catch((error) => {
             alert("완료 처리에 실패했습니다.")
         });

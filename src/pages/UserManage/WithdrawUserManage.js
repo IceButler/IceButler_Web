@@ -34,9 +34,11 @@ const WithdrawUserManage = () => {
       }
     })
       .then(res => {
-        setInfo(res.data.data.content);
-        setTotalElements(res.data.data.totalElements);
-        setSize(10)
+        if (res.data.statusCode === 200) {
+          setInfo(res.data.data.content);
+          setTotalElements(res.data.data.totalElements);
+          setSize(10)
+        }
       })
       .catch(err => console.log(err));
   };

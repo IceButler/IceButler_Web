@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import foodEdit from "assets/images/food/edit.png";
 import './FoodManage.css'
 import axios from 'axios';
-import { getCookie } from 'pages/Login/Login.js';
+import { removeCookie, getCookie } from 'pages/Login/Login.js';
 import { useNavigate } from "react-router-dom";
 
 const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
@@ -45,8 +45,8 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
     if (token == null) {
       movePage('/');
     }
-    
-    axios.put(`${S3_DIRECT_PROXY}/food/`+data.presignedUrlWeb, file, {
+
+    axios.put(`${S3_DIRECT_PROXY}/food/` + data.presignedUrlWeb, file, {
       headers: {
         'Content-Type': 'multipart/form-data' // Content-Type 헤더 설정
       }
@@ -122,8 +122,14 @@ const Tr = ({ info, checkHandler, checkedStatusList, setEdit }) => {
       }
     })
       .then((res) => {
-        alert('성공적으로 수정되었습니다.');
-        console.log(res);
+        if (res.data.statusCode === 200) {
+          alert('성공적으로 수정되었습니다.');
+        }else if(res.data.statusCode === 400){
+          alert('토큰이 만료되었습니다. 로그인 화면으로 이동합니다.');
+          removeCookie('Authorization');
+          movePage('/');
+          window.location.reload();
+        }
       }).catch((error) => {
         console.error('HTTP 요청 실패:', error);
       });

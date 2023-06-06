@@ -52,8 +52,10 @@ function ReportManage() {
             }
         })
             .then(res => {
-                setInfo(res.data.data.content);
-                setTotalElements(res.data.data.totalElements);
+                if (res.data.statusCode === 200) {
+                    setInfo(res.data.data.content);
+                    setTotalElements(res.data.data.totalElements);
+                }
             })
             .catch(err => console.log(err));
     };

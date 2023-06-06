@@ -5,10 +5,11 @@ import emailjs from '@emailjs/browser';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { getCookie } from 'pages/Login/Login.js';
+import { removeCookie, getCookie } from 'pages/Login/Login.js';
 
 
 export const sendWithdrawEmailAuto = (item) => {
+  
   const PROXY = window.location.hostname === 'localhost' ? '' : '/recipe_proxy';
   const defaultTitle = `[냉집사] ${item.nickname}님, 회원 정지 안내 메일 드립니다.`;
   const defaultMessage = `${item.nickname}님, 안녕하세요.
@@ -28,7 +29,8 @@ export const sendWithdrawEmailAuto = (item) => {
     }
   })
     .then(res => {
-      const reportList1 = res.data.data.userRecipeReportResList[0];
+      if (res.data.statusCode === 200) {
+        const reportList1 = res.data.data.userRecipeReportResList[0];
       const reportList2 = res.data.data.userRecipeReportResList[1];
       const reportList3 = res.data.data.userRecipeReportResList[2];
 
@@ -62,6 +64,10 @@ export const sendWithdrawEmailAuto = (item) => {
           alert("실패했습니다.");
           console.log(error.text);
         });
+      }else{
+        alert('토큰이 만료되었습니다. 로그인 화면으로 이동합니다.');
+      }
+      
     })
     .catch(err => console.log(err));
 
@@ -97,7 +103,8 @@ const Email = () => {
       }
     })
       .then(res => {
-        const reportList1 = res.data.data.userRecipeReportResList[0];
+        if (res.data.statusCode === 200) {
+          const reportList1 = res.data.data.userRecipeReportResList[0];
         const reportList2 = res.data.data.userRecipeReportResList[1];
         const reportList3 = res.data.data.userRecipeReportResList[2];
 
@@ -132,6 +139,12 @@ const Email = () => {
             alert("실패했습니다.");
             console.log(error.text);
           });
+        }else if(res.data.statusCode === 400){
+          alert('토큰이 만료되었습니다. 로그인 화면으로 이동합니다.');
+          removeCookie('Authorization');
+          navigate('/');
+          window.location.reload();
+        }
       })
       .catch(err => console.log(err));
 
