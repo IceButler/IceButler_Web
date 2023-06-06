@@ -58,11 +58,9 @@ export const sendWithdrawEmailAuto = (item) => {
 
       emailjs.send("service_d0rcavp", "template_zf5i5q9", templateParams, 'UMuQ-efYiV6XCJ6_R')
         .then((result) => {
-          console.log(result.text);
           alert("전송되었습니다.");
         }, (error) => {
           alert("실패했습니다.");
-          console.log(error.text);
         });
       }else{
         alert('토큰이 만료되었습니다. 로그인 화면으로 이동합니다.');
@@ -132,12 +130,10 @@ const Email = () => {
 
         emailjs.send("service_d0rcavp", "template_zf5i5q9", templateParams, 'UMuQ-efYiV6XCJ6_R')
           .then((result) => {
-            console.log(result.text);
             alert("전송되었습니다.");
             navigate(-1);
           }, (error) => {
             alert("실패했습니다.");
-            console.log(error.text);
           });
         }else if(res.data.statusCode === 404){
           alert('토큰이 만료되었습니다. 로그인 화면으로 이동합니다.');
@@ -146,7 +142,9 @@ const Email = () => {
           window.location.reload();
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => 
+        console.log(err)
+        );
 
   };
 

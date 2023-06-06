@@ -53,7 +53,6 @@ function Sidebar() {
                 } else {
                     alert("로그아웃에 실패했습니다.")
                 }
-                console.log(res);
             }).catch((error) => {
                 alert("로그아웃에 실패했습니다.")
             });
