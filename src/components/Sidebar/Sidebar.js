@@ -11,9 +11,11 @@ import ToggleActiveIcon from 'assets/images/sidebarIcon/toggleActive.png'
 import ToggleInactiveIcon from 'assets/images/sidebarIcon/toggleInactive.png'
 import LogoutIcon from 'assets/images/sidebarIcon/logout.png'
 import { useNavigate } from "react-router-dom";
-import { removeCookie } from 'pages/Login/Login.js';
+import { removeCookie, getCookie } from 'pages/Login/Login.js';
+import axios from 'axios';
 
 function Sidebar() {
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/main_proxy';
     const movePage = useNavigate();
     const reportMenus = [
         { index: 3, name: "신고 내역", path: "/reportManage" },
@@ -35,9 +37,27 @@ function Sidebar() {
     ]
 
     const handleLogout = () => {
-        removeCookie('Authorization');
-        movePage('/');
-        window.location.reload();
+        const token = getCookie('Authorization');
+        console.log(token);
+        axios.post(`${PROXY}/admin/logout`, {},
+            {
+                headers: {
+                    Authorization: token
+                }
+            }).then((res) => {
+                if (res.data.statusCode === 200) {
+                    removeCookie('Authorization');
+                    movePage('/');
+                    window.location.reload();
+
+                } else {
+                    alert("로그아웃에 실패했습니다.")
+                }
+                console.log(res);
+            }).catch((error) => {
+                alert("로그아웃에 실패했습니다.")
+            });
+
     };
 
     function getMenuIcon(path, isActive) {
