@@ -6,7 +6,7 @@ import Tr from './FoodTr';
 import foodTrash from "assets/images/food/trash.png";
 import foodSearch from "assets/images/food/search.png";
 import { useNavigate } from "react-router-dom";
-import { getCookie } from 'pages/Login/Login.js';
+import { removeCookie, getCookie } from 'pages/Login/Login.js';
 
 function FoodManage() {
     const PROXY = window.location.hostname === 'localhost' ? '' : '/main_proxy';
@@ -42,10 +42,17 @@ function FoodManage() {
             }
         })
             .then(res => {
-                setInfo(res.data.data.content)
-                setTotalElements(res.data.data.totalElements);
-                console.log(res.data)
-                setSize(16)
+                if (res.data.statusCode === 200) {
+                    setInfo(res.data.data.content)
+                    setTotalElements(res.data.data.totalElements);
+                    console.log(res.data)
+                    setSize(16)
+                }else if(res.data.statusCode === 404){
+                    alert('토큰이 만료되었습니다. 로그인 화면으로 이동합니다.');
+                    removeCookie('Authorization');
+                    movePage('/');
+                    window.location.reload();
+                }
             })
             .catch(err => console.log(err))
     };
@@ -77,10 +84,18 @@ function FoodManage() {
                 }
             })
                 .then(res => {
-                    console.log('HTTP 요청 성공');
-                    alert('성공적으로 삭제되었습니다.');
-                    fetchData(currentPage);
-                    checkedItems.clear();
+                    if (res.data.statusCode === 200) {
+                        console.log('HTTP 요청 성공');
+                        alert('성공적으로 삭제되었습니다.');
+                        fetchData(currentPage);
+                        checkedItems.clear();
+                    }else if(res.data.statusCode === 404){
+                        alert('토큰이 만료되었습니다. 로그인 화면으로 이동합니다.');
+                        removeCookie('Authorization');
+                        movePage('/');
+                        window.location.reload();
+                    }
+                    
                 })
                 .catch(err => {
                     console.error('HTTP 요청 실패:', err);

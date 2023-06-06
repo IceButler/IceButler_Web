@@ -36,9 +36,11 @@ const UserManage = () => {
       }
     })
       .then(res => {
-        setInfo(res.data.data.content);
-        setTotalElements(res.data.data.totalElements);
-        setSize(10)
+        if (res.data.statusCode === 200) {
+          setInfo(res.data.data.content);
+          setTotalElements(res.data.data.totalElements);
+          setSize(10)
+        }
       })
       .catch(err => console.log(err));
   };
@@ -64,13 +66,15 @@ const UserManage = () => {
       }
     })
       .then(res => {
-        if (confirmation) {
-          movePage('/userManage/withdrawEmail', { state: { item: item } });
-        } else {
-          sendWithdrawEmailAuto(item);
-          alert('탈퇴 메일이 전송되었습니다.');
+        if (res.data.statusCode === 200) {
+          if (confirmation) {
+            movePage('/userManage/withdrawEmail', { state: { item: item } });
+          } else {
+            sendWithdrawEmailAuto(item);
+            alert('탈퇴 메일이 전송되었습니다.');
+          }
+          fetchData(currentPage);
         }
-        fetchData(currentPage);
       })
       .catch(err => {
         console.error('HTTP 요청 실패:', err);

@@ -5,7 +5,7 @@ import axios from 'axios';
 import Tr from './ReportTr';
 import Paging from 'components/Paging.js'
 import SearchIcon from "assets/images/food/search.png";
-import { getCookie } from 'pages/Login/Login.js';
+import {getCookie } from 'pages/Login/Login.js';
 
 function CompleteReportManage() {
     const PROXY = window.location.hostname === 'localhost' ? '' : '/recipe_proxy';
@@ -52,8 +52,10 @@ function CompleteReportManage() {
             }
         })
             .then(res => {
-                setInfo(res.data.data.content);
-                setTotalElements(res.data.data.totalElements);
+                if (res.data.statusCode === 200) {
+                    setInfo(res.data.data.content);
+                    setTotalElements(res.data.data.totalElements);
+                }
             })
             .catch(err => console.log(err));
         console.log(page);
